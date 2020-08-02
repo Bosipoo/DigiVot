@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-6"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
+            <div class="col-6 d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-md-end justify-content-lg-end justify-content-xl-end align-items-xl-center"><a class="btn btn-primary bottom-button" role="button" style="width: 130px;height: 40px;font-family: 'Open Sans', sans-serif;" href="index.html">Logout</a></div>
+            <div class="col-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center"
+                style="margin-top: 70px;"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;color: rgb(0,0,0);font-size: 20px;font-weight: bold;">Click on the party to cast your vote</label></div>
+        </div>
+        <div class="row">
+            <div class="col" style="margin-bottom: 60px;padding: 30px;">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs nav-pills nav-justified" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#pres" style="margin-bottom: 0px;font-family: 'Open Sans', sans-serif;font-size: 20px;">Presidential</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#senate" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Senatorial</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#gub" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Gubernatorial</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <!--Presidential Pill--><div id="pres" class="container tab-pane active">
+                        <div class="row" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 17px;padding: 20px;height: 400px;">
+                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
+                                <div class="card" style="height: 220px;">
+                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
+                                        <div class="row position-relative">
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">SAll Peoples Party</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--Card end--></div>
+                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
+                                <div class="card" style="height: 220px;">
+                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
+                                        <div class="row position-relative">
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">Democrats Party</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--Card end--></div>
+                        </div>
+                    </div>
+                    <!--Senatorial Pill--><div id="senate" class="container tab-pane fade">
+                        <div class="row" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 17px;padding: 20px;">
+                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
+                                <div class="card" style="height: 220px;">
+                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
+                                        <div class="row position-relative">
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">SAll Peoples Party</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--Card end--></div>
+                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
+                                <div class="card" style="height: 220px;">
+                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
+                                        <div class="row position-relative">
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">Democrats Party</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--Card end--></div>
+                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
+                                <div class="card" style="height: 220px;">
+                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
+                                        <div class="row position-relative">
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">All Republicans Party</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--Card end--></div>
+                        </div>
+                    </div>
+                    <!--Gubernatorial Pill--><div id="gub" class="container tab-pane fade">
+                        <div class="row" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 17px;padding: 20px;">
+                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
+                                <div class="card" style="height: 220px;">
+                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
+                                        <div class="row">
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
+                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><label class="col-form-label">SAll Peoples Party</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--Card end--></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+</body>
+{% endblock content %}

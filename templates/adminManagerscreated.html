@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col d-flex col-3 position-fixed sidenav px-2">
+                    <div>
+                        <div class="row" style="margin-top: 60px;">
+                            <div class="col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-center"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png' %}" style="width: 120px;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 70px;">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-th-large icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminDash' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-user-friends icon-size" style="font-size: 20px;color: #152E21;"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminManagerscreated' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Managers</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
+                                <div class="row d-md-flex position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-life-ring icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-md-flex d-xl-flex justify-content-md-center align-items-md-center align-items-xl-start stretched-link" href="{% url 'adminPoliticalpartiesview' %}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Political Party</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-square-full icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminElections' %}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Elections</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 90px;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-0"><i class="fas fa-power-off icon-size" style="font-size: 20px;color: #FF5C5C;"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #ff5c5c;font-family: 'Open Sans', sans-serif;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #FF5C5C;height: 100%;">Logout</label></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col offset-3" id="main" style="background-color: #ECF6F1;padding: 60px;">
+                    <!--Main Content
+-->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start align-items-lg-center"><label class="col-form-label small-screentext" style="font-size: 20px;color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;">Managers</label></div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end align-items-lg-center justify-content-xl-end"><a class="btn btn-primary top-button" role="button" style="width: 150px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);" href="{% url 'adminManagersaddmanager' %}">+ Add Managers</a></div>
+                            </div>
+                            <div class="row d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center" style="margin-top: 60px;">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
+                                    <div class="card card-radius1" style="background-color: #4daf7c;color: rgb(255,255,255);">
+                                        <div class="card-body" style="padding-bottom: 0px;">
+                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;font-weight: normal;">Total Number of Voters</h4><a class="card-link stretched-link" href="#" style="font-family: 'Open Sans', sans-serif;font-size: 53px;color: rgb(254,255,255);">160,000</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
+                                    <div class="card card-radius1" style="background-color: rgba(77,175,124,0.76);color: rgb(255,255,255);">
+                                        <div class="card-body" style="padding-bottom: 0px;">
+                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;">Managers you created</h4><a class="card-link stretched-link" href="{% url 'adminManagerscreated' %}" style="color: rgb(255,255,255);font-size: 53px;">60</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
+                                    <div class="card card-radius1" style="background-color: #152E21;color: rgb(255,255,255);">
+                                        <div class="card-body" style="padding-bottom: 0px;">
+                                            <h4 class="card-title" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Managers registered</h4><a class="card-link stretched-link" href="{% url 'adminManagersregistered' %}" style="color: rgb(254,254,254);font-size: 53px;">27</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-6"><label class="col-form-label" style="font-size: 18px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Recently created managers</label></div>
+                                <div class="col-xl-4 d-xl-flex justify-content-xl-end align-items-xl-center">
+                                    <div class="input-group card-radius2">
+                                        <div class="input-group-prepend"><button class="btn btn-primary remove-border" type="button" style="background-color: rgba(255,255,255,0);"><i class="fa fa-search" style="font-size: 16px;font-weight: 100;"></i></button></div><input class="form-control remove-border"
+                                            type="search" style="background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" placeholder="Search for manager">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 d-xl-flex justify-content-xl-center align-items-xl-center"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);" placeholder="10"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12" style="margin-top: 30px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive table-borderless">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Email Address</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for manager in managers %}
+                                                <tr style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
+                                                    <td>{{manager.managerID}}</td>
+                                                    <td>{{manager.firstname}}</td>
+                                                    <td>{{manager.lastname}}</td>
+                                                    <td>{{manager.phonenumber}}</td>
+                                                    <td>{{manager.email}}</td>
+                                                    <td class="d-xl-flex"><a href="#"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                    <td><a href="#"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+                                                    <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
+                                                </tr>
+                                        {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Main
+-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+</body>
+{% endblock content %} 

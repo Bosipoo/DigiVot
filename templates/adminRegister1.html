@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body style="background-image: url(&quot;{% static './img/background.png' %}&quot;);">
+    <div class="row">
+        <div class="col-12 col-lg-12 d-flex justify-content-end justify-content-xl-end"><img class="d-lg-flex align-items-lg-end" src="{% static './img/DigiVotLogo%201.png' %}" style="margin-top: 24px;width: 148px;height: 60px;"></div>
+    </div>
+    <div class="row" style="margin-bottom: 30px;">
+        <div class="col"></div>
+        <div class="col col-10">
+            <div class="card card-radius" style="margin-top: 19px;">
+                <div class="card-body" style="padding: 38px;">
+                    <div class="row">
+                        <div class="col col-xl-9 col-lg-9 col-md-9 col-sm-8 col-xs-2">
+                            <div class="row">
+                                <div class="col"><label class="col-form-label" style="font-size: 25px;font-family: 'Open Sans', sans-serif;font-weight: 800;">Register</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label" style="color: rgba(0, 0, 0, 0.6);font-family: 'Open Sans', sans-serif;font-size: 13px;">Admin, Welcome to DigiVot</label></div>
+                            </div>
+                        </div>
+                        <div class="col col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid" src="{% static './img/Group%2090.png' %}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <form>
+                            <div class="form-row" style="margin-top: 17px;padding: 0;">
+                                <div class="col-sm-12 col-md-6 d-sm-inline col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Firstname</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col col-12"><input class="shadow-none form-control d-sm-flex input-line respond" type="text" style="font-family: 'Open Sans', sans-serif;width: 220px;margin-top: -12px;font-size: 15px;" required="" name="firstname"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-size: 14px;">Lastname</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col col-12"><input class="shadow-none form-control input-line" type="text" style="font-family: 'Open Sans', sans-serif;width: 220px;margin-top: -12px;font-size: 15px;" required=""></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12 col-lg-4 col-xl-4">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-size: 14px;">Other name</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col col-12"><input class="shadow-none form-control input-line" type="text" style="font-family: 'Open Sans', sans-serif;width: 220px;margin-top: -12px;font-size: 15px;" required=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-sm-12 col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" style="padding: 0px 5px;padding-left: 5px;">
+                                    <div class="form-row" style="margin-right: -5px;">
+                                        <div class="col" style="margin-top: 5px;">
+                                            <div class="form-row">
+                                                <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Phone Number</label></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col col-12"><input class="shadow-none form-control input-line" type="text" style="font-family: 'Open Sans', sans-serif;width: 220px;margin-top: -12px;font-size: 15px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="margin-top: 5px;">
+                                        <div class="col">
+                                            <div class="form-row">
+                                                <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Gender</label></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="dropdown" style="width: 220px;"><button class="btn btn-primary dropdown-toggle shadow-none d-lg-flex justify-content-lg-start justify-content-xl-start align-items-xl-center" data-toggle="dropdown" aria-expanded="false" type="button"
+                                                            style="width: 220px;height: 36px;color: rgb(0,0,0);background-color: rgba(196, 196, 196, 0.5);">Gender</button>
+                                                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-8 col-md-6 col-lg-4 col-xl-4" style="font-family: 'Open Sans', sans-serif;width: 220px;font-size: 15px;">
+                                    <div class="form-row" style="margin-top: 5px;">
+                                        <div class="col">
+                                            <div class="form-row">
+                                                <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Email Address</label></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col col-12"><input class="shadow-none form-control input-line" type="text" style="font-family: 'Open Sans', sans-serif;width: 220px;margin-top: -12px;font-size: 15px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="margin-top: 5px;">
+                                        <div class="col">
+                                            <div class="form-row">
+                                                <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Status</label></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="dropdown" style="width: 220px;"><button class="btn btn-primary dropdown-toggle shadow-none d-lg-flex justify-content-lg-start justify-content-xl-start align-items-xl-center" data-toggle="dropdown" aria-expanded="false" type="button"
+                                                            style="width: 220px;height: 36px;color: rgb(0,0,0);background-color: rgba(196, 196, 196, 0.5);">Select your status</button>
+                                                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-4 col-md-6 col-lg-4 col-xl-4">
+                                    <div class="form-row" style="margin-top: 5px;">
+                                        <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-size: 14px;">Picture</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-lg-flex"><button class="btn btn-primary border rounded-circle border-dark shadow-none" type="button" style="width: 100px;height: 100px;background-color: rgb(0,0,0);"><i class="fa fa-plus" style="font-weight: normal;font-size: 60px;"></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4 col-xl-4">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">State</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="dropdown" style="width: 220px;"><button class="btn btn-primary dropdown-toggle shadow-none d-lg-flex justify-content-lg-start align-items-lg-center" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 220px;height: 36px;color: rgb(0,0,0);background-color: rgba(196, 196, 196, 0.5);">Select your state</button>
+                                                <div
+                                                    class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="form-row">
+                                    <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Region</label></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="dropdown" style="width: 220px;"><button class="btn btn-primary dropdown-toggle shadow-none d-lg-flex justify-content-lg-start justify-content-xl-start align-items-xl-center" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 220px;height: 36px;color: rgb(0,0,0);background-color: rgba(196, 196, 196, 0.5);">Select your region</button>
+                                            <div
+                                                class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="form-row" style="margin-top: 8px;">
+                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="form-row">
+                            <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Date of Birth</label></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col"><input class="shadow-none form-control input-line" type="text" style="font-family: 'Open Sans', sans-serif;width: 220px;margin-top: -12px;font-size: 15px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12col-md-12 col-lg-8 col-xl-8">
+                        <div class="form-row">
+                            <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Address</label></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col"><textarea class="form-control" style="width: 478px;"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="col-sm-12 col-sm-6 col-xs-0 col-md-7 col-lg-7 col-xl-7"></div>
+                    <div class="col-sm-12 d-sm-flex justify-content-sm-center col-xs-12 col-sm-6 col-md-5 col-lg-5 col-xl-5"><a class="btn btn-primary d-sm-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center" role="button" style="width: 284px;height: 54px;margin-top: 13px;font-size: 16px;background-color: #4daf7c;color: rgb(255,255,255);"
+                            href="adminRegister2.html">Next</a></div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col col-1"></div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+</body>
+{% endblock content %} 

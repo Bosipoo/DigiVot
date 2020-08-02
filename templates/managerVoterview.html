@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3 d-flex col-3 position-fixed sidenav px-2">
+                    <div>
+                        <div class="row" style="margin-top: 60px;">
+                            <div class="col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-center" style="margin-top: -40px;"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: #474747;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-th-large icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerDash'%}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-user-friends icon-size" style="font-size: 20px;color: #152E21;"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerVoter'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Voters</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
+                                <div class="row d-md-flex position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="material-icons icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);">comment</i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-md-flex d-xl-flex justify-content-md-center align-items-md-center align-items-xl-start stretched-link" href="{% url 'managerRequests'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Requests</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fa fa-users icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerCandidates'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Candidates</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 20px;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-0"><i class="fas fa-power-off icon-size" style="font-size: 20px;color: #FF5C5C;"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #ff5c5c;font-family: 'Open Sans', sans-serif;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #FF5C5C;height: 100%;">Logout</label></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-xl-flex justify-content-xl-start align-items-xl-center" id="divider" style="font-family: 'Open Sans', sans-serif;margin-top: 41px;font-size: 12px;">
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 13px;">Admin Details</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">ID: 19089324</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Stata: Lagos</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Region: Surulere-west</label></div>
+                        </div>
+                    </div>
+                </div>
+                <!--Begin Main-->
+                <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-7 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start"><a class="link" href="{% url 'managerVoter'%}" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Voters</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
+                                    <a
+                                        class="link" href="{% url 'managerVoterview'%}" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">View</a>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 40px;">
+                                <div class="col-12 col-sm-7 col-md-8 col-lg-8 col-xl-9"><label class="col-form-label" style="color: #152e21;font-size: 27px;font-family: 'Open Sans', sans-serif;font-weight: bold;">View Voter's Details</label></div>
+                                <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-end align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" role="button" style="width: 50px;height: 50px;background-color: #C2D4F5;" href="{% url 'managerVoteredit'%}"><i class="fas fa-pen" style="font-size: 23px;color: #7492cb;"></i></a></div>
+                                        <div
+                                            class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center"><button class="btn btn-primary card-radius2" style="background-color: #ffb9b9;width: 50px;height: 50px;" data-toggle="modal" data-target="#delete"><i class="far fa-trash-alt" style="font-size: 23px;color: #ff5c5c;"></i></button>
+                                            <div
+                                                class="modal fade" role="dialog" tabindex="-1" id="delete">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header d-xl-flex align-items-xl-start" style="padding: 20px;">
+                                                            <h2 class="modal-title d-xl-flex align-items-xl-center" style="font-family: 'Open Sans', sans-serif;font-size: 25px;">Ask your Admin for permission to delete this voter</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                        <div class="modal-footer d-xl-flex justify-content-xl-center"><button class="btn btn-primary modal-button-clear" type="button" style="width: 130px;height: 45px;">Ask</button><button class="btn btn-light bottom-button" type="button" data-dismiss="modal" style="width: 130px;height: 45px;">Don't Ask</button></div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-lg-flex d-xl-flex justify-content-lg-start justify-content-xl-start" style="margin-top: 40px;">
+                        <div class="col-lg-8 col-xl-7 d-lg-flex d-xl-flex justify-content-lg-start justify-content-xl-start">
+                            <div class="card card-radius1">
+                                <div class="card-body card-radius1">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-7 col-xl-7">
+                                            <div class="row">
+                                                <div class="col-xl-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: bold;font-size: 25px;">OOO4U601NG</label></div>
+                                                <div class="col-xl-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;">Voter PIN</label></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-lg-2 col-xl-2 d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center">
+                                            <div class="row">
+                                                <div class="col-12 col-xl-12 d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center"><i class="fas fa-copy" style="font-size: 21px;color: #4daf7c;"></i></div>
+                                                <div class="col d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center align-items-xl-center" style="width: 107.25px;margin-top: 0px;"><a href="#" style="font-size: 11px;font-family: 'Open Sans', sans-serif;color: #4daf7c;">Copy</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-3 col-xl-3 d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center">
+                                            <div class="row">
+                                                <div class="col-12 d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center align-items-xl-center"><i class="fas fa-paper-plane" style="font-size: 21px;color: #4daf7c;"></i></div>
+                                                <div class="col-12 d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center align-items-xl-center"><a href="#" style="font-size: 11px;font-family: 'Open Sans', sans-serif;color: #4daf7c;">Send to Manager</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">{{voter.firstname}}</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Aki</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Toast</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Phone Number</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">08056431267</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Email Address</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">voplu@ymail.com</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Date of Birth</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">4 June, 1998</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Status</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Married</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Nigerian</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Religion</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Christianity</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Profession</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Software Developer</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Origin</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Lagos</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Origin</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Shomolu</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Residence</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Lagos</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Residence</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Surulere</label></div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Address</label></div>
+                        <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">56 Uipol Street, Mars Estate, Lagos</label></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Picture</label></div>
+                        <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start"><img class="card-radius1" style="width: 220px;height: 223px;background-color: #6a6262;"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                    <div class="row">
+                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Biometric Information</label></div>
+                        <div class="col-12 d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-start"><img src="{% static './img/mdi_fingerprint.png'%}" style="width: 85px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Main
+-->
+    </div>
+    </div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+</body>
+{% endblock content %}

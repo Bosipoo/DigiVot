@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body style="background-image: url(&quot;{% static './img/background.png' %}&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex d-sm-flex d-md-flex d-lg-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end"><img class="d-lg-flex align-items-lg-end" src="assets/img/DigiVotLogo%201.png" style="margin-top: 24px;width: 195px;height: 75px;"></div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-1 col-4 col-md-1 col-sm-1 col-xs-0 col-lg-4 col-xl-4" style="background-image: url(&quot;assets/img/background.png&quot;);"></div>
+            <div class="col-10 d-flex d-md-flex justify-content-center justify-content-md-center col-4 col-md-10 col-sm-10 col-xs-12 col-lg-4 col-xl-4">
+                <div class="card card-radius" style="padding: 22px;">
+                    <div class="card-body">
+                        <form style="font-family: 'Open Sans', sans-serif;">
+                            <div class="form-group">
+                                <div class="form-row d-md-flex justify-content-md-center align-items-md-center">
+                                    <div class="col">
+                                        <div class="form-row">
+                                            <div class="col"><label class="col-form-label" style="font-size: 25px;font-family: 'Open Sans', sans-serif;font-weight: 600;">Register</label></div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col" style="margin-top: -10px;"><label class="col-form-label" style="color: rgba(0, 0, 0, 0.6);font-family: 'Open Sans', sans-serif;font-size: 13px;">Admin, Welcome to DigiVot</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-4"><img class="img-fluid d-md-flex justify-content-md-center" src="{% static './img/ProgressBar.png' %}"></div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="d-lg-flex justify-content-lg-start align-items-lg-center" style="font-size: 15px;color: rgb(0,0,0);">Username</label><input class="shadow-none form-control input-line" type="text" style="margin-left: 0px;font-size: 18px;margin-top: -20px;"></div>
+                            <div
+                                class="form-group"><label class="d-lg-flex justify-content-lg-start align-items-lg-center" style="font-size: 15px;color: rgb(0,0,0);">Password</label><input class="shadow-none form-control input-line" type="password" style="margin: -20px 0px 0px;font-size: 18px;"></div>
+                    <div
+                        class="form-group d-lg-flex justify-content-lg-center">
+                        <div class="form-row d-lg-flex">
+                            <div class="col-lg-12 d-flex d-lg-flex justify-content-center justify-content-lg-center"><img class="d-flex d-lg-flex flex-row justify-content-lg-center align-items-lg-start" src="{% static './img/mdi_fingerprint.png' %}"></div>
+                            <div class="col d-flex d-lg-flex justify-content-center justify-content-lg-center"><label class="col-form-label" style="font-size: 13px;">Place your finger on the machine</label></div>
+                        </div>
+                </div>
+                <div class="form-group d-lg-flex justify-content-lg-center">
+                    <div class="form-row" style="margin-top: 40px;">
+                        <div class="col d-sm-flex d-md-flex justify-content-sm-center justify-content-md-center col-md-6 col-lg-6 col-xl-6 col-sm-6 col-xs-6"><button class="btn btn-primary button-border" type="button" style="width: 115px;height: 45px;background-color: rgb(255,255,255);color: #4daf7c;font-family: 'Open Sans', sans-serif;font-size: 18px;font-weight: normal;">Back</button></div>
+                        <div
+                            class="col d-sm-flex d-md-flex justify-content-sm-center justify-content-md-center col-md-6 col-lg-6 col-xl-6 col-sm-6 col-xs-6"><a class="btn btn-primary button-border" role="button" style="width: 115px;background-color: #4daf7c;font-size: 18px;font-family: 'Open Sans', sans-serif;font-weight: normal;color: rgb(255,255,255);" href="adminDash.html">Register</a></div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="col col-4 col-md-1 col-sm-1 col-xs-0 col-lg-4 col-xl-4" style="background-image: url(&quot;{% static './img/background.png' %}&quot;);"></div>
+    </div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+</body>
+{% endblock content %} 

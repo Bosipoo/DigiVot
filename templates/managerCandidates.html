@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3 d-flex col-3 position-fixed sidenav px-2">
+                    <div>
+                        <div class="row" style="margin-top: 60px;">
+                            <div class="col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-center" style="margin-top: -40px;"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: #474747;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-th-large icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerDash'%}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-user-friends icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerVoter'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Voters</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
+                                <div class="row d-md-flex position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="material-icons icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);">comment</i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-md-flex d-xl-flex justify-content-md-center align-items-md-center align-items-xl-start stretched-link" href="{% url 'managerRequests'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Requests</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fa fa-users icon-size" style="font-size: 20px;color: #152E21;"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerCandidates'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Candidates</label></a></div>
+                                </div>
+                            </div>
+                            <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 20px;">
+                                <div class="row position-relative" style="width: 100%;">
+                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-0"><i class="fas fa-power-off icon-size" style="font-size: 20px;color: #FF5C5C;"></i></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #ff5c5c;font-family: 'Open Sans', sans-serif;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #FF5C5C;height: 100%;">Logout</label></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-xl-flex justify-content-xl-start align-items-xl-center" id="divider" style="font-family: 'Open Sans', sans-serif;margin-top: 41px;font-size: 12px;">
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 13px;">Admin Details</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">ID: 19089324</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">State: Lagos</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Region: Surulere-west</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;padding-top: 40px;height: 100vh;">
+                    <!--Main Content
+-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start align-items-lg-center"><label class="col-form-label small-screentext" style="font-size: 20px;color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;">Electoral Candidates</label></div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end align-items-lg-center justify-content-xl-end"><label class="col-form-label small-screentext" style="color: #474747;font-size: 20px;font-family: 'Open Sans', sans-serif;margin-top: 10px;">28 June 2020, Monday</label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                        style="margin-top: 35px;padding-left: 0px;margin-bottom: 20px;">
+                        <div class="col-xl-12 d-lg-flex justify-content-lg-end">
+                            <div class="row d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-8 d-xl-flex justify-content-xl-end align-items-xl-center" style="margin-top: 5px;">
+                                    <div class="input-group card-radius2">
+                                        <div class="input-group-prepend"><button class="btn btn-primary remove-border" type="button" style="background-color: rgba(255,255,255,0);"><i class="fa fa-search" style="font-size: 16px;font-weight: 100;"></i></button></div><input class="form-control remove-border"
+                                            type="search" style="background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" placeholder="Search for candidate">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-4 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 4px;"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" value="10"></div>
+                            </div>
+                        </div>
+                        <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12 d-lg-flex d-xl-flex justify-content-lg-center align-items-lg-center justify-content-xl-center" style="margin-top: 35px;">
+                            <div class="card card-radius1" style="width: 100%;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr style="font-family: 'Open Sans', sans-serif;font-size: 15px;">
+                                                            <th>ID</th>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>Election Type</th>
+                                                            <th>Area</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
+                                                            <td>1</td>
+                                                            <td>Oluwabosipo</td>
+                                                            <td>Ojo</td>
+                                                            <td>Presidential</td>
+                                                            <td>Nigeria</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Main
+-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+</body>
+{% endblock content %}
