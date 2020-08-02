@@ -2,3 +2,4 @@
 nenv/
 *.pyc
 **/migrations/*
+.vscode/
