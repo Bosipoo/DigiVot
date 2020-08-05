@@ -426,3 +426,9 @@ svg {
 #cream{
   background-color: #ecf6f1;
 }
+
+.modal{
+  display: flex;
+  align-items: center;
+  justify-content: center
+}

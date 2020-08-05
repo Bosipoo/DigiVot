@@ -1,10 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView,DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import AdminUserR
 from .models import VoterReg
-from .models import ManagerUserR
+from .models import ManagerUserR,ElectionType
 from django.views.generic.edit import FormView
 
 # Create your views here.
@@ -49,9 +49,6 @@ def adminRegister2(request):
 def adminPoliticalpartiesview(request):
     return render(request,'adminPoliticalpartiesview.html')
 
-def adminElections(request):
-    return render(request,'adminElections.html')
-
 def adminManagersregistered(request):
     return render(request,'adminManagersregistered.html')
 
@@ -85,9 +82,6 @@ class adminDash(ListView):
         context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
         return context
 
-def adminManagerscreated(request):
-    return render(request,'')
-
 class adminManagerscreated(ListView):
     template_name = 'adminManagerscreated.html'   
     model = ManagerUserR
@@ -103,6 +97,48 @@ class adminManagersaddmanager(SuccessMessageMixin ,CreateView):
     fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
     success_url = '/adminManagerscreated'
     success_message = "%(email)s was created successfully"
+
+# class adminElectionslistandview(CreateView):
+#     model = ElectionType
+#     template_name = 'adminElections.html'
+
+#     fields = ['electiontitle','electiontype','registeration_start','registeration_end','voting_start','voting_end','requiredposition'] 
+#     # success_url = '/adminElections.html'
+#     # success_message = "%(email)s was created successfully"
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["objects"] = self.model.objects.all()
+#         return context
+
+class adminElections(ListView):
+    template_name = 'adminElections.html'
+    model = ElectionType
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["elections"] = ElectionType.objects.all().order_by('-dateadded')[:10]
+        return context
+
+class adminElectionsadd(SuccessMessageMixin ,CreateView):
+    model = ElectionType
+    template_name = 'adminElectionsadd.html'
+    fields = ['electionID','electiontitle','electiontype','registeration_start','registeration_end','voting_start','voting_end','requiredposition']
+    success_url = '/addElections'
+    success_message = "Election was created successfully"
+
+class adminElectionsedit(UpdateView):
+    model = ElectionType
+    template_name = 'adminElectionsedit.html'
+    fields = ['electionID','electiontitle','electiontype','registeration_start','registeration_end','voting_start','voting_end','requiredposition']
+
+    def form_valid(self,form):
+        instance = form.save()
+        return redirect('adminElections')
+
+class adminElectionsview(DetailView):
+    template_name = 'adminElectionsview.html'
+    model = ElectionType
+    context_object_name = 'election'
 
 class managerVoter(ListView):
     template_name = 'managerVoter.html'

@@ -33,7 +33,7 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-square-full icon-size" style="font-size: 20px;color: #152E21;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start" href="{% url 'adminElections' %}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Elections</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start" href="adminElections.html"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Elections</label></a></div>
                                 </div>
                             </div>
                             <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 90px;">
@@ -45,65 +45,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col offset-3" id="main" style="background-color: #ECF6F1;padding: 60px;height: 100vh;">
+                <div class="col offset-3" id="main" style="background-color: #ECF6F1;padding: 60px;">
                     <!--Main Content
 -->
                     <div class="row">
                         <div class="col-md-12 col-lg-12">
                             <div class="row">
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start align-items-lg-center"><label class="col-form-label small-screentext" style="font-size: 20px;color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;">Election</label></div>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end align-items-lg-center justify-content-xl-end"><a class="btn btn-primary top-button" role="button" style="width: 150px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);" href="adminManagersaddmanager.html" data-toggle="modal"
-                                        data-target="#electioncreate">+ Add Election</a>
-                                    <!--Create Election Modal-->
-                                    <div class="modal fade" role="dialog" tabindex="-1" id="electioncreate">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title">Create Election</h3><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                                                <form>
-                                                    <div class="modal-body">
-                                                        <div class="form-row">
-                                                            <div class="col-12">
-                                                                <div class="form-row">
-                                                                    <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;color: rgb(0,0,0);font-weight: 300;">Election Title</label></div>
-                                                                    <div class="col-12"><input class="form-control modal-input card-radius2" type="text" style="width: 365px;height: 40px;font-family: 'Open Sans', sans-serif;"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12" style="margin-top: 15px;">
-                                                                <div class="form-row">
-                                                                    <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;color: rgb(0,0,0);font-weight: 300;">Election Type</label></div>
-                                                                    <div class="col-12"><select class="form-control modal-input" type="date" style="height: 40px;width: 365px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12" style="margin-top: 15px;">
-                                                                <div class="form-row">
-                                                                    <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;color: rgb(0,0,0);font-weight: 300;">Duration</label></div>
-                                                                    <div class="col-12 d-xl-flex align-items-xl-center"><input class="form-control modal-input card-radius2" type="date" style="height: 40px;width: 180px;font-family: 'Open Sans', sans-serif;" name="from"><label style="margin-left: 10px;margin-right: 10px;">to</label>
-                                                                        <input
-                                                                            class="form-control modal-input card-radius2" type="date" style="height: 40px;width: 180px;font-family: 'Open Sans', sans-serif;" name="to"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer d-xl-flex justify-content-xl-center"><button class="btn btn-primary bottom-button" type="button" style="width: 470px;height: 40px;">Create Election</button></div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Create Election Modal-->
-                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start align-items-lg-center"><label class="col-form-label small-screentext" style="font-size: 20px;color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;">Elections</label></div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end align-items-lg-center justify-content-xl-end"><a class="btn btn-primary top-button" role="button" style="width: 185px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);" href="{% url 'adminElectionsadd' %}">+ Create Election</a></div>
                             </div>
                             <div class="row d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-start" style="margin-top: 60px;">
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
                                     <div class="card card-radius1" style="background-color: #4daf7c;color: rgb(255,255,255);">
                                         <div class="card-body" style="padding-bottom: 0px;">
-                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;font-weight: normal;">Conducted Elections</h4><a class="card-link stretched-link" href="#" style="font-family: 'Open Sans', sans-serif;font-size: 53px;color: rgb(254,255,255);">10</a></div>
+                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;font-weight: normal;">Conducted Elections</h4><a class="card-link" href="#" style="font-family: 'Open Sans', sans-serif;font-size: 53px;color: rgb(254,255,255);">10</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
                                     <div class="card card-radius1" style="background-color: rgba(77,175,124,0.76);color: rgb(255,255,255);">
                                         <div class="card-body" style="padding-bottom: 0px;">
-                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;">Ongoing elections</h4><a class="card-link stretched-link" href="" style="color: rgb(255,255,255);font-size: 53px;">1</a></div>
+                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;">Ongoing elections</h4><a class="card-link" href="" style="color: rgb(255,255,255);font-size: 53px;">1</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -112,80 +73,48 @@
                     <div class="row" style="margin-top: 20px;">
                         <div class="col-xl-12">
                             <div class="row">
-                                <div class="col-sm-7 col-md-5 col-lg-5 col-xl-6"><label class="col-form-label" style="font-size: 18px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Recently Created Elections</label></div>
-                                <div class="col-sm-5 col-md-4 col-lg-4 col-xl-4 d-xl-flex justify-content-xl-end align-items-xl-center">
+                                <div class="col-xl-6"><label class="col-form-label" style="font-size: 18px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Recently created elections</label></div>
+                                <div class="col-xl-4 d-xl-flex justify-content-xl-end align-items-xl-center">
                                     <div class="input-group card-radius2">
                                         <div class="input-group-prepend"><button class="btn btn-primary remove-border" type="button" style="background-color: rgba(255,255,255,0);"><i class="fa fa-search" style="font-size: 16px;font-weight: 100;"></i></button></div><input class="form-control remove-border"
-                                            type="search" style="background-color: rgba(255,255,255,0);" placeholder="Search for Election">
+                                            type="search" style="background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" placeholder="Search for election">
                                         <div class="input-group-append"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-sm-flex d-xl-flex justify-content-sm-end justify-content-xl-center align-items-xl-center"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);" value="10"></div>
+                                <div class="col-xl-2 d-xl-flex justify-content-xl-center align-items-xl-center"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);" placeholder="10"></div>
                             </div>
                         </div>
-                        <div class="col-xl-12" style="margin-top: 30px;">
+                        <div class="col-xl-12" style="margin-top: 30px; width:700px;">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="table-responsive table-borderless">
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
+                                                    <tr>
                                                     <th>ID</th>
                                                     <th>Election Title</th>
                                                     <th>Election Type</th>
-                                                    <th>No. of Candidates</th>
-                                                    <th>No. of Votes</th>
+                                                    <th>Registration duration</th>
+                                                    <th>Voting Duration</th>
                                                     <th></th>
                                                     <th></th>
+                                                </tr>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Presidential Electios</td>
-                                                    <td>Presidential</td>
-                                                    <td>5</td>
-                                                    <td>10,000,000</td>
-                                                    <td><a href="adminManagerseditmanager.html" data-toggle="modal" data-target="#electionedit"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a>
-                                                        <!--Edit Election Modal
--->
-                                                        <div class="modal fade" role="dialog" tabindex="-1" id="electionedit">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h3 class="modal-title">Edit Election</h3><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <div class="row">
-                                                                                    <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;color: rgb(0,0,0);font-weight: 300;">Election Title</label></div>
-                                                                                    <div class="col-12"><input type="text" class="modal-input card-radius2" style="width: 365px;height: 40px;font-family: 'Open Sans', sans-serif;" value="Presidential Elections"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-12" style="margin-top: 15px;">
-                                                                                <div class="row">
-                                                                                    <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;color: rgb(0,0,0);font-weight: 300;">Election Type</label></div>
-                                                                                    <div class="col-12"><select class="modal-input" type="date" style="height: 40px;width: 365px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13" selected="">Presidetial</option><option value="14">This is item 3</option></optgroup></select></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-12" style="margin-top: 15px;">
-                                                                                <div class="row">
-                                                                                    <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;color: rgb(0,0,0);font-weight: 300;">Duration</label></div>
-                                                                                    <div class="col-12"><input class="modal-input card-radius2" type="date" style="height: 40px;width: 150px;" name="from" value="06/07/2020"><label style="margin-left: 10px;margin-right: 10px;">to</label>
-                                                                                        <input
-                                                                                            class="modal-input card-radius2" type="date" style="height: 40px;width: 150px;" name="to" value="12/08/2020"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer d-xl-flex justify-content-xl-center"><button class="btn btn-primary bottom-button" type="button" style="width: 470px;height: 40px;">Update Election</button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--End Edit Election Modal-->
-                                                    </td>
+                                                {% for election in elections %}
+                                                <tr style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
+                                                    <td>{{election.electionID}}</td>
+                                                    <td>{{election.electiontitle}}</td>
+                                                    <td>{{election.electiontype}}</td>
+                                                    <td>{{election.registeration_start}} - {{election.registeration_end}}</td>
+                                                    <td>{{election.voting_start}} - {{election.voting_end}}</td>
+                                                    <td><a href="{% url 'adminElectionsview' election.electionID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                    <td><a href="{% url 'adminElectionsedit' election.electionID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
                                                     <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                 </tr>
+                                        {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>

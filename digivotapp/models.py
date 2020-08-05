@@ -3,6 +3,7 @@ from django.utils.crypto import get_random_string
 from django.core.validators import RegexValidator
 from django.utils import timezone
 from django.utils.timezone import now
+from .widgets import BootstrapDateTimePickerInput
 import datetime
 import string
 
@@ -188,19 +189,29 @@ class VoterReg(models.Model):
 
 class PoliticalParty(models.Model):
     partyID = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-    acronym = models.CharField(max_length=10)
-    symbol = models.ImageField(upload_to='Images/')
+    partyname = models.CharField(max_length=50)
+    partyacronym = models.CharField(max_length=5)
+    partysymbol = models.ImageField(upload_to='Images/')
 
-class ElectionType(models.Model):
+
+class ElectionType(models.Model): 
     electionID = models.AutoField(primary_key=True)
-    electiontype = models.CharField(max_length=100) 
+    electiontitle = models.CharField(max_length=50)
+    electiontype = models.CharField(max_length=100, choices=(
+        ('Presidential','Presidential'),
+        ('Gubernatorial','Gubernatorial'),
+        ('Senatorial','Senatoial')
+    ), default='Presidential') 
     registeration_start = models.DateField()
     registeration_end = models.DateField()
     voting_start = models.DateField()
     voting_end = models.DateField()
     requiredposition = models.TextField(max_length=200)
-    dateadded = models.DateTimeField(default=now)
+    dateadded = models.DateField(default=now)
+    
+    def __str__(self):
+        return self.name
+
 
 class PoliticalCandidate(models.Model):
     candidateID = models.AutoField(primary_key=True)
