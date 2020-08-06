@@ -83,6 +83,15 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'digivot',
+    #     'USER': 'digivotuser',
+    #     'PASSWORD': 'AJpESO3jX0FmLWIxP',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 
