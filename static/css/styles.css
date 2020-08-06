@@ -1,7 +1,6 @@
 .card-radius {
   border-radius: 25px;
 }
-
 .heading {
   font-weight: 500;
 }
@@ -130,6 +129,7 @@ button:focus {
   height: 100vh;
   z-index: 1;
   overflow-x: hidden;
+  background-color: #ffffff !important;
 }
 
 @media (min-width: 768px) {
@@ -186,7 +186,7 @@ button:focus {
 }
 
 #main {
-  height: 100%;
+  margin-bottom: 20px; 
 }
 
 .top-button {
@@ -431,4 +431,20 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }

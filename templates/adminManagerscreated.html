@@ -58,19 +58,19 @@
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
                                     <div class="card card-radius1" style="background-color: #4daf7c;color: rgb(255,255,255);">
                                         <div class="card-body" style="padding-bottom: 0px;">
-                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;font-weight: normal;">Total Number of Voters</h4><a class="card-link stretched-link" href="#" style="font-family: 'Open Sans', sans-serif;font-size: 53px;color: rgb(254,255,255);">160,000</a></div>
+                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;font-weight: normal;">Total Number of Voters</h4><a class="card-link stretched-link" style="font-family: 'Open Sans', sans-serif;font-size: 53px;color: rgb(254,255,255);">160,000</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
                                     <div class="card card-radius1" style="background-color: rgba(77,175,124,0.76);color: rgb(255,255,255);">
                                         <div class="card-body" style="padding-bottom: 0px;">
-                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;">Managers you created</h4><a class="card-link stretched-link" href="{% url 'adminManagerscreated' %}" style="color: rgb(255,255,255);font-size: 53px;">60</a></div>
+                                            <h4 class="card-title" style="font-size: 16px;font-family: 'Open Sans', sans-serif;">Managers you created</h4><a class="card-link stretched-link" style="color: rgb(255,255,255);font-size: 53px;">60</a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="margin-bottom: 15px;">
                                     <div class="card card-radius1" style="background-color: #152E21;color: rgb(255,255,255);">
                                         <div class="card-body" style="padding-bottom: 0px;">
-                                            <h4 class="card-title" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Managers registered</h4><a class="card-link stretched-link" href="{% url 'adminManagersregistered' %}" style="color: rgb(254,254,254);font-size: 53px;">27</a></div>
+                                            <h4 class="card-title" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Managers registered</h4><a class="card-link stretched-link" style="color: rgb(254,254,254);font-size: 53px;">27</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -115,9 +115,9 @@
                                                     <td>{{manager.lastname}}</td>
                                                     <td>{{manager.phonenumber}}</td>
                                                     <td>{{manager.email}}</td>
-                                                    <td class="d-xl-flex"><a href="#"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
-                                                    <td><a href="#"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
-                                                    <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
+                                                    <td class="d-xl-flex"><a href="{% url 'adminManagersview' manager.managerID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                    <td><a href=""><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+                                                    <td><a href="{% url 'adminManagersdelete' manager.managerID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                 </tr>
                                         {% endfor %}
                                             </tbody>

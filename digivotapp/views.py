@@ -49,21 +49,6 @@ def adminRegister2(request):
 def adminPoliticalpartiesview(request):
     return render(request,'adminPoliticalpartiesview.html')
 
-def adminManagersregistered(request):
-    return render(request,'adminManagersregistered.html')
-
-def adminManagersaddmanager(request):
-    return render(request,'adminManagersaddmanager.html')
-
-def adminManagersaddmanager(request):
-    return render(request,'adminManagersaddmanager.html')
-
-def adminManagerseditmanager(request):
-    return render(request,'adminManagerseditmanager.html')
-
-def adminManagersviewmanager(request):
-    return render(request,'adminManagersviewmanager.html')
-
 def adminPoliticalpartiesadd(request):
     return render(request, 'adminPoliticalpartiesadd.html')
 
@@ -98,17 +83,16 @@ class adminManagersaddmanager(SuccessMessageMixin ,CreateView):
     success_url = '/adminManagerscreated'
     success_message = "%(email)s was created successfully"
 
-# class adminElectionslistandview(CreateView):
-#     model = ElectionType
-#     template_name = 'adminElections.html'
+class adminManagersview(DetailView):
+    template_name = 'adminManagersview.html'
+    model = ManagerUserR
+    context_object_name = 'manager'
 
-#     fields = ['electiontitle','electiontype','registeration_start','registeration_end','voting_start','voting_end','requiredposition'] 
-#     # success_url = '/adminElections.html'
-#     # success_message = "%(email)s was created successfully"
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["objects"] = self.model.objects.all()
-#         return context
+class adminManagersdelete(DeleteView):
+    model = ManagerUserR
+    template_name = 'adminManagersdelete.html'
+    success_url = '/adminManagerscreated'
+        
 
 class adminElections(ListView):
     template_name = 'adminElections.html'
@@ -140,6 +124,12 @@ class adminElectionsview(DetailView):
     model = ElectionType
     context_object_name = 'election'
 
+class adminElectionsdelete(DeleteView):
+    model = ElectionType
+    template_name = 'adminElectionsdelete.html'
+    success_url = '/adminElections'
+
+
 class managerVoter(ListView):
     template_name = 'managerVoter.html'
     model = VoterReg
@@ -149,10 +139,21 @@ class managerVoter(ListView):
         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
         return context
 
-class managerVoterview(DetailView):
-    template_name= 'managerVoterview.html'
+# class managerVoterview(DetailView):
+#     template_name= 'managerVoterview.html'
+#     model = VoterReg
+#     context_object_name = 'voter'
+
+class managerVoteradd(SuccessMessageMixin ,CreateView):
     model = VoterReg
-    context_object_name = 'voter'
+    template_name = 'managerVoteradd.html'
+    fields = ['firstname','othername','lastname','phonenumber','email','DOB','status','title','statesoforigin','regionoforigin','statesofresidence','regionofresidence','nationality','religion','profession','address','pictures']
+    success_url= '/managerVoter'
+    success_message = "Voter registered successfully"
+
+
+def managerViewvoter(request):
+    return render(request, 'managersViewvoter.html')
 
 
 def managerRequests(request):
@@ -160,9 +161,6 @@ def managerRequests(request):
 
 def managerCandidates(request):
     return render(request, 'managerCandidates.html')
-
-def managerVoteradd(request):
-    return render(request, 'managerVoteradd.html')
 
 def managerVoteredit(request):
     return render(request, 'managerVoteredit.html')

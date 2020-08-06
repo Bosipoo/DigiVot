@@ -1,4 +1,5 @@
 from django.db import models
+from stdimage import StdImageField, JPEGField
 from django.utils.crypto import get_random_string
 from django.core.validators import RegexValidator
 from django.utils import timezone
@@ -96,13 +97,18 @@ class ManagerUserR(models.Model):
     gender = models.CharField(max_length=50, choices=(
         ('male','Male'), 
         ('female','Female')
-    ), default='Female')
+    ), default='Female') 
     address = models.TextField(max_length=200)
-    pictures = models.ImageField(upload_to='Images/')
+    pictures = StdImageField(upload_to='Images/', variations={
+        'thumbnail': {"width": 100, "height": 100, "crop": True}
+    })
     # finger1 = models.BinaryField()
     # finger2 = models.BinaryField()
     pin = models.CharField(default ="M" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits), max_length=5, editable=False)
     dateadded = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return self.name
 
 
 class ManagerUserLogin(models.Model):
@@ -183,9 +189,8 @@ class VoterReg(models.Model):
     pin = models.CharField(default = "V" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits), max_length=5, editable=False)
     dateadded = models.DateTimeField(default=now)
 
-
-    def __int__(self):
-        return self.voterID
+    def __str__(self):
+        return self.name
 
 class PoliticalParty(models.Model):
     partyID = models.AutoField(primary_key=True)

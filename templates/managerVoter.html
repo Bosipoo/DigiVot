@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-<body>
+<body style="background-color: #ecf6f1;">
     <div id="wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3 d-flex col-3 position-fixed sidenav px-2">
+                <div class="col-3 d-flex col-3 position-fixed sidenav px-2" style="background-color: #ffffff;">
                     <div>
                         <div class="row" style="margin-top: 60px;">
                             <div class="col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-center" style="margin-top: -40px;"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;padding-top: 40px;height: 100vh;">
+                <div class="col offset-3" id="main" style="padding: 60px;padding-top: 40px;">
                     <!--Main Content
 -->
                     <div class="row">
@@ -76,7 +76,7 @@
                                 <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 4px;"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" value="10"></div>
                                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 d-xl-flex justify-content-xl-center"
                                     style="margin-top: 5px;"><a class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center top-button" role="button" style="width: 150px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);height: 50px;"
-                                        href="{% url 'managerVoteradd'%}">+ Add Voter</a></div>
+                                        href="{% url 'managerVoteradd' %}">+ Add Voter</a></div>
                             </div>
                         </div>
                         <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12 d-lg-flex d-xl-flex justify-content-lg-center align-items-lg-center justify-content-xl-center" style="margin-top: 35px;">
@@ -85,8 +85,6 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="table-responsive">
-                                                
-                                                
                                                 <table class="table">
                                                     
                                                     <thead>
@@ -109,7 +107,7 @@
                                                             <td>{{voter.lastname}}</td>
                                                             <td>{{voter.phonenumber}}</td>
                                                             <td>{{voter.email}}</td>
-                                                            <td class="d-xl-flex"><a href="{% url 'managerVoterview' voter.voterID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                            <td class="d-xl-flex"><a href="{% url 'managerVoterview' %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
                                                             <td><a href="{% url 'managerVoteredit'%}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
                                                             <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                         </tr>

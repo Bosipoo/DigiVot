@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-<body>
+<body style="background-color: #ecf6f1;">
     <div id="wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3 d-flex col-3 position-fixed sidenav px-2">
+                <div class="col-3 d-flex col-3 position-fixed sidenav px-2" style="background-color: #ffffff;">
                     <div>
                         <div class="row" style="margin-top: 60px;">
                             <div class="col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-center" style="margin-top: -40px;"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
@@ -67,120 +67,119 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <form>
+                        {% load custom-tags %}
+                        <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                             <div class="form-row" style="margin-top: 20px;">
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="firstname"></div>
+                                        <div class="col-12">{{form.firstname|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="lastname"></div>
+                                        <div class="col-12">{{form.lastname|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="lastname"></div>
+                                        <div class="col-12">{{form.othername|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Phone Number</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="phonenumber"></div>
+                                        <div class="col-12">{{form.phonenumber|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Email Address</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="email" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="email"></div>
+                                        <div class="col-12">{{form.email|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Date of Birth</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="date" style="font-size: 20px;font-family: 'Open Sans', sans-serif;width: 200px;" name="date"></div>
+                                        <div class="col-12">{{form.DOB|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Status</label></div>
-                                        <div class="col-12"><select class="form-control input-area" style="width: 200px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                                        <div class="col-12">{{form.status|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                  <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Title</label></div>
-                                        <div class="col-12"><select class="form-control input-area" style="width: 200px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                                        <div class="col-12">{{form.title|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Origin</label></div>
-                                        <div class="col-12"><select class="form-control input-area" style="width: 200px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                                        <div class="col-12">{{form.statesoforigin|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Origin</label></div>
-                                        <div class="col-12"><select class="form-control input-area" style="width: 200px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                                        <div class="col-12">{{form.regionoforigin|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Residence</label></div>
-                                        <div class="col-12"><select class="form-control input-area" style="width: 200px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                                        <div class="col-12">{{form.statesofresidence|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Residence</label></div>
-                                        <div class="col-12"><select class="form-control input-area" style="width: 200px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                                        <div class="col-12">{{form.regionofresidence|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="phonenumber"></div>
+                                        <div class="col-12">{{form.nationality|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Religion</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="phonenumber"></div>
+                                        <div class="col-12">{{form.religion|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Profession</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 200px;" name="phonenumber"></div>
+                                        <div class="col-12">{{form.profession|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-lg-12 col-xl-12">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Address</label></div>
-                                        <div class="col-12"><textarea class="form-control input-area" style="width: 400px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"></textarea></div>
+                                        <div class="col-9">{{form.address|addcss:"form-control input-area" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 col-xl-6">
-                                    <div class="form-row">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Picture</label></div>
                                         <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start">
                                             <div class="form-row">
-                                                <div class="col-xl-12"><input type="file" id="file" class="inputfile" accept="image/*" style="width: 342px;" name="file"><label class="border rounded-circle d-sm-flex d-md-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center"
-                                                        for="file" style="width: 200px;height: 200px;margin-top: 20px;"><i class="fas fa-plus d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center" style="font-size: 100px;color: #ecf6f1;"></i></label></div>
-                                                <div
-                                                    class="col-xl-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;width: 212px;">If no picture is selected, previous picture will be saved</label></div>
+                                            <div class="col-12">{{form.pictures|addcss:"form-control" }}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6 col-xl-6">
-                                <div class="form-row">
+                                <div class="form-row pr-3">
                                     <div class="col-xl-12">
                                         <div class="form-row">
                                             <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Biometric Information</label></div>
@@ -192,7 +191,7 @@
                             </div>
                     </div>
                     <div class="form-row">
-                        <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="button" style="width: 290px;height: 60px;">Create Voter and PIN</button></div>
+                        <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Create Voter and PIN</button></div>
                     </div>
                     </form>
                 </div>
