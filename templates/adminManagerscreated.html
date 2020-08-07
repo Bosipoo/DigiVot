@@ -116,7 +116,7 @@
                                                     <td>{{manager.phonenumber}}</td>
                                                     <td>{{manager.email}}</td>
                                                     <td class="d-xl-flex"><a href="{% url 'adminManagersview' manager.managerID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
-                                                    <td><a href=""><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+                                                    <td><a href="{% url 'adminEditmanagers'%}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
                                                     <td><a href="{% url 'adminManagersdelete' manager.managerID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                 </tr>
                                         {% endfor %}

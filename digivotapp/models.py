@@ -15,6 +15,19 @@ class Super_Registeradmin(models.Model):
     firstname = models.CharField(max_length=20)
     lastname = models.CharField(max_length=20)
     
+class State(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+class Region(models.Model):
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 class AdminUserR(models.Model):
     adminID = models.AutoField(primary_key=True)
@@ -34,50 +47,53 @@ class AdminUserR(models.Model):
         ('married','Married'),
         ('unmarried','Unmarried')
     ), default='status')
-    List_of_states= [
-        ('abia','Abia'),
-        ('adamawa','Adamawa'),
-        ('akwa ibom','Akwa Ibom'),
-        ('anambra','Anambra'),
-        ('bauchi','Bauchi'),
-        ('bayelsa','Bayelsa'),
-        ('benue','Benue'),
-        ('borno','Borno'),
-        ('cross river','Cross River'),
-        ('delta','Delta'),
-        ('ebonyi','Ebonyi'),
-        ('edo','Edo'),
-        ('ekiti','Ekiti'),
-        ('enugu','Enugu'),
-        ('gombe','Gombe'),
-        ('imo','Imo'),
-        ('jigawa','Jigawa'),
-        ('kaduna','Kaduna'),
-        ('kano','Kano'),
-        ('katsina','Katsina'),
-        ('kebbi','Kebbi'),
-        ('kogi','Kogi'),
-        ('kwara','Kwara'),
-        ('lagos','Lagos'),
-        ('nasarawa','Nasarawa'),
-        ('niger','Niger'),
-        ('ogun','Ogun'),
-        ('ondo','Ondo'),
-        ('osun','Osun'),
-        ('oyo','Oyo'),
-        ('plateau','Plateau'),
-        ('rivers','Rivers'),
-        ('sokoto','Sokoto'),
-        ('taraba','Taraba'),
-        ('yobe','Yobe'),
-        ('zamfara','Zamfara'),
-        ('fct','FCT'),
-    ]
-    states = models.CharField(max_length=50, choices=List_of_states)
-    region = models.CharField(max_length=50, default='surulere')
+    # List_of_states= [
+    #     ('abia','Abia'),
+    #     ('adamawa','Adamawa'),
+    #     ('akwa ibom','Akwa Ibom'),
+    #     ('anambra','Anambra'),
+    #     ('bauchi','Bauchi'),
+    #     ('bayelsa','Bayelsa'),
+    #     ('benue','Benue'),
+    #     ('borno','Borno'),
+    #     ('cross river','Cross River'),
+    #     ('delta','Delta'),
+    #     ('ebonyi','Ebonyi'),
+    #     ('edo','Edo'),
+    #     ('ekiti','Ekiti'),
+    #     ('enugu','Enugu'),
+    #     ('gombe','Gombe'),
+    #     ('imo','Imo'),
+    #     ('jigawa','Jigawa'),
+    #     ('kaduna','Kaduna'),
+    #     ('kano','Kano'),
+    #     ('katsina','Katsina'),
+    #     ('kebbi','Kebbi'),
+    #     ('kogi','Kogi'),
+    #     ('kwara','Kwara'),
+    #     ('lagos','Lagos'),
+    #     ('nasarawa','Nasarawa'),
+    #     ('niger','Niger'),
+    #     ('ogun','Ogun'),
+    #     ('ondo','Ondo'),
+    #     ('osun','Osun'),
+    #     ('oyo','Oyo'),
+    #     ('plateau','Plateau'),
+    #     ('rivers','Rivers'),
+    #     ('sokoto','Sokoto'),
+    #     ('taraba','Taraba'),
+    #     ('yobe','Yobe'),
+    #     ('zamfara','Zamfara'),
+    #     ('fct','FCT'),
+    # ]
+    states = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
+    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     pictures = models.ImageField(upload_to='Images/')
     finger1 = models.BinaryField()
     finger2 = models.BinaryField()
+
+    def __str__(self):
+        return self.name
     
 class AdminUserLogin(models.Model):
     adminID = models.ForeignKey(AdminUserR, on_delete=models.CASCADE)
@@ -238,15 +254,6 @@ class PoliticalPost(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=100)
 
-class State(models.Model):
-    stateID = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=20)
-
-class LGA(models.Model):
-    lgaID = models.AutoField(primary_key=True)
-    stateID = models.ForeignKey(State, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
-
 class  SenatorialDistrict(models.Model):
     districtID = models.AutoField(primary_key=True)
     stateID = models.ForeignKey(State, on_delete=models.CASCADE)
@@ -255,7 +262,7 @@ class  SenatorialDistrict(models.Model):
 
 class Ward(models.Model):
     wardID = models.AutoField(primary_key=True)
-    lgaID = models.ForeignKey(LGA, on_delete=models.CASCADE)
+    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=50)
 
 class Ballot(models.Model):

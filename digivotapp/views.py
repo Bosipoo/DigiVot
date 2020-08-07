@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import AdminUserR
+# from .models import AdminUserR
 from .models import VoterReg
 from .models import ManagerUserR,ElectionType
 from django.views.generic.edit import FormView
@@ -36,7 +36,7 @@ def adminLogin(request):
 
 def adminRegisterverifyPIN(request):
     context = {
-        'adminUser': AdminUserR.objects.all()
+        #'adminUser': AdminUserR.objects.all()
     }
     return render(request,'adminRegisterverifyPIN.html', context)
 
@@ -87,6 +87,18 @@ class adminManagersview(DetailView):
     template_name = 'adminManagersview.html'
     model = ManagerUserR
     context_object_name = 'manager'
+
+# class adminEditmanagers(UpdateView):
+#     model = ManagerUserR
+#     template_name = 'adminEditmanagers.html'
+#     fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
+#     # success_url = '/adminManagerscreated'
+#     # def form_valid(self,form):
+#     #     instance = form.save()
+#     #     return redirect('adminManagerscreated')
+#     def form_valid(form):
+#         instance = form.save()
+#         return redirect('adminManagersview',instance.pk)
 
 class adminManagersdelete(DeleteView):
     model = ManagerUserR
@@ -146,7 +158,7 @@ class managerVoteradd(SuccessMessageMixin ,CreateView):
     success_url= '/managerVoter'
     success_message = "Voter registered successfully"
 
-class managersViewvoter(DetailView):
+class managerViewvoter(DetailView):
     template_name = 'managersViewvoter.html'
     model = VoterReg
     context_object_name = 'voter'
@@ -166,13 +178,11 @@ def managerRequests(request):
 def managerCandidates(request):
     return render(request, 'managerCandidates.html')
 
-def managerVoteredit(request):
-    return render(request, 'managerVoteredit.html')
-
-
-
 def resultDetails(request):
     return render(request, 'resultDetails.html')
 
 def votersLanding(request):
     return render(request, 'votersLanding.html')
+
+def adminEditmanagers(request):
+    return render(request, 'adminEditmanagers.html')

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-# from .models import AdminUserR
+from .models import AdminUserR,State, Region
 from .models import ManagerUserR
 # from .models import Super_Registeradmin
 from .models import VoterReg
@@ -13,6 +13,14 @@ from .models import VoterReg
 #     list_per_page = 10
 #     search_fields = ('firstname','gender','email','lastname','phonenumber')
 #     list_filter = ('gender',)
+
+class Statead(admin.ModelAdmin):
+    list_display = ('id','name')
+    list_per_page = 36
+
+class Regionad(admin.ModelAdmin):
+    list_display = ('id','state','name')
+    list_per_page = 36
 
 class ManagerUser(admin.ModelAdmin):
     list_display = ('firstname','othername','lastname','phonenumber','email','DOB','address','gender','pictures','pin')
@@ -34,7 +42,8 @@ class voterUSR(admin.ModelAdmin):
     search_fields = ('firstname','email','lastname','phonenumber')
     list_filter = ('title',)
 
-# admin.site.register(AdminUserR, AdminUSR)
+admin.site.register(State, Statead)
+admin.site.register(Region, Regionad)
 # admin.site.register(Super_Registeradmin, Super)
 admin.site.register(VoterReg, voterUSR)
 admin.site.register(ManagerUserR, ManagerUser)

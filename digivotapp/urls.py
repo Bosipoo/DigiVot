@@ -1,8 +1,11 @@
 from django.urls import path
+from django.contrib import admin
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
+    # url(r'^accounts/', include('allauth.urls')),
     path('adminRegister2/', views.adminRegister2, name="adminRegister2"),
     path('managerLogin/', views.managerLogin, name="managerLogin"),
     path('managerDash/', views.dashboardMan, name="managerDash"),
@@ -21,12 +24,13 @@ urlpatterns = [
     path('adminElections/deleteElections/<int:pk>', views.adminElectionsdelete.as_view(), name="adminElectionsdelete"),
     path('adminManagersaddmanager/', views.adminManagersaddmanager.as_view(), name="adminManagersaddmanager"),
     path('adminManagerscreated/viewmanager/<int:pk>', views.adminManagersview.as_view(), name="adminManagersview"),
+    path('adminEditmanagers/', views.adminEditmanagers,name="adminEditmanagers"),
     path('adminManagerscreated/deletemanager/<int:pk>', views.adminManagersdelete.as_view(), name="adminManagersdelete"),
     path('adminPoliticalpartiesadd/', views.adminPoliticalpartiesadd, name="adminPoliticalpartiesadd"),
     path('adminPoliticalpartiesedit/', views.adminPoliticalpartiesedit, name="adminPoliticalpartiesedit"),
     path('managerDash/', views.managerDash, name="managerDash"),
     path('managerVoter/', views.managerVoter.as_view(), name="managerVoter"),
-    path('ViewVoterDetails/<int:pk>/',views.managersViewvoter.as_view(),name="managersViewvoter"),
+    path('ViewVoterDetails/<int:pk>',views.managerViewvoter.as_view(),name="managerViewvoter"),
     path('managerVoter/registerVoter/', views.managerVoteradd.as_view(), name="managerVoteradd"),
     path('managerRequests/', views.managerRequests, name="managerRequests"),
     path('managerCandidates/', views.managerCandidates, name="managerCandidates"),
