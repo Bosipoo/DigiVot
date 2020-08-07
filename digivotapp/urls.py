@@ -25,13 +25,12 @@ urlpatterns = [
     path('adminPoliticalpartiesadd/', views.adminPoliticalpartiesadd, name="adminPoliticalpartiesadd"),
     path('adminPoliticalpartiesedit/', views.adminPoliticalpartiesedit, name="adminPoliticalpartiesedit"),
     path('managerDash/', views.managerDash, name="managerDash"),
-
     path('managerVoter/', views.managerVoter.as_view(), name="managerVoter"),
-    path('ViewVoterDetails/',views.managerViewvoter,name="managerViewvoter"),
+    path('ViewVoterDetails/<int:pk>/',views.managersViewvoter.as_view(),name="managersViewvoter"),
     path('managerVoter/registerVoter/', views.managerVoteradd.as_view(), name="managerVoteradd"),
     path('managerRequests/', views.managerRequests, name="managerRequests"),
     path('managerCandidates/', views.managerCandidates, name="managerCandidates"),
-    path('EditVoterDetails/', views.managerVoteredit, name="managerVoteredit"),
+    path('EditVoterDetails/<int:pk>/', views.managerVoteredit.as_view(), name="managerVoteredit"),
     path('resultDetails/', views.resultDetails, name="resultDetails"),
     path('votersLanding/', views.votersLanding, name="votersLanding"),
 ]

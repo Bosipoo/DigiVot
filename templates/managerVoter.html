@@ -107,8 +107,8 @@
                                                             <td>{{voter.lastname}}</td>
                                                             <td>{{voter.phonenumber}}</td>
                                                             <td>{{voter.email}}</td>
-                                                            <td class="d-xl-flex"><a href="{% url 'managerVoterview' %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
-                                                            <td><a href="{% url 'managerVoteredit'%}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+                                                            <td class="d-xl-flex"><a href="{% url 'managersViewvoter' voter.voterID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                            <td><a href="{% url 'managerVoteredit' voter.voterID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
                                                             <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                         </tr>
                                                         {% endfor %}

@@ -102,97 +102,103 @@
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.firstname }}" /></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.firstname }}" /></div>
                             </div>
                         </div> 
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Aki</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.lastname }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
-                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Toast</label></div>
+                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.othename }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Phone Number</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">08056431267</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.phonenumber }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Email Address</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">voplu@ymail.com</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.email }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Date of Birth</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">4 June, 1998</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.DOB }}" /></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-4">
+                            <div class="row">
+                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Title</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.title }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Status</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Married</label></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-4">
-                            <div class="row">
-                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Nigerian</label></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-4">
-                            <div class="row">
-                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Religion</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Christianity</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.status }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Profession</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Software Developer</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.profession }}" /></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-4">
+                            <div class="row">
+                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.nationality }}" /></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-4">
+                            <div class="row">
+                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Religion</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.religion }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Origin</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Lagos</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.statesoforigin }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Origin</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Shomolu</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.regionoforigin }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Residence</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Lagos</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.statesofresidence }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Residence</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Surulere</label></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ voter.regionofresidence }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Address</label></div>
-                                <div class="col-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">56 Uipol Street, Mars Estate, Lagos</label></div>
+                                <div class="col-9"> <input type="textarea" class="form-control input-field" readonly="readonly" value= "{{ voter.address }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-6">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Picture</label></div>
-                                <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start"><img class="card-radius1" style="width: 220px;height: 223px;background-color: #6a6262;"></div>
+                                <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start"><img class="card-radius1" style="width: 220px;height: 223px;background-color: #6a6262;" src="{{ voter.pictures }}"></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-6">

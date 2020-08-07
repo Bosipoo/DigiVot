@@ -139,11 +139,6 @@ class managerVoter(ListView):
         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
         return context
 
-# class managerVoterview(DetailView):
-#     template_name= 'managerVoterview.html'
-#     model = VoterReg
-#     context_object_name = 'voter'
-
 class managerVoteradd(SuccessMessageMixin ,CreateView):
     model = VoterReg
     template_name = 'managerVoteradd.html'
@@ -151,10 +146,19 @@ class managerVoteradd(SuccessMessageMixin ,CreateView):
     success_url= '/managerVoter'
     success_message = "Voter registered successfully"
 
+class managersViewvoter(DetailView):
+    template_name = 'managersViewvoter.html'
+    model = VoterReg
+    context_object_name = 'voter'
 
-def managerViewvoter(request):
-    return render(request, 'managersViewvoter.html')
+class managerVoteredit(UpdateView):
+    model = VoterReg
+    template_name = 'managerVoteredit.html'
+    fields = ['firstname','othername','lastname','phonenumber','email','DOB','status','title','statesoforigin','regionoforigin','statesofresidence','regionofresidence','nationality','religion','profession','address','pictures']
 
+    def form_valid(self,form):
+        instance = form.save()
+        return redirect('managerVoter')
 
 def managerRequests(request):
     return render(request, 'managerRequests.html')
