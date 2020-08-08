@@ -1,10 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.urls import reverse_lazy,reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import AdminUserR
-from .models import VoterReg
-from .models import ManagerUserR,ElectionType
+from .models import ManagerUserR,ElectionType,VoterReg
 from django.views.generic.edit import FormView
 
 # Create your views here.
@@ -88,24 +88,31 @@ class adminManagersview(DetailView):
     model = ManagerUserR
     context_object_name = 'manager'
 
-# class adminEditmanagers(UpdateView):
-#     model = ManagerUserR
-#     template_name = 'adminEditmanagers.html'
-#     fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
-#     # success_url = '/adminManagerscreated'
-#     # def form_valid(self,form):
-#     #     instance = form.save()
-#     #     return redirect('adminManagerscreated')
-#     def form_valid(form):
-#         instance = form.save()
-#         return redirect('adminManagersview',instance.pk)
+class adminEditmanagers(UpdateView):
+    model = ManagerUserR
+    template_name = 'adminManagersedit.html'
+    fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
+
+    def get_success_url(self):
+        return reverse('adminManagersview', kwargs={
+            'pk': self.object.pk,
+        })
+
+class test(UpdateView):
+    model = VoterReg
+    template_name = 'adminManagersedit.html'
+    fields = ['firstname','othername','lastname','phonenumber','email','DOB','status','title','statesoforigin','regionoforigin','statesofresidence','regionofresidence','nationality','religion','profession','address','pictures']
+
+    # def get_success_url(self):
+    #     return reverse('adminManagersview', kwargs={
+    #         'pk': self.object.pk,
+    #     })
 
 class adminManagersdelete(DeleteView):
     model = ManagerUserR
     template_name = 'adminManagersdelete.html'
     success_url = '/adminManagerscreated'
         
-
 class adminElections(ListView):
     template_name = 'adminElections.html'
     model = ElectionType
@@ -119,7 +126,7 @@ class adminElectionsadd(SuccessMessageMixin ,CreateView):
     model = ElectionType
     template_name = 'adminElectionsadd.html'
     fields = ['electionID','electiontitle','electiontype','registeration_start','registeration_end','voting_start','voting_end','requiredposition']
-    success_url = '/addElections'
+    success_url = '/adminElections'
     success_message = "Election was created successfully"
 
 class adminElectionsedit(UpdateView):
@@ -159,7 +166,7 @@ class managerVoteradd(SuccessMessageMixin ,CreateView):
     success_message = "Voter registered successfully"
 
 class managerViewvoter(DetailView):
-    template_name = 'managersViewvoter.html'
+    template_name = 'managerViewvoter.html'
     model = VoterReg
     context_object_name = 'voter'
 
@@ -168,9 +175,15 @@ class managerVoteredit(UpdateView):
     template_name = 'managerVoteredit.html'
     fields = ['firstname','othername','lastname','phonenumber','email','DOB','status','title','statesoforigin','regionoforigin','statesofresidence','regionofresidence','nationality','religion','profession','address','pictures']
 
-    def form_valid(self,form):
-        instance = form.save()
-        return redirect('managerVoter')
+    def get_success_url(self):
+        return reverse('managerViewvoter', kwargs={
+            'pk': self.object.pk,
+        })
+
+class managerDeletevoter(DeleteView):
+    model = VoterReg
+    template_name = 'managerDeletevoter.html'
+    success_url = '/managerVoter'
 
 def managerRequests(request):
     return render(request, 'managerRequests.html')
@@ -184,5 +197,15 @@ def resultDetails(request):
 def votersLanding(request):
     return render(request, 'votersLanding.html')
 
-def adminEditmanagers(request):
-    return render(request, 'adminEditmanagers.html')
+def load_regions(request):
+    state_id = request.GET.get('state')
+    region = State.objects.filter(state_id=state_id).order_by('name')
+    return render(request, 'hr/region_dropdown_list_options.html', {'region': region})
+
+def numberofvoters(request):
+    
+    count= VoterReg.objects.all().count()
+    
+    context= {'count': count}
+        
+    return render(request, 'adminManagerscreated.html', context)

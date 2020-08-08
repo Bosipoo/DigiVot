@@ -108,8 +108,8 @@
                                                             <td>{{voter.phonenumber}}</td>
                                                             <td>{{voter.email}}</td>
                                                             <td class="d-xl-flex"><a href="{% url 'managerViewvoter' voter.voterID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
-                                                            <td><a href="{% url 'managerVoteredit' voter.voterID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
-                                                            <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
+                                                            {% comment %} <td><a href="{% url 'adminManagersedit' voter.voterID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td> {% endcomment %}
+                                                            <td><a href="{% url 'managerDeletevoter' voter.voterID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                         </tr>
                                                         {% endfor %}
                                                     </tbody>

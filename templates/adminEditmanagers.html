@@ -84,6 +84,26 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <div class="form-row" style="margin-top: 20px;">
+                                <div class="col-md-6 col-lg-5 col-xl-5">
+                                    <div class="form-row pr-3">
+                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Election Title</label></div>
+                                    <div class="col-12">{{ form.firstname|addcss:"form-control input-field" }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                        <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Save Changes</button></div>
+                                    </div>
+                        </div>
+
+                            <div class="col-4 pr-3"></div>
+                            <div class="col-4 pr-3"></div>
+
+                            <div class="col-12 pt-3" >
+                                    
+                            </div>
+
+                            {% comment %} <div class="form-row" style="margin-top: 20px;">
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
@@ -145,18 +165,18 @@
                                                     <div class="col-12 d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-start"><img src="{% static './img/mdi_fingerprintgreen.png' %}" style="width: 85px;"></div>
                                                 </div>
                                             </div>
-                                            {% comment %} <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;width: 212px;">Click the icon above and put your finger on the machine</label></div> {% endcomment %}
+                                            {% comment %} <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;width: 212px;">Click the icon above and put your finger on the machine</label></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 pt-3" >
                                     <div class="form-row">
+                                    {% comment %} {{form}}
                                         <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Save Changes</button></div>
                                     </div>
                                 </div>                     
-                            </div>
+                            </div> {% endcomment %}
 
-                        </div>
                     </form>
                 </div>
 

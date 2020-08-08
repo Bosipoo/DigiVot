@@ -20,6 +20,7 @@ class Statead(admin.ModelAdmin):
 
 class Regionad(admin.ModelAdmin):
     list_display = ('id','state','name')
+    list_editable = ('name',)
     list_per_page = 36
 
 class ManagerUser(admin.ModelAdmin):

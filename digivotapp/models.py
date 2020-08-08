@@ -47,45 +47,6 @@ class AdminUserR(models.Model):
         ('married','Married'),
         ('unmarried','Unmarried')
     ), default='status')
-    # List_of_states= [
-    #     ('abia','Abia'),
-    #     ('adamawa','Adamawa'),
-    #     ('akwa ibom','Akwa Ibom'),
-    #     ('anambra','Anambra'),
-    #     ('bauchi','Bauchi'),
-    #     ('bayelsa','Bayelsa'),
-    #     ('benue','Benue'),
-    #     ('borno','Borno'),
-    #     ('cross river','Cross River'),
-    #     ('delta','Delta'),
-    #     ('ebonyi','Ebonyi'),
-    #     ('edo','Edo'),
-    #     ('ekiti','Ekiti'),
-    #     ('enugu','Enugu'),
-    #     ('gombe','Gombe'),
-    #     ('imo','Imo'),
-    #     ('jigawa','Jigawa'),
-    #     ('kaduna','Kaduna'),
-    #     ('kano','Kano'),
-    #     ('katsina','Katsina'),
-    #     ('kebbi','Kebbi'),
-    #     ('kogi','Kogi'),
-    #     ('kwara','Kwara'),
-    #     ('lagos','Lagos'),
-    #     ('nasarawa','Nasarawa'),
-    #     ('niger','Niger'),
-    #     ('ogun','Ogun'),
-    #     ('ondo','Ondo'),
-    #     ('osun','Osun'),
-    #     ('oyo','Oyo'),
-    #     ('plateau','Plateau'),
-    #     ('rivers','Rivers'),
-    #     ('sokoto','Sokoto'),
-    #     ('taraba','Taraba'),
-    #     ('yobe','Yobe'),
-    #     ('zamfara','Zamfara'),
-    #     ('fct','FCT'),
-    # ]
     states = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     pictures = models.ImageField(upload_to='Images/')
@@ -152,49 +113,10 @@ class VoterReg(models.Model):
         ('ms','Ms'),
         ('mrs','Mrs')
     ))
-    List_of_states= [
-        ('abia','Abia'),
-        ('adamawa','Adamawa'),
-        ('akwa ibom','Akwa Ibom'),
-        ('anambra','Anambra'),
-        ('bauchi','Bauchi'),
-        ('bayelsa','Bayelsa'),
-        ('benue','Benue'),
-        ('borno','Borno'),
-        ('cross river','Cross River'),
-        ('delta','Delta'),
-        ('ebonyi','Ebonyi'),
-        ('edo','Edo'),
-        ('ekiti','Ekiti'),
-        ('enugu','Enugu'),
-        ('gombe','Gombe'),
-        ('imo','Imo'),
-        ('jigawa','Jigawa'),
-        ('kaduna','Kaduna'),
-        ('kano','Kano'),
-        ('katsina','Katsina'),
-        ('kebbi','Kebbi'),
-        ('kogi','Kogi'),
-        ('kwara','Kwara'),
-        ('lagos','Lagos'),
-        ('nasarawa','Nasarawa'),
-        ('niger','Niger'),
-        ('ogun','Ogun'),
-        ('ondo','Ondo'),
-        ('osun','Osun'),
-        ('oyo','Oyo'),
-        ('plateau','Plateau'),
-        ('rivers','Rivers'),
-        ('sokoto','Sokoto'),
-        ('taraba','Taraba'),
-        ('yobe','Yobe'),
-        ('zamfara','Zamfara'),
-        ('fct','FCT'),
-    ]
-    statesoforigin = models.CharField(max_length=50, choices=List_of_states)
-    regionoforigin = models.CharField(max_length=50, default='surulere')
-    statesofresidence = models.CharField(max_length=50, choices=List_of_states)
-    regionofresidence = models.CharField(max_length=50, default='surulere')
+    statesoforigin = models.ForeignKey(State, on_delete=models.SET_NULL, related_name='origin_state', null=True)
+    regionoforigin =  models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='origin_region', null=True)
+    statesofresidence =  models.ForeignKey(State, on_delete=models.SET_NULL, related_name='residence_state', null=True)
+    regionofresidence =  models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='residence_region', null=True)
     nationality = models.CharField(max_length=50)
     religion = models.CharField(max_length=50)
     profession = models.CharField(max_length=50)
