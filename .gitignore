@@ -1,5 +1,5 @@
 .idea/
-env/
+nenv/
 *.pyc
 **/migrations/*
 .vscode/
