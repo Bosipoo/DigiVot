@@ -55,7 +55,14 @@
                                         class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">View</a>
                                 </div>
                             </div>
-                            <div class="row" style="margin-top: 19px;">
+                            <div class="row" style="margin-top: 40px;">
+                                <div class="col-12 col-sm-7 col-md-8 col-lg-8 col-xl-9"><label class="col-form-label" style="color: #152e21;font-size: 27px;font-family: 'Open Sans', sans-serif;font-weight: bold;">View Election Details</label></div>
+                                <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                    <div class="row">
+                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-end align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" role="button" style="width: 50px;height: 50px;background-color: #C2D4F5;" href="{% url 'adminElectionsedit' election.electionID %}"><i class="fas fa-pen mx-auto" style="font-size: 23px;color: #7492cb;"></i></a></div>
+                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" role="button" style="width: 50px;height: 50px;background-color: #ffb9b9;" href="{% url 'adminElectionsdelete' election.electionID %}"><i class="far fa-trash-alt mx-auto" style="font-size: 23px;color: #ff5c5c;"></i></a></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
