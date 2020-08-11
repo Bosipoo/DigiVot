@@ -38,7 +38,7 @@ urlpatterns = [
     path('EditVoterDetails/<int:pk>/', views.managerVoteredit.as_view(), name="managerVoteredit"),
     path('resultDetails/', views.resultDetails, name="resultDetails"),
     path('votersLanding/', views.votersLanding, name="votersLanding"),
-
+    
     path('ajax/load-regions/', views.load_regions, name='ajax_load_regions'),
     # path('test/', views.test.as_view(),"test"),
 ]

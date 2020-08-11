@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.utils import timezone
 from django.utils.timezone import now
 from .widgets import BootstrapDateTimePickerInput
+from .formatChecker import ContentTypeRestrictedFileField
 import datetime
 import string
 
@@ -49,7 +50,8 @@ class AdminUserR(models.Model):
     ), default='status')
     states = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
-    pictures = models.ImageField(upload_to='Images/')
+    pictures = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
+    
     finger1 = models.BinaryField()
     finger2 = models.BinaryField()
 
@@ -76,9 +78,8 @@ class ManagerUserR(models.Model):
         ('female','Female')
     ), default='Female') 
     address = models.TextField(max_length=200)
-    pictures = StdImageField(upload_to='Images/', variations={
-        'thumbnail': {"width": 100, "height": 100, "crop": True}
-    })
+    pictures = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
+
     # finger1 = models.BinaryField()
     # finger2 = models.BinaryField()
     pin = models.CharField(default ="M" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits), max_length=5, editable=False)

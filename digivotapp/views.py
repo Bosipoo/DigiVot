@@ -76,6 +76,16 @@ class adminManagerscreated(ListView):
         context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
         return context
 
+
+# def showthis(request):
+    
+#     count= 2
+    
+#     context= {'count': count}
+        
+#     return render(request, 'adminManagerscreated.html', context)
+
+
 class adminManagersaddmanager(SuccessMessageMixin ,CreateView):
     model = ManagerUserR
     template_name = 'adminManagersaddmanager.html'
@@ -202,10 +212,3 @@ def load_regions(request):
     region = State.objects.filter(state_id=state_id).order_by('name')
     return render(request, 'hr/region_dropdown_list_options.html', {'region': region})
 
-def numberofvoters(request):
-    
-    count= VoterReg.objects.all().count()
-    
-    context= {'count': count}
-        
-    return render(request, 'adminManagerscreated.html', context)
