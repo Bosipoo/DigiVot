@@ -76,9 +76,17 @@
                                 <div class="col-xl-6"><label class="col-form-label" style="font-size: 18px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Recently created elections</label></div>
                                 <div class="col-xl-4 d-xl-flex justify-content-xl-end align-items-xl-center">
                                     <div class="input-group card-radius2">
-                                        <div class="input-group-prepend"><button class="btn btn-primary remove-border" type="button" style="background-color: rgba(255,255,255,0);"><i class="fa fa-search" style="font-size: 16px;font-weight: 100;"></i></button></div><input class="form-control remove-border"
-                                            type="search" style="background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" placeholder="Search for election">
-                                        <div class="input-group-append"></div>
+                                    <form class="form-inline" action="{% url 'adminSearchforelection' %}" method="GET">
+                                        <div class="input-group-prepend"><button class="btn btn-primary remove-border" type="submit" style="background-color: rgba(255,255,255,0);">
+                                        <i class="fa fa-search" style="font-size: 16px;font-weight: 100;"></i></button>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <input class="form-control remove-border"
+                                            type="search" style="background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" 
+                                            placeholder="Search for election"
+                                            name="search_term">
+                                        </div>
+                                    </form>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 d-xl-flex justify-content-xl-center align-items-xl-center"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);" placeholder="10"></div>
@@ -114,7 +122,7 @@
                                                     <td><a href="{% url 'adminElectionsedit' election.electionID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
                                                     <td><a href="{% url 'adminElectionsdelete' election.electionID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                 </tr>
-                                        {% endfor %}
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>

@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {% load custom-tags %}
+                         {% load custom-tags %}
                         <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                             <div class="form-row" style="margin-top: 20px;">
@@ -104,7 +104,7 @@
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Date of Birth</label></div>
-                                        <div class="col-12">{{form.DOB|addcss:"form-control input-field" }}</div>
+                                        <div class="col-12" style="padding-top:14px;">{{form.DOB|addcss:"input-field" }}</div>
                                     </div>
                                 </div>
                                 
@@ -123,13 +123,13 @@
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Origin</label></div>
-                                        <div class="col-12">{{form.statesoforigin|addcss:"form-control input-field" }}</div>
+                                        <div class="col-12">{{form.state|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Origin</label></div>
-                                        <div class="col-12">{{form.regionoforigin|addcss:"form-control input-field" }}</div>
+                                        <div class="col-12">{{form.region|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
@@ -194,24 +194,7 @@
                         <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Create Voter and PIN</button></div>
                     </div>
                     </form>
-                    {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-                    <script>
-                        $("#id_state").change(function () {
-                        var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
-                        var stateId = $(this).val();  // get the selected country ID from the HTML input
 
-                        $.ajax({                       // initialize an AJAX request
-                            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-                            data: {
-                            'state': stateId       // add the country id to the GET parameters
-                            },
-                            success: function (data) {   // `data` is the return of the `load_cities` view function
-                            $("#id_region").html(data);  // replace the contents of the city input with the data that came from the server
-                            }
-                        });
-
-                        });
-                    </script> {% endcomment %}
                 </div>
             </div>
             <!--End Main

@@ -33,7 +33,7 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-square-full icon-size" style="font-size: 20px;color: #152E21;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start" href="{% url 'adminElections' %}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Elections</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start" href="adminElections.html"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Elections</label></a></div>
                                 </div>
                             </div>
                             <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 90px;">
@@ -45,91 +45,60 @@
                         </div>
                     </div>
                 </div>
-                <!--Begin Main-->
-                <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="row">
-                                <div class="col-7 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start"><a class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Elections&nbsp;</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
-                                    <a
-                                        class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Add</a>
+                <div class="col offset-3" id="main" style="background-color: #ECF6F1;padding: 60px;">
+                    <!--Main Content-->
+
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="container">
+                            <h3 class="heading font-weight-light">Search results for "{{search_term}}"</h3>
+                            <hr />
+                        </div>
+                        <div class="col-xl-12" style="margin-top: 30px; width:700px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive table-borderless">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <tr>
+                                                    <th>ID</th>
+                                                    <th>Election Title</th>
+                                                    <th>Election Type</th>
+                                                    <th>Registration duration</th>
+                                                    <th>Voting Duration</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for election in elections %}
+                                                <tr style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
+                                                    <td>{{election.electionID}}</td>
+                                                    <td>{{election.electiontitle}}</td>
+                                                    <td>{{election.electiontype}}</td>
+                                                    <td>{{election.registeration_start}} - {{election.registeration_end}}</td>
+                                                    <td>{{election.voting_start}} - {{election.voting_end}}</td>
+                                                    <td><a href="{% url 'adminElectionsview' election.electionID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                    <td><a href="{% url 'adminElectionsedit' election.electionID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+                                                    <td><a href="{% url 'adminElectionsdelete' election.electionID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
+                                                </tr>
+                                        {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row" style="margin-top: 40px;">
-                                <div class="col-12 col-sm-7 col-md-8 col-lg-8 col-xl-12"><label class="col-form-label" style="color: #152e21;font-size: 27px;font-family: 'Open Sans', sans-serif;font-weight: bold;">Add Election</label></div>
                             </div>
                         </div>
                     </div>
-                    
-                    {% load custom-tags %}
-                    <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        <div class="form-group">
-                            <div class="form-row" style="margin-top: 20px;">
-                                <div class="col-md-6 col-lg-5 col-xl-5">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Election Title</label></div>
-                                        <div class="col-12">{{form.electiontitle|addcss:"form-control modal-input" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-5 col-xl-5">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Election Type</label></div>
-                                        <div class="col-12">{{ form.electiontype|addcss:"form-control modal-input" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-5 col-xl-5">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Registration Starts</label></div>
-                                        <div class="col-12">{{form.registeration_start|addcss:"form-control modal-input" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-5 col-xl-5">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Registration Ends</label></div>
-                                        <div class="col-12">{{ form.registeration_end|addcss:"form-control modal-input" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-5 col-xl-5">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Voting Starts</label></div>
-                                        <div class="col-12">{{ form.voting_start|addcss:"form-control modal-input" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-5 col-xl-5">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Voting Ends</label></div>
-                                        <div class="col-12">{{ form.voting_end|addcss:"form-control modal-input" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-lg-9 col-xl-9">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Required Position</label></div>
-                                        <div class="col-12">{{ form.requiredposition|addcss:"form-control modal-input"}}</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-12 pt-3" >
-                                    <div class="form-row">
-                                        <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Create Election</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-
-                    </form>
-
-
-            </div>
-            <!--End Main
+                    <!--End Main
 -->
+                </div>
+            </div>
         </div>
-    </div>
     </div>
     <script src="{% static './js/jquery.min.js' %}"></script>
     <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static './js/collapse.js' %}"></script>
 </body>
-{% endblock content %}
+{% endblock content %} 

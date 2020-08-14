@@ -104,6 +104,17 @@ DATABASES = {
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'digivot',
+#         'USER': 'postgres',
+#         'PASSWORD': 'black',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 SITE_ID = 1
 
 # Password validation

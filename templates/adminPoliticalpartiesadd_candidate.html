@@ -47,7 +47,9 @@
                 </div>
                 <!--Begin Main-->
                 <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;">
-                    <form>
+                    {% load custom-tags %}
+                    <form method="POST" action="#">
+                    {% csrf_token %}
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-12 col-lg-12"><a class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Political Party&nbsp;</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
@@ -56,34 +58,7 @@
                                 </div>
                                 <div class="col" style="margin-top: 15px;"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: bold;font-size: 23px;">Add Party</label></div>
                             </div>
-                            <div class="form-row">
-                                <div class="col-xl-12" style="margin-top: 5px;">
-                                    <div class="card d-xl-flex justify-content-xl-center" style="background-color: #4daf7c;height: 60px;">
-                                        <div class="card-body d-xl-flex justify-content-xl-start align-items-xl-center">
-                                            <h4 class="d-xl-flex justify-content-xl-center align-items-xl-center card-title" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 19px;margin-bottom: 0px;">Party Information</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-5 col-lg-4 col-xl-4">
-                                    <div class="form-row">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Party Name</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 190px;" name="firstname"></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-5 col-lg-4 col-xl-4">
-                                    <div class="form-row">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Party Acronym</label></div>
-                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 190px;" name="firstname"></div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-5 offset-xl-0" style="margin-top: 10px;">
-                                    <div class="form-row">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Party Symbol</label></div>
-                                        <div class="col-xl-12"><input type="file" id="file" class="inputfile" accept="image/*" style="width: 342px;" name="file"><label class="border rounded-circle d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center"
-                                                for="file" style="width: 200px;height: 200px;"><i class="fas fa-plus d-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center" style="font-size: 100px;color: #ecf6f1;"></i></label></div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="form-row" style="margin-top: 15px;">
                                 <div class="col-12">
                                     <div class="card d-xl-flex justify-content-xl-center" style="background-color: #4daf7c;height: 60px;">
@@ -91,74 +66,82 @@
                                             <div class="d-xl-flex justify-content-xl-start col-6">
                                                 <h4 class="d-xl-flex justify-content-xl-center align-items-xl-center" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 19px;margin-bottom: 0px;">Candidate Details</h4>
                                             </div>
-                                            {% comment %} <div class="d-xl-flex justify-content-xl-end col-6"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center top-button" id="white-border" type="button" style="width: 150px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);height: 50px;color: rgb(255,255,255);">+ Add Candidate</button></div> {% endcomment %}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 col-lg-3 col-xl-3" style="margin-top: 20px;">
-                                    <div class="form-row">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Election Type</label></div>
-                                        <div class="col-12"><select class="custom-select" name="electiontype" placeholder="Select election type" style="background-color: #B8B8B8;font-family: 'Open Sans', sans-serif;"><option value="undefined">Select the election type</option><option value="12">This is item 2</option><option value="13">This is item 2</option><option value="14">This is item 3</option></select></div>
+                                <!--Candidate Info-->
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
+                                    <div class="form-row pr-3">
+                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Political Party</label></div>
+                                        <div class="col-12">{{form.partyID|addcss:"form-control input-field"}}</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 col-lg-3 col-xl-3" style="margin-top: 20px;">
-                                    <div class="form-row">
+                                <div class="col-8"></div>
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
+                                    <div class="form-row pr-3">
+                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">On Going Elections</label></div>
+                                        <div class="col-12">{{form.electionID|addcss:"form-control input-field"}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State</label></div>
-                                        <div class="col-12"><select class="custom-select" name="electiontype" placeholder="Select election type" style="background-color: #B8B8B8;font-family: 'Open Sans', sans-serif;"><option value="undefined">Select State</option><option value="12">This is item 2</option><option value="13">This is item 2</option><option value="14">This is item 3</option></select></div>
+                                        <div class="col-12">{{form.state|addcss:"form-control input-field"}}</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 col-lg-3 col-xl-3" style="margin-top: 20px;">
-                                    <div class="form-row">
+                                <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
+                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">District</label></div>
-                                        <div class="col-12"><select class="custom-select" name="electiontype" placeholder="Select election type" style="background-color: #B8B8B8;font-family: 'Open Sans', sans-serif;"><option value="undefined">Select District</option><option value="12">This is item 2</option><option value="13">This is item 2</option><option value="14">This is item 3</option></select></div>
+                                        <div class="col-12">{{form.district|addcss:"form-control input-field"}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12" style="margin-top: 20px;">
-                                    <div class="card card-radius2" style="padding: 10px;">
+                                    <div class="card card-radius2" style="padding: 10px;margin-top:24px;">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <div class="form-row">
+                                                    <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.candidate_firstname|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div class="form-row">
+                                                    <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.candidate_surname|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div class="form-row">
+                                                    <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.candidate_othername|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Age</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 90px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.candidate_age|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.candidate_nationality|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Educational History</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 20px;width: 690px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.candidate_educationalhistory|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">What should your voters know about you (Credentials)</label></div>
-                                                        <div class="col-12"><textarea class="form-control input-area" style="width: 500px;font-family: 'Open Sans', sans-serif;font-size: 20px;" name="address"></textarea></div>
+                                                        <div class="col-9">{{form.candidate_additionaldetails|addcss:"form-control input-area"}}</div>
                                                     </div>
                                                 </div>
+                                                <!--End Candidate Info-->
                                                 <div class="col-12">
                                                     <div class="form-row" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12 d-xl-flex justify-content-xl-center align-items-xl-center">
@@ -172,49 +155,49 @@
                                                 <div class="col-12" style="margin-top: 20px;margin-bottom: 20px;">
                                                     <div class="form-row">
                                                         <div class="col-12 col-md-6 col-lg-6 col-xl-6"><label class="col-form-label" style="font-size: 20px;font-family: 'Open Sans', sans-serif;color: #000000;font-weight: bold;">Running Mate Details</label></div>
-                                                        {% comment %} <div class="col-12 col-md-6 col-lg-6 col-xl-6 d-xl-flex justify-content-xl-end"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="button" style="width: 200px;height: 44px;">- Delete Running Mate</button></div> {% endcomment %}
                                                     </div>
                                                 </div>
+                                                <!--Runningmate Info-->
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                                                    <div class="form-row">
+                                                    <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 23px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.runningmate_firstname|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                                                    <div class="form-row">
+                                                    <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 23px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.runningmate_surname|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                                                    <div class="form-row">
+                                                    <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 23px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.runningmate_othername|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Age</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 23px;width: 90px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.runningmate_age|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 23px;width: 170px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.runningmate_nationality|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Educational History</label></div>
-                                                        <div class="col-12"><input class="form-control input-field" type="text" style="font-family: 'Open Sans', sans-serif;font-size: 23px;width: 690px;" name="firstname"></div>
+                                                        <div class="col-12">{{form.runningmate_educationalhistory|addcss:"form-control input-field"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-row" style="margin-top: 10px;">
+                                                    <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">What should your voters know about you (Credentials)</label></div>
-                                                        <div class="col-12"><textarea class="form-control input-area" style="width: 500px;font-family: 'Open Sans', sans-serif;font-size: 23px;" name="address"></textarea></div>
+                                                        <div class="col-9">{{form.runningmate_additionaldetails|addcss:"form-control input-area"}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -222,7 +205,6 @@
                                                         <div class="col-12 col-xl-12 d-xl-flex justify-content-xl-center align-items-xl-center">
                                                             <hr id="dotted-line">
                                                         </div>
-                                                        {% comment %} <div class="col-12 col-xl-12 d-xl-flex justify-content-xl-center align-items-xl-center"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="button" style="width: 200px;height: 44px;">+ Add Running Mate</button></div> {% endcomment %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,12 +212,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row d-xl-flex justify-content-xl-end align-items-xl-center" style="padding: 40px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="button" style="width: 290px;height: 60px;">Create Political Party</button></div>
+                            <div class="form-row d-xl-flex justify-content-xl-end align-items-xl-center" style="padding: 40px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" style="width: 290px;height: 60px;" type="submit">Add Candidate</button></div>
+
                         </div>
+
                     </form>
                 </div>
-                <!--End Main
--->
+                <!--End Main-->
             </div>
         </div>
     </div>

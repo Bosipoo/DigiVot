@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<body>
+<body style="background-color: #ECF6F1;">
     <div id="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -45,90 +45,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="col offset-3" id="main" style="background-color: #ECF6F1;padding-top: 60px;padding-bottom: 60px;padding-left: 20px;padding-right: 20px;height: 100vh;">
-                    <!--Main Content
--->
+                <!--Begin Main-->
+                <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px; height:100vh;">
                     <div class="row">
                         <div class="col-md-12 col-lg-12">
                             <div class="row">
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start align-items-lg-center"><label class="col-form-label small-screentext" style="font-size: 20px;color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-weight: bold;">Political Parties</label></div>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end align-items-lg-center justify-content-xl-end"><label class="col-form-label small-screentext" style="color: #474747;font-size: 20px;font-family: 'Open Sans', sans-serif;margin-top: 10px;">28 June 2020, Monday</label></div>
+                                <div class="col-7 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start"><a class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Political Party&nbsp;</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
+                                    <a
+                                        class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Delete{{parties}}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-xl-12 d-lg-flex justify-content-lg-end">
-                            <div class="row d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-                                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-6 d-xl-flex justify-content-xl-end align-items-xl-center" style="margin-top: 5px;">
-                                    <div class="input-group card-radius2">
-                                    <form class="form-inline" action="{% url 'adminSearchforparty' %}" method="GET">
-                                                <div class="input-group-prepend"><button class="btn btn-primary remove-border" type="submit" style="background-color: rgba(255,255,255,0);">
-                                                <i class="fa fa-search" style="font-size: 16px;font-weight: 100;"></i></button>
-                                                </div>
-                                                <div class="input-group-append">
-                                                    <input class="form-control remove-border"
-                                                    type="search"
-                                                    style="background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" 
-                                                    placeholder="Search for party"
-                                                    name="search_term">
-                                                </div>
-                                    </form>
-                                    
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-2 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 4px;"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" placeholder="10" step="1"></div>
-                                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 d-xl-flex justify-content-xl-center"
-                                    style="margin-top: 5px;"><a class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center top-button" role="button" style="width: 150px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);height: 50px;"
-                                        href="{% url 'adminPoliticalpartiesadd_party' %}">+ Add Party</a></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12" style="margin-top: 30px;">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive table-borderless">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Party Name</th>
-                                                    <th>Party Acronym</th>
-                                                    <th>Candidate Name</th>
-                                                    <th colspan="2">Party Information</th>
-                                                    <th colspan="2">Candidate Information</th>
-                                                    {% comment %} <th style="width: 41px;"></th>
-                                                    <th style="width: 41px;"></th> {% endcomment %}
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for candidate in candidates %}
-                                                <tr>
-                                                    <td>{{candidate.partyID.id}}</td>
-                                                    <td>{{candidate.partyID.partyname}}</td>
-                                                    <td>{{candidate.partyID.partyacronym}}</td>
-                                                    <td>{{candidate.candidate_firstname}}</td>
-                                                    <td style="width: 100px;"><a href="{% url 'adminPoliticalpartiesedit_party' candidate.partyID.id %}" class="d-xl-flex justify-content-xl-center align-items-xl-center "><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
-                                                    <td style="width: 100px;"><a href="{% url 'adminPoliticalpartydelete' candidate.partyID.id %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
-                                                    <td style="width: 100px;"><a href="{% url 'adminPoliticalpartiesedit_candidate' candidate.id %}" class="d-xl-flex justify-content-xl-center align-items-xl-center "><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
-                                                    <td style="width: 100px;"><a href="{% url 'adminPoliticalcandidatedelete' candidate.id %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
-                                                </tr>
-                                                {% endfor %}
-                                                
 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                    <div class="card mx-auto" style="width: 590px;height: 230px;margin-top: 40px;margin-bottom: 200px;">
+                        <div class="card-body">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row d-xl-flex justify-content-xl-center">
+                                <div class="col">
+                                    <h4 class="d-xl-flex justify-content-xl-center">Confirm Deletion</h4>
                                 </div>
                             </div>
+                            <div class="row" style="margin-top: 60px;">
+                                <div class="col d-xl-flex justify-content-xl-center"><button class="btn btn-danger" type="submit" style="background-color: #bd2130;color: rgb(255,255,255);width: 259px;font-family: 'Open Sans', sans-serif;">Delete</button></div>
+                            </div>
+                        </form>  
                         </div>
                     </div>
-                    <!--End Main
--->
                 </div>
+
+
             </div>
+            <!--End Main
+-->
         </div>
+    </div>
     </div>
     <script src="{% static './js/jquery.min.js' %}"></script>
     <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static './js/collapse.js' %}"></script>
 </body>
-{% endblock content %} 
+{% endblock content %}

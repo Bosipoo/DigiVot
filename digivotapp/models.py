@@ -1,5 +1,4 @@
 from django.db import models
-from stdimage import StdImageField, JPEGField
 from django.utils.crypto import get_random_string
 from django.core.validators import RegexValidator
 from django.utils import timezone
@@ -29,6 +28,13 @@ class Region(models.Model):
 
     def __str__(self):
         return self.name
+
+class District(models.Model):
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    district_name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.district_name
 
 class AdminUserR(models.Model):
     adminID = models.AutoField(primary_key=True)
@@ -114,15 +120,15 @@ class VoterReg(models.Model):
         ('ms','Ms'),
         ('mrs','Mrs')
     ))
-    statesoforigin = models.ForeignKey(State, on_delete=models.SET_NULL, related_name='origin_state', null=True)
-    regionoforigin =  models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='origin_region', null=True)
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, related_name='origin_state', null=True)
+    region =  models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='origin_region', null=True)
     statesofresidence =  models.ForeignKey(State, on_delete=models.SET_NULL, related_name='residence_state', null=True)
     regionofresidence =  models.ForeignKey(Region, on_delete=models.SET_NULL, related_name='residence_region', null=True)
     nationality = models.CharField(max_length=50)
     religion = models.CharField(max_length=50)
     profession = models.CharField(max_length=50)
     address = models.TextField(max_length=200)
-    pictures = models.ImageField(upload_to='Images/')
+    pictures = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
     finger1 = models.BinaryField()
     finger2 = models.BinaryField()
     pin = models.CharField(default = "V" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits), max_length=5, editable=False)
@@ -132,10 +138,12 @@ class VoterReg(models.Model):
         return self.name
 
 class PoliticalParty(models.Model):
-    partyID = models.AutoField(primary_key=True)
     partyname = models.CharField(max_length=50)
     partyacronym = models.CharField(max_length=5)
-    partysymbol = models.ImageField(upload_to='Images/')
+    partysymbol = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
+
+    def __str__(self):
+        return self.partyname
 
 
 class ElectionType(models.Model): 
@@ -152,25 +160,33 @@ class ElectionType(models.Model):
     voting_end = models.DateField()
     requiredposition = models.TextField(max_length=200)
     dateadded = models.DateField(default=now)
-    
-    def __str__(self):
-        return self.name
 
+    def __str__(self):
+        return self.electiontitle
 
 class PoliticalCandidate(models.Model):
-    candidateID = models.AutoField(primary_key=True)
     partyID = models.ForeignKey(PoliticalParty, on_delete=models.CASCADE)
     electionID = models.ForeignKey(ElectionType, on_delete=models.CASCADE)
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
+    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
     candidate_firstname = models.CharField(max_length=50)
     candidate_othername = models.CharField(max_length=50)
     candidate_surname = models.CharField(max_length=50)
-    candidate_details = models.TextField(max_length=200)
-    running_firstname = models.CharField(max_length=50)
-    running_othername = models.CharField(max_length=50)
+    candidate_age = models.IntegerField()
+    candidate_nationality = models.CharField(max_length=50)
+    candidate_educationalhistory = models.CharField(max_length=200)
+    candidate_additionaldetails = models.TextField(max_length=200)
+    runningmate_firstname = models.CharField(max_length=50)
+    runningmate_othername = models.CharField(max_length=50)
     runningmate_surname = models.CharField(max_length=50)
-    runningmate_details = models.TextField(max_length=200)
+    runningmate_age = models.IntegerField()
+    runningmate_nationality = models.CharField(max_length=50)
+    runningmate_educationalhistory = models.CharField(max_length=200)
+    runningmate_additionaldetails = models.TextField(max_length=200)
     dateadded = models.DateTimeField(default=now)
 
+
+  
 class PoliticalPost(models.Model):
     postID = models.AutoField(primary_key=True)
     electionID = models.ForeignKey(ElectionType, on_delete=models.CASCADE)
@@ -190,7 +206,7 @@ class Ward(models.Model):
 
 class Ballot(models.Model):
     voteID = models.AutoField(primary_key=True)
-    candidateID = models.ForeignKey(PoliticalCandidate, on_delete=models.CASCADE)
+    # candidateID = models.ForeignKey(PoliticalCandidate, on_delete=models.CASCADE)
     voters = models.ForeignKey(VoterReg, on_delete=models.CASCADE)
     dateadded = models.DateTimeField(auto_now_add=True)
 
