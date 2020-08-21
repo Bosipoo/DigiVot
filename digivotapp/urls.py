@@ -51,6 +51,7 @@ urlpatterns = [
     path('searchCandidates/', views.adminSearchforcandidate, name="adminSearchforcandidate"), 
     path('ajax/load-regions/', views.load_regions, name='ajax_load_regions'),
     path('confirmVote/<int:pk>/', views.confirmVote, name='confirmVote'),
+    path('displayResults/', views.displayResults.as_view(), name='displayResults'),
 
     # path('test/', views.test.as_view(),"test"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

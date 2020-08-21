@@ -368,3 +368,15 @@ def confirmVote(request,pk):
     
     context['form'] = form 
     return render(request, "confirmVote.html", context)
+
+class displayResults(ListView):
+    template_name = 'results.html'
+    model = Ballot
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["ballots"] = Ballot.objects.all()
+
+        context["candidates"] = PoliticalCandidate.objects.all()
+        
+        return context
