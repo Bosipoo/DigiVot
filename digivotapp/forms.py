@@ -65,10 +65,10 @@ class Confirm(forms.ModelForm):
 class VoterLogin(forms.ModelForm):
     class Meta:
         model = VoterReg
-        fields = ('pin',)       
+        fields = ['pin',]     
 
     # def clean_pin(self):
     #     pin = self.cleaned_data.get('pin',False)
-    #     if not self.instance.pin == pin:
-    #         raise forms.ValidationError("Unregistered Voter")
-    #     return None
+    # #     if not self.instance.pin == pin:
+    # #         raise forms.ValidationError("Unregistered Voter")
+    # #     return None

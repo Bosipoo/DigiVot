@@ -23,11 +23,9 @@ def home(request):
     # context = {
     #     'voters': VoterReg.objects.all()
     # }
-    # if request.method == 'POST' :
-    #     form = VoterLogin(request.POST)
-    #     if form.is_valid():
-    #         return render(request,'adminElections.html')
-
+    if request.method == 'POST' :
+        return redirect('votersLanding')
+    
     return render(request, 'index.html')
 
 def managerLogin(request):
@@ -215,6 +213,7 @@ class managerDash(ListView):
         context = super().get_context_data(**kwargs)
         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
         context["count"] = ManagerUserR.objects.count()
+        context["countV"] = VoterReg.objects.count()
         return context
 
 class managerVoter(ListView):
@@ -239,18 +238,21 @@ class managerViewvoter(DetailView):
 
 class managerVoteredit(UpdateView):
     model = VoterReg
-    template_name = 'managerVoteredit.html'
-    fields = ['firstname','othername','lastname','phonenumber','email','DOB','status','title','statesoforigin','regionoforigin','statesofresidence','regionofresidence','nationality','religion','profession','address','pictures']
+    template_name = 'managersEditvoter.html'
+    fields = ['firstname','othername','lastname','phonenumber','email','DOB','status','title','state','region',
+              'statesofresidence','regionofresidence','nationality','religion','profession','address','pictures']
+    context_object_name = 'voter'
 
-    def get_success_url(self):
-        return reverse('managerViewvoter', kwargs={
-            'pk': self.object.pk,
-        })
+    def form_valid(self,form):
+        instance = form.save()
+        messages.success(self.request,'Your Manager has been updated!')
+        return redirect('/managerDash')
 
 class managerDeletevoter(DeleteView):
     model = VoterReg
     template_name = 'managerDeletevoter.html'
     success_url = '/managerVoter'
+    context_object_name = 'voter'
 
 class managerCandidates(ListView):
     template_name = 'managerCandidates.html'
