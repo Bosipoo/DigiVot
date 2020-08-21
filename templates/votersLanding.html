@@ -21,29 +21,25 @@
                         </ul>
                     </div>
                 </div>
+                
                 <div class="tab-content">
                     <!--Presidential Pill--><div id="pres" class="container tab-pane active">
                         <div class="row" style="color: rgb(255,255,255);font-family: 'Open Sans', sans-serif;font-size: 17px;padding: 20px;height: 400px;">
-                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
-                                <div class="card" style="height: 220px;">
-                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
-                                        <div class="row position-relative">
-                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
-                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">SAll Peoples Party</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <!--Card end--></div>
-                            <!--Candidate Card --><div class="col-sm-6 col-md-4 col-lg-3 col-xl-3" style="margin-top: 10px;margin-bottom: 40px;">
-                                <div class="card" style="height: 220px;">
-                                    <div class="card-body d-xl-flex justify-content-xl-center align-items-xl-center" style="background-color: #4daf7c;">
-                                        <div class="row position-relative">
-                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12"><img class="rounded-circle border" style="width: 160px;height: 160px;background-color: #c8c5ae;"></div>
-                                            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center col-12 position-static"><a class="white-link stretched-link" href="#">Democrats Party</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <!--Card end--></div>
+                        
+                            {% comment %} <div class="col-6" style="margin-top: 10px;margin-bottom: 40px;"> {% endcomment %}
+                                <!--Candidate Card -->
+                                {% if candidates %}
+                                {% for candidate in candidates %}
+                                
+                                {% include 'partials/_candidateCard.html' %}
+
+                                {% endfor %}
+                                {% else %}
+                                    <p class="d-block font-weight-light my-2 heading">Candidates yet</p>
+                                {% endif %}
+
+                                <!--Card end-->
+                            {% comment %} </div> {% endcomment %}
                         </div>
                     </div>
                     <!--Senatorial Pill--><div id="senate" class="container tab-pane fade">
@@ -101,5 +97,6 @@
     <script src="{% static './js/jquery.min.js' %}"></script>
     <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static './js/collapse.js' %}"></script>
+
 </body>
 {% endblock content %}

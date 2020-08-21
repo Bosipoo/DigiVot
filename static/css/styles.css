@@ -450,4 +450,20 @@ a:active {
   text-decoration: none;
 }
 
+.round-party {
+  border-radius: 5%;
+  border: 1px solid #bebebe;
+  width: 95px;
+}
+
+.dotted-border {
+  /*border-bottom-style: dotted;*/
+  border-bottom: 1px dashed #bebebe;
+}
+
+.dotted-border-left {
+  /*border-bottom-style: dotted;*/
+  border-left: 1px dashed #bebebe;
+}
+
 

@@ -131,16 +131,16 @@ class VoterReg(models.Model):
     pictures = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
     finger1 = models.BinaryField()
     finger2 = models.BinaryField()
-    pin = models.CharField(default = "V" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits), max_length=5, editable=False)
-    dateadded = models.DateTimeField(default=now)
+    pin = models.CharField(default = "V" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits), max_length=5, editable=True)
+    dateadded = models.DateTimeField(default=now) 
 
     def __str__(self):
-        return self.name
+        return self.firstname
 
 class PoliticalParty(models.Model):
     partyname = models.CharField(max_length=50)
     partyacronym = models.CharField(max_length=5)
-    partysymbol = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
+    partysymbol = ContentTypeRestrictedFileField(upload_to='Images/', content_types=[ 'image/jpeg','image/png', ],max_upload_size=5242880,blank=True, null=True)
 
     def __str__(self):
         return self.partyname
@@ -185,6 +185,8 @@ class PoliticalCandidate(models.Model):
     runningmate_additionaldetails = models.TextField(max_length=200)
     dateadded = models.DateTimeField(default=now)
 
+    
+
 
   
 class PoliticalPost(models.Model):
@@ -206,7 +208,7 @@ class Ward(models.Model):
 
 class Ballot(models.Model):
     voteID = models.AutoField(primary_key=True)
-    # candidateID = models.ForeignKey(PoliticalCandidate, on_delete=models.CASCADE)
-    voters = models.ForeignKey(VoterReg, on_delete=models.CASCADE)
+    candidateID = models.ForeignKey(PoliticalCandidate, on_delete=models.CASCADE)
+    # voters = models.ForeignKey(VoterReg, on_delete=models.CASCADE)
     dateadded = models.DateTimeField(auto_now_add=True)
 

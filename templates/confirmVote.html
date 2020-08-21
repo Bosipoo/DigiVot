@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-6"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
+            <div class="col-6 d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-md-end justify-content-lg-end justify-content-xl-end align-items-xl-center"><a class="btn btn-primary bottom-button" role="button" style="width: 130px;height: 40px;font-family: 'Open Sans', sans-serif;" href="index.html">Logout</a></div>
+            <div class="col-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center"
+                style="margin-top: 70px;"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;color: rgb(0,0,0);font-size: 27px;font-weight: bold;">Confirm your vote</label></div>
+        </div>
+        
+
+        <div class="card" style="color: rgb(255,255,255);background-color: rgba(6,6,6,0.07);">
+            <div class="card-body" style="color: rgb(0,0,0);">
+                <div class="row">
+                    <div class="col col-6" style="border: 1px solid rgba(197,206,214,0.56) ;border-right-style: solid;border-right-color: rgba(197,206,214,0.56);">
+                        <div class="row">
+                            <div class="col d-lg-flex justify-content-lg-center"><label class="col-form-label" style="font-family: 'Bowlby One SC', cursive;font-size: 23px;">Presidential Aspirant</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-2 d-lg-flex justify-content-lg-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;">Name:</label></div>
+                            <div class="col-lg-8 col-xl-10 col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 18px;">{{candidate.candidate_firstname}} {{candidate.candidate_othername}} {{candidate.candidate_surname}}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-2 d-lg-flex justify-content-lg-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;">Age:</label></div>
+                            <div class="col-lg-8 col-xl-10 col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 18px;">{{candidate.candidate_age}}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-2 d-lg-flex justify-content-lg-center col-6"><label class="col-form-label d-xl-flex justify-content-xl-center" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Educational credentials:</label></div>
+                            <div class="col-lg-8 d-xl-flex align-items-xl-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 18px;">{{candidate.candidate_educationalhistory}}</label></div>
+                        </div>
+                    </div>
+                    <div class="col col-6" style="border: 1px solid rgba(197,206,214,0.56);border-left-style: solid;">
+                        <div class="row">
+                            <div class="col d-lg-flex justify-content-lg-center"><label class="col-form-label" style="font-family: 'Bowlby One SC', cursive;font-size: 23px;">Running Mate</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-2 d-lg-flex justify-content-lg-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;">Name:</label></div>
+                            <div class="col-lg-8 col-xl-10 col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 18px;">{{candidate.runningmate_firstname}} {{candidate.runningmate_othername}} {{candidate.runningmate_surname}}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-2 d-lg-flex justify-content-lg-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 17px;">Age:</label></div>
+                            <div class="col-lg-8 col-xl-10 col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 18px;">{{candidate.runningmate_age}}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-2 d-lg-flex justify-content-lg-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 16px;">Educational credentials:</label></div>
+                            <div class="col-lg-8 col-xl-10 d-xl-flex align-items-xl-center col-6"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 18px;">{{candidate.runningmate_educationalhistory}}</label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--i-->
+        <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="form-group">
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="col-md-6 col-lg-5 col-xl-5" style="display:none;">
+                        <div class="form-row pr-3">
+                            <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Election Title</label></div>
+                            <div class="col-12">
+                                {{form}}
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-12 pt-3" >
+                        <div class="form-row">
+                            <div class="col d-xl-flex justify-content-xl-center" style="width: 2098px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;" onclick="myFunction()">Confirm</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function myFunction() {
+        document.getElementById("id_candidateID").value = "{{candidate.id}}";
+        }
+    </script>
+
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+
+</body>
+{% endblock content %}

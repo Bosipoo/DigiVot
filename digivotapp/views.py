@@ -6,19 +6,29 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.edit import FormView,FormMixin
 from django.template.context_processors import csrf
 from django.db.models import Q
+from django.contrib import messages
 
 # from .models import AdminUserR
 from .models import ManagerUserR,ElectionType,VoterReg
 from .models import PoliticalCandidate,PoliticalParty
+from .models import Ballot
 
-
-from .forms import RegisterVoter,RegisterManager,Elections 
+from .forms import RegisterVoter,RegisterManager,Elections
 from .forms import PartyForm, CandidateForm
+from .forms import Confirm,VoterLogin
 
 
 # Create your views here.
-def home(request):
-    return render(request,'index.html')
+def home(request):  
+    # context = {
+    #     'voters': VoterReg.objects.all()
+    # }
+    # if request.method == 'POST' :
+    #     form = VoterLogin(request.POST)
+    #     if form.is_valid():
+    #         return render(request,'adminElections.html')
+
+    return render(request, 'index.html')
 
 def managerLogin(request):
     return render(request,'managerLogin.html')
@@ -54,7 +64,7 @@ def adminPoliticalpartiesview(request):
 # def adminPoliticalpartiesadd(request):
 #     return render(request, 'adminPoliticalpartiesadd.html')
 
-def adminPoliticalpartiesedit(request): 
+def adminPoliticalpartiesedit(request):
     return render(request, 'adminPoliticalpartiesedit.html')
 
 class adminDash(ListView):
@@ -67,7 +77,7 @@ class adminDash(ListView):
         return context
 
 class adminManagerscreated(ListView):
-    template_name = 'adminManagerscreated.html'   
+    template_name = 'adminManagerscreated.html'
     model = ManagerUserR
 
     def get_context_data(self, **kwargs):
@@ -77,11 +87,16 @@ class adminManagerscreated(ListView):
         context["countV"] = VoterReg.objects.count()
         return context
 
-class adminManagersaddmanager(SuccessMessageMixin ,CreateView):
+class adminManagersaddmanager(CreateView):
+    model = ManagerUserR
     form_class = RegisterManager
     template_name = 'adminManagersaddmanager.html'
-    success_url= '/adminManagerscreated'
-    success_message = "Manager registered successfully"
+    
+    def form_valid(self,form):
+        instance = form.save()
+        messages.success(self.request,'Your Manager has been created!')
+        return redirect('adminManagerscreated')
+
 
 class adminManagersview(DetailView):
     template_name = 'adminManagersview.html'
@@ -107,7 +122,7 @@ class adminManagersdelete(DeleteView):
     model = ManagerUserR
     template_name = 'adminManagersdelete.html'
     success_url = '/adminManagerscreated'
-        
+
 class adminElections(ListView):
     template_name = 'adminElections.html'
     model = ElectionType
@@ -175,10 +190,11 @@ class adminPoliticalpartiesedit_candidate(UpdateView):
     fields = ['partyID','electionID','state','district','candidate_firstname','candidate_othername','candidate_surname',
     'candidate_age','candidate_nationality','candidate_educationalhistory','candidate_additionaldetails',
     'runningmate_firstname','runningmate_othername','runningmate_surname','runningmate_age','runningmate_nationality',
-    'runningmate_educationalhistory','runningmate_additionaldetails'] 
+    'runningmate_educationalhistory','runningmate_additionaldetails']
 
     def form_valid(self,form):
         instance = form.save()
+        
         return redirect('/adminPoliticalpartiesview')
 
 class adminPoliticalpartydelete(DeleteView):
@@ -252,8 +268,10 @@ def managerRequests(request):
 def resultDetails(request):
     return render(request, 'resultDetails.html')
 
-def votersLanding(request):
-    return render(request, 'votersLanding.html')
+class votersLanding(ListView):
+    template_name = 'votersLanding.html'
+    model = PoliticalCandidate
+    context_object_name = 'candidates'
 
 def load_regions(request):
     state_id = request.GET.get('state')
@@ -278,12 +296,12 @@ def adminSearchformanager(request):
         return redirect('adminManagerscreated')
 
 def adminSearchforelection(request):
-    if request.GET: 
+    if request.GET:
         search_term = request.GET['search_term']
         search_results = ElectionType.objects.filter(
             Q(electiontitle__icontains=search_term) |
             Q(electiontype__icontains=search_term) |
-            Q(requiredposition__icontains=search_term) 
+            Q(requiredposition__icontains=search_term)
         )
         context = {
                 'search_term': search_term,
@@ -294,11 +312,11 @@ def adminSearchforelection(request):
         return redirect('adminElection')
 
 def adminSearchforparty(request):
-    if request.GET: 
+    if request.GET:
         search_term = request.GET['search_term']
         search_results = PoliticalParty.objects.filter(
             Q(partyname__icontains=search_term) |
-            Q(partyacronym__icontains=search_term) 
+            Q(partyacronym__icontains=search_term)
         )
         context = {
                 'search_term': search_term,
@@ -313,7 +331,7 @@ def adminSearchforcandidate(request):
         search_term = request.GET['search_term']
         search_results = PoliticalCandidate.objects.filter(
             Q(candidate_firstname__icontains=search_term) |
-            Q(runningmate_firstname=search_term) 
+            Q(runningmate_firstname=search_term)
             )
         context = {
             'search_term': search_term,
@@ -323,3 +341,30 @@ def adminSearchforcandidate(request):
     else:
         return redirect('managerCandidates')
 
+# class confirmVote(DetailView):
+#     # form_class = CandidateForm
+#     template_name = 'confirmVote.html'
+#     # success_url= '/voterLanding'
+#     model = PoliticalCandidate
+#     context_object_name = 'candidate'
+
+def confirmVote(request,pk):
+    context = {}
+
+    context["candidate"] = PoliticalCandidate.objects.get(id = pk)
+
+    # if request.method == "POST":
+    #     form = Confirm(request.POST) 
+
+    # if form.is_valid(): 
+    #     form.save() 
+    #     messages.success(request,'Vote successfully cast')
+    #     return render(request,"index.html")
+    form = Confirm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request,'Vote successfully cast')
+        return render(request,"index.html")
+    
+    context['form'] = form 
+    return render(request, "confirmVote.html", context)

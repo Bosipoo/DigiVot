@@ -1,0 +1,52 @@
+{% load static %}
+<div class="col-6 col-xl-6 col-lg-6 col-md-12 col-xs-12 col-sm-12 p-3 mx-auto">
+
+<div class="card" style="width: 440px;background-color: rgba(49,176,122,0.19);color:#000000;">
+    <div class="card-body">
+        <div class="row">
+            <div class="col dotted-border" style="font-size: 10px;font-family: 'Open Sans', sans-serif;padding-top: 0px;">
+                <div class="row">
+                <!-- Party Logo-->
+                    <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><img class="round-party" src="{{candidate.partyID.partysymbol.url}}" /></div>
+                <!-- End Party Logo-->
+                </div>
+                <div class="row">
+                <!-- Party Name-->
+                    <div class="col">
+                        <h3 class="d-xl-flex justify-content-xl-center" style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;">{{candidate.partyID.partyname}}</h3>
+                    </div>
+                <!-- End Party Name-->
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'confirmVote' candidate.id %}" class="stretched-link"></a>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                <!-- Candidate Position-->
+                    <div class="col d-xl-flex justify-content-xl-start align-items-xl-center" style="padding-left: 3px;"><label class="col-form-label d-xl-flex" style="font-size: 10px;font-family: 'Open Sans', sans-serif;padding-top: 0px;">Position: President</label></div>
+                <!-- End Candidate Position-->
+                </div>
+                <div class="row">
+                <!-- Candidate Name-->
+                    <div class="col col-12" style="padding-left: 3px;"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 13px;font-weight: bold;">Name: {{candidate.candidate_firstname}} {{candidate.candidate_surname}}</label></div>
+                <!-- End Candidate Name-->
+                </div>
+            </div>
+            <div class="col dotted-border-left">
+                <div class="row">
+                <!-- Running Mate Position-->
+                    <div class="col d-xl-flex justify-content-xl-start align-items-xl-center" style="padding-left: 10px;"><label class="col-form-label d-xl-flex" style="font-size: 10px;font-family: 'Open Sans', sans-serif;padding-top: 0px;">Position: Vice President</label></div>
+                <!-- End Running Mate Position-->
+                </div>
+                <div class="row">
+                <!-- Running Mate Name-->
+                    <div class="col" style="padding-left: 10px;"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 13px;font-weight: bold;">Name: {{candidate.runningmate_firstname}} {{candidate.runningmate_surname}}</label></div> 
+                <!-- End Running Mate Name -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
