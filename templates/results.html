@@ -6,77 +6,58 @@
     <nav class="navbar navbar-light navbar-expand-md" style="background-color:rgba(255,255,255,0.8);width: 100vw;margin-left: -17px;margin-top: -17px;">
         <div class="container-fluid"><a class="navbar-brand" href="#"><img src="{% static './img/DigiVotLogo%201.png' %}" style="width: 90px;" /></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav">
-                    <li role="presentation" class="nav-item"><a class="nav-link active" href="results.html">Presidential</a></li>
-                    <li role="presentation" class="nav-item"><a class="nav-link" href="#">Senatorial</a></li>
-                    <li role="presentation" class="nav-item"><a class="nav-link" href="#">Gubernatorial<br /></a></li>
-                </ul>
             </div>
         </div>
     </nav>
     <div class="row">
         <div class="col"  style="margin-top: 25px;">
-            <h1 class="d-xl-flex justify-content-xl-center" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;">Presidential Elections</h1>
+            <h1 class="d-xl-flex justify-content-xl-center" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;">All Elections</h1>
         </div>
     </div>
 
-    {% if candidates %} {% comment %} 
-    {% for candidate in candidates %} {% endcomment %}
-
-    <div class="row" style="padding-left: 25px;padding-top:10px;">
-        <div class="col-xl-12 d-xl-flex justify-content-xl-start align-items-xl-center">
-            <h4 class="d-xl-flex align-items-xl-end" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;margin-right: 20px;">Duration</h4>
-            <label class="d-xl-flex align-items-xl-end" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;font-size: 20px;">{{candidate.electionID.voting_start}}</label>
-            <label class="d-xl-flex align-items-xl-end" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;font-size: 20px;margin-left: 12px;margin-right: 12px;">to</label>
-            <label class="d-xl-flex align-items-xl-end" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;font-size: 20px;">{{candidate.electionID.voting_end}}</label>
-        </div>
-    </div>
-    {% comment %} {% endfor %}
-    {% else %}
-        <p class="d-block font-weight-light my-2 heading">No Results yet</p>
-{% endcomment %}
-    {% endif %} 
     <div class="row" style="padding: 25px;">
-        <div class="col-12 col-xl-4 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
-            <div class="card card-radius1 partyR position-relative" style="background-color: rgba(255,255,255,0.6);">
-                <div class="card-body" style="">
-                    <div class="col-xl-12"><label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(234, 115, 23);">Party:</label><label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(234, 115, 23);">ADP</label></div>
-                    <div class="col-xl-12 position-static"><label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(234, 115, 23);">Candidate:</label><a class="card-link stretched-link" href="resultDetails.html" style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(234, 115, 23);">Dr. Jude Lokiyh</a></div>
-                    <div data-theme="train-station" class="col odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">1000054</div>
+        {% for election in elections %}
+            <div class="col-12 col-xl-4 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
+                <div class="card card-radius1 partyR position-relative" style="background-color: rgba(255,255,255,0.6);">
+                    <a href="/displayResults/{{ election.electionID }}/">
+                        <div class="card-body" style="color: rgb(0, 36, 100)">
+                            <div class="col-12">
+                                <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    Election Name:
+                                </label>
+                                <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    {{ election.electiontitle }}
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    Voting Start Date:
+                                </label>
+                                <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    {{ election.voting_start.isoformat }}
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    Voting End Date:
+                                </label>
+                                <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    {{ election.voting_end.isoformat }}
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                    Total vote count:
+                                </label>
+                                <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;" class="odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">
+                                    {{ votes_count|dict_get:election.electionID }}
+                                </label>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-xl-4 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
-            <div class="card card-radius1 partyR position-relative" style="background-color: rgba(255,255,255,0.6);">
-                <div class="card-body">
-                    <div class="col-xl-12"><label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(0, 36, 100);">Party:</label><label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(0, 36, 100);">ADP</label></div>
-                    <div class="col-xl-12 position-static"><label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(0, 36, 100);">Candidate:</label><a class="card-link stretched-link" href="#" style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(0, 36, 100);">Mrs. Bolanle Durotoye</a></div>
-                    <div data-theme="train-station" class="col odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">129</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-xl-4 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
-            <div class="card card-radius1 partyR position-relative" style="background-color: rgba(255,255,255,0.6);">
-                <div class="card-body">
-                    <div class="col-xl-12"><label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(187, 0, 31);">Party:</label><label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(187, 0, 31);">ADP</label></div>
-                    <div class="col-xl-12"><label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(187, 0, 31);">Candidate:</label><label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;color: rgb(187, 0, 31);">Dr. Jude Lokiyh</label></div>
-                    <div data-theme="train-station" class="col odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">27054</div>
-                </div>
-            </div>
-        </div>
-        
-        <!--Results Card-->
-        {% if candidates %}
-        {% for candidate in candidates %}
-        
-        {% include 'partials/_resultCard.html' %}
-
         {% endfor %}
-        {% else %}
-            <p class="d-block font-weight-light my-2 heading">No Results yet</p>
-
-        {% endif %}
-        <!--End Result Card-->
     </div>
     <script src="{% static './js/jquery.min.js' %}"></script>
     <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
@@ -86,5 +67,4 @@
        //setTimeout(function(){ odometer.innerHTML = 10000456;}, 1000);
     </script>
 </body>
-{% endblock content %} 
-    
+{% endblock content %}

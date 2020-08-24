@@ -51,7 +51,44 @@ urlpatterns = [
     path('searchCandidates/', views.adminSearchforcandidate, name="adminSearchforcandidate"), 
     path('ajax/load-regions/', views.load_regions, name='ajax_load_regions'),
     path('confirmVote/<int:pk>/', views.confirmVote, name='confirmVote'),
-    path('displayResults/', views.displayResults.as_view(), name='displayResults'),
+    path('displayResults/', views.display_result, name='displayResults'),
+    path('displayResults/<int:election_id>/', views.display_result, name='displayResults'),
 
     # path('test/', views.test.as_view(),"test"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+"""
+ACCESS
+voter access
+- pin
+- finger
+
+manager access
+- pin (first time)
+- fingerprint
+
+- username
+- password
+- fingerprint
+
+admin access
+-  pin (first time)
+- fingerprint
+
+- username
+- password
+- fingerprint
+
+CREATION
+Voter
+by manager
+- voterReg model
+
+Manager
+by admin
+- ManagerUser model
+
+admin
+by super-admin
+- created by anyone
+"""

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<body style="background-image: url(&quot;{% static './img/background.png' %}&quot;);padding: 15px;font-family: 'Open Sans'">
+    <nav class="navbar navbar-light navbar-expand-md" style="background-color:rgba(255,255,255,0.8);width: 100vw;margin-left: -17px;margin-top: -17px;">
+        <div class="container-fluid"><a class="navbar-brand" href="#"><img src="{% static './img/DigiVotLogo%201.png' %}" style="width: 90px;" /></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col"  style="margin-top: 25px;">
+            <h1 class="d-xl-flex justify-content-xl-center" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;">{{ election.electiontitle }}</h1>
+            <h5 class="d-xl-flex justify-content-xl-center" style="color: rgb(255,255,255);font-family: 'Bowlby One SC', cursive;">Total Votes: {{ total_votes }}</h5>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 25px;">
+        {% for candidate in candidates %}
+            <div class="col-12 col-xl-4 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
+                <div class="card card-radius1 partyR position-relative" style="background-color: rgba(255,255,255,0.6);">
+                    <div class="card-body" style="color: rgb(0, 36, 100)">
+                        <div class="col-12">
+                            <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                Candidate Name:
+                            </label>
+                            <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                {{ candidate.candidate_firstname }} {{ candidate.candidate_othername }} {{ candidate.candidate_surname }}
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                Party:
+                            </label>
+                            <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                {{ candidate.partyID.partyacronym }}
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                Vote count:
+                            </label>
+                            <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;" class="odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">
+                                {{ votes_breakdown|dict_get:candidate.id }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
+    <script src="{% static './js/odometer.js' %}"></script>
+    <script>
+       //setTimeout(function(){ odometer.innerHTML = 10000456;}, 1000);
+    </script>
+</body>
+{% endblock content %}
