@@ -145,8 +145,7 @@ class VoterReg(models.Model):
     address = models.TextField(max_length=200)
     pictures = ContentTypeRestrictedFileField(upload_to='uploads/', content_types=['image/jpeg', 'image/png', ],
                                               max_upload_size=5242880, blank=True, null=True)
-    finger1 = models.BinaryField()
-    finger2 = models.BinaryField()
+    finger = models.BinaryField()
     pin = models.CharField(default="V" + get_random_string(4, allowed_chars=string.ascii_uppercase + string.digits),
                            max_length=5, editable=True)
     dateadded = models.DateTimeField(default=now)
@@ -219,12 +218,10 @@ class SenatorialDistrict(models.Model):
     districtname = models.CharField(max_length=50)
     composition = models.TextField(max_length=100)
 
-
 class Ward(models.Model):
     wardID = models.AutoField(primary_key=True)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=50)
-
 
 class Ballot(models.Model):
     voteID = models.AutoField(primary_key=True)

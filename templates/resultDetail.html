@@ -18,30 +18,30 @@
 
     <div class="row" style="padding: 25px;">
         {% for candidate in candidates %}
-            <div class="col-12 col-xl-4 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
+            <div class="col-12 col-xl-5 col-lg-6 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 35px;">
                 <div class="card card-radius1 partyR position-relative" style="background-color: rgba(255,255,255,0.6);">
                     <div class="card-body" style="color: rgb(0, 36, 100)">
                         <div class="col-12">
                             <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
-                                Candidate Name:
+                                Party:
                             </label>
-                            <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
-                                {{ candidate.candidate_firstname }} {{ candidate.candidate_othername }} {{ candidate.candidate_surname }}
+                            <label style="margin-left: 10px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                {{ candidate.partyID.partyacronym }}
                             </label>
                         </div>
                         <div class="col-12">
                             <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
-                                Party:
+                                Candidate Name:
                             </label>
-                            <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
-                                {{ candidate.partyID.partyacronym }}
+                            <label style="margin-left: 10px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
+                                {{ candidate.candidate_firstname }} {{ candidate.candidate_othername }} {{ candidate.candidate_surname }}
                             </label>
                         </div>
                         <div class="col-12">
                             <label style="font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;">
                                 Vote count:
                             </label>
-                            <label style="margin-left: 15px;font-family: 'Open Sans', sans-serif;font-size: 16px;font-weight:900;" class="odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">
+                            <label style="margin-left: 10px;font-family: 'Open Sans', sans-serif;font-size: 18px;font-weight:900;" class="odometer odometer-theme-train-station odometer-animating-up odometer-animating" id="odometer">
                                 {{ votes_breakdown|dict_get:candidate.id }}
                             </label>
                         </div>
