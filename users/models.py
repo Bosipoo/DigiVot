@@ -38,7 +38,7 @@ class Profile(models.Model):
     profession = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='avatar/', blank=True)
     address = models.CharField(max_length=200)
-    admin_id = models.UUIDField(default=uuid4().hex)
+    admin_id = models.UUIDField(default=uuid4().hex, null=True)
 
 
 class AuthenticationTable(models.Model):

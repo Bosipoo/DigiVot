@@ -16,6 +16,7 @@ from .models import Ballot, Region
 from .forms import Elections
 from .forms import PartyForm, CandidateForm
 from .forms import Confirm
+from users.models import CustomUser,Profile
 
 
 # Create your views here.
@@ -68,45 +69,48 @@ def adminPoliticalpartiesview(request):
     return render(request, 'adminPoliticalpartiesview.html')
 
 
-# def adminPoliticalpartiesadd(request):
-#     return render(request, 'adminPoliticalpartiesadd.html')
+def adminPoliticalpartiesadd(request):
+    return render(request, 'adminPoliticalpartiesadd.html')
+
 
 def adminPoliticalpartiesedit(request):
     return render(request, 'adminPoliticalpartiesedit.html')
 
 
-# class adminDash(ListView):
-#     template_name = 'adminDash.html'
-#     model = ManagerUserR
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["partydisplays"] = PoliticalParty.objects.all()
-#         context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
-#         return context
-#
-# class adminManagerscreated(ListView):
-#     template_name = 'adminManagerscreated.html'
-#     model = ManagerUserR
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
-#         context["count"] = ManagerUserR.objects.count()
-#         context["countV"] = VoterReg.objects.count()
-#         return context
-#
+class adminDash(ListView):
+    template_name = 'adminDash.html'
+    model = CustomUser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["partydisplays"] = PoliticalParty.objects.all()
+        context["managers"] = CustomUser.objects.filter(is_manager=True).order_by('-dateadded')[:10]
+        return context
+
+
+class adminManagerscreated(ListView):
+    template_name = 'adminManagerscreated.html'
+    model = CustomUser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["managers"] = CustomUser.objects.filter(is_manager=True).order_by('-dateadded')[:10]
+        context["count"] = CustomUser.objects.filter(is_manager=True).count()
+        context["countV"] = CustomUser.objects.filter(is_voter=True).count()
+        return context
+
 # class test(UpdateView):
-#     model = VoterReg
+#     model = Profile
 #     template_name = 'adminManagersedit.html'
 #     fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'statesoforigin',
 #               'regionoforigin', 'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession',
 #               'address', 'pictures']
-#
-# class adminManagersdelete(DeleteView):
-#     model = ManagerUserR
-#     template_name = 'adminManagersdelete.html'
-#     success_url = '/adminManagerscreated'
+
+class adminManagersdelete(DeleteView):
+    model = CustomUser
+    template_name = 'adminManagersdelete.html'
+    success_url = '/adminManagerscreated'
+
 
 class adminElections(ListView):
     template_name = 'adminElections.html'
@@ -184,59 +188,66 @@ class adminPoliticalpartiesedit_candidate(UpdateView):
 
         return redirect('/adminPoliticalpartiesview')
 
+
 class adminPoliticalpartydelete(DeleteView):
     model = PoliticalParty
     template_name = 'adminPoliticalpartydelete.html'
     success_url = '/adminPoliticalpartiesview'
+
 
 class adminPoliticalcandidatedelete(DeleteView):
     model = PoliticalCandidate
     template_name = 'adminPoliticalcandidatedelete.html'
     success_url = '/adminPoliticalpartiesview'
 
-# class managerDash(ListView):
-#     template_name = 'managerDash.html'
-#     model = VoterReg
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
-#         context["count"] = ManagerUserR.objects.count()
-#         context["countV"] = VoterReg.objects.count()
-#         return context
-#
-# class managerVoter(ListView):
-#     template_name = 'managerVoter.html'
-#     model = VoterReg
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
-#         return context
-#
+class managerDash(ListView):
+    template_name = 'managerDash.html'
+    model = CustomUser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["voters"] = CustomUser.objects.filter(is_voter=True).order_by('-dateadded')[:10]
+        context["count"] = CustomUser.objects.filter(is_manager=True).count()
+        context["countV"] = CustomUser.objects.filter(is_voter=True).count()
+        return context
+
+
+class managerVoter(ListView):
+    template_name = 'managerVoter.html'
+    model = CustomUser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["voters"] = CustomUser.objects.filter(is_voter=True).order_by('-dateadded')[:10]
+        return context
+
+
 # class managerVoteradd(SuccessMessageMixin, CreateView):
 #     form_class = RegisterVoter
 #     template_name = 'managerVoteradd.html'
 #     success_url = '/managerVoter'
 #     success_message = "Voter registered successfully"
-#
-# class managerViewvoter(DetailView):
-#     template_name = 'managerViewvoter.html'
-#     model = VoterReg
-#     context_object_name = 'voter'
-#
-# class managerVoteredit(UpdateView):
-#     model = VoterReg
-#     template_name = 'managersEditvoter.html'
-#     fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'state', 'region',
-#               'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession', 'address', 'pictures']
-#     context_object_name = 'voter'
-#
-#     def form_valid(self, form):
-#         instance = form.save()
-#         messages.success(self.request, 'Your Manager has been updated!')
-#         return redirect('/managerDash')
-#
+
+
+class managerViewvoter(DetailView):
+    template_name = 'managerViewvoter.html'
+    model = CustomUser
+    context_object_name = 'voter'
+
+
+class managerVoteredit(UpdateView):
+    model = CustomUser
+    template_name = 'managersEditvoter.html'
+    fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'state', 'region',
+              'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession', 'address', 'pictures']
+    context_object_name = 'voter'
+
+    def form_valid(self, form):
+        instance = form.save()
+        messages.success(self.request, 'Your Manager has been updated!')
+        return redirect('/managerDash')
+
+
 # class managerDeletevoter(DeleteView):
 #     model = VoterReg
 #     template_name = 'managerDeletevoter.html'
@@ -269,22 +280,22 @@ def load_regions(request):
     regions = Region.objects.filter(state_id=state_id).order_by('name')
     return render(request, 'hr/region_dropdown_list_options.html', {'regions': regions})
 
-# def adminSearchformanager(request):
-#     if request.GET:
-#         search_term = request.GET['search_term']
-#         search_results = ManagerUserR.objects.filter(
-#             Q(firstname__icontains=search_term) |
-#             Q(email__icontains=search_term) |
-#             Q(gender__icontains=search_term) |
-#             Q(phonenumber__iexact=search_term)
-#         )
-#         context = {
-#             'search_term': search_term,
-#             'managers': search_results
-#         }
-#         return render(request, 'adminSearchformanager.html', context)
-#     else:
-#         return redirect('adminManagerscreated')
+def adminSearchformanager(request):
+    if request.GET:
+        search_term = request.GET['search_term']
+        search_results = CustomUser.objects.filter(Q(is_manager=True),
+            Q(firstname__icontains=search_term) |
+            Q(email__icontains=search_term) |
+            Q(gender__icontains=search_term) |
+            Q(phonenumber__iexact=search_term)
+        )
+        context = {
+            'search_term': search_term,
+            'managers': search_results
+        }
+        return render(request, 'adminSearchformanager.html', context)
+    else:
+        return redirect('adminManagerscreated')
 
 def adminSearchforelection(request):
     if request.GET:
