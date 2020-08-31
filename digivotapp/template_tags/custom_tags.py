@@ -1,20 +1,9 @@
-from django import template
 from django.template.defaulttags import register
-from ..models import ElectionType
-from ..models import PoliticalParty, PoliticalCandidate
 
 
-register = template.Library()
-
-@register.filter(name='addcss')
+@register.filter
 def addcss(field, css):
-    return field.as_widget(attrs={"class":css})
-
-
-# @register.filter(name='placeholder')
-# def placeholder(value, token):
-#     value.field.widget.attrs["placeholder"] = token
-#     return value
+    return field.as_widget(attrs={"class": css})
 
 
 @register.filter

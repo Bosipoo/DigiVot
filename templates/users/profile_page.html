@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	<title>Digivot| Voter Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form class="profile" method="POST" action="{% url '' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="primaryAction" type="submit">Complete Profile</button>
+    </form>
+</body>
+</html>

@@ -15,13 +15,13 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: #474747;">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-th-large icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerDash'%}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-user-friends icon-size" style="font-size: 20px;color: #152E21;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerVoter'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Voters</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Voters</label></a></div>
                                 </div>
                             </div>
                             {% comment %} <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
@@ -46,7 +46,7 @@
                         <div class="row d-xl-flex justify-content-xl-start align-items-xl-center" id="divider" style="font-family: 'Open Sans', sans-serif;margin-top: 61px;font-size: 12px;">
                             <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 13px;">Admin Details</label></div>
                             <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">ID: 19089324</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Stata: Lagos</label></div>
+                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">State: Lagos</label></div>
                             <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Region: Surulere-west</label></div>
                         </div>
                     </div>
@@ -68,56 +68,44 @@
                     </div>
                     <div class="form-group">
                         {% load custom_tags %}
+                        {% for key, value in form.errors.items %}
+                            <p><strong>{{ key }}</strong>{{ value }}</p>
+                        {% endfor %}
+                        {% if message %}
+                            <p>{{ message }}</p>
+                        {% endif %}
                         <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                             <div class="form-row" style="margin-top: 20px;">
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                        <div class="col-12">{{form.firstname|addcss:"form-control input-field" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                        <div class="col-12">{{form.lastname|addcss:"form-control input-field" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                        <div class="col-12">{{form.othername|addcss:"form-control input-field" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Phone Number</label></div>
-                                        <div class="col-12">{{form.phonenumber|addcss:"form-control input-field" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Email Address</label></div>
-                                        <div class="col-12">{{form.email|addcss:"form-control input-field" }}</div>
+                                        <div class="col-12">{{form.phone_number|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Date of Birth</label></div>
-                                        <div class="col-12" style="padding-top:14px;">{{form.DOB|addcss:"input-field" }}</div>
+                                        <div class="col-12">{{form.date_of_birth|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Status</label></div>
-                                        <div class="col-12">{{form.status|addcss:"form-control input-field" }}</div>
+                                        <div class="col-12">{{form.marital_status|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Title</label></div>
                                         <div class="col-12">{{form.title|addcss:"form-control input-field" }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4 col-xl-4">
+                                    <div class="form-row pr-3">
+                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Gender</label></div>
+                                        <div class="col-12">{{form.gender|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
@@ -130,18 +118,6 @@
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Origin</label></div>
                                         <div class="col-12">{{form.region|addcss:"form-control input-field" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State of Residence</label></div>
-                                        <div class="col-12">{{form.statesofresidence|addcss:"form-control input-field" }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-4">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">LGA of Residence</label></div>
-                                        <div class="col-12">{{form.regionofresidence|addcss:"form-control input-field" }}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4 col-xl-4">
@@ -173,25 +149,14 @@
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Picture</label></div>
                                         <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start">
                                             <div class="form-row">
-                                            <div class="col-12">{{form.pictures|addcss:"form-control" }}</div>
+                                            <div class="col-12">{{form.avatar|addcss:"form-control" }}</div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-xl-6">
-                                <div class="form-row pr-3">
-                                    <div class="col-xl-12">
-                                        <div class="form-row">
-                                            <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Biometric Information</label></div>
-                                            <div class="col-12 d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-start"><img src="{% static './img/mdi_fingerprintgreen.png'%}" style="width: 85px;"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;width: 212px;">Click the icon above and put your finger on the machine</label></div>
                                 </div>
                             </div>
                     </div>
                     <div class="form-row">
-                        <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Create Voter and PIN</button></div>
+                        <div class="col d-xl-flex justify-content-xl-end" style="width: 798px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" type="submit" style="width: 290px;height: 60px;">Update Profile</button></div>
                     </div>
                     </form>
 

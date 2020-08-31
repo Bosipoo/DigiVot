@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django import forms
 
-from .models import CustomUser
+from .models import CustomUser, Profile
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -17,8 +17,22 @@ class CustomUserChangeForm(UserChangeForm):
         fields = UserChangeForm.Meta.fields
 
 
-class UserRegsiterForm(forms.ModelForm):
+class UserRegisterForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
         fields = ['first_name', 'last_name', 'email', 'password', 'username']
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        exclude = ['user', 'admin_id']
+        widgets = {
+            'date_of_birth': DateInput()
+        }
