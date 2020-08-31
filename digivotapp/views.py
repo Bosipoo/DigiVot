@@ -283,11 +283,11 @@ def load_regions(request):
 def adminSearchformanager(request):
     if request.GET:
         search_term = request.GET['search_term']
-        search_results = CustomUser.objects.filter(Q(is_manager=True),
+        search_results = CustomUser.objects.filter(
             Q(firstname__icontains=search_term) |
             Q(email__icontains=search_term) |
             Q(gender__icontains=search_term) |
-            Q(phonenumber__iexact=search_term)
+            Q(phonenumber__iexact=search_term), is_manager=True
         )
         context = {
             'search_term': search_term,
