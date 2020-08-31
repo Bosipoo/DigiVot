@@ -9,13 +9,13 @@ from django.db.models import Q
 from django.contrib import messages
 
 # from .models import AdminUserR
-from .models import ManagerUserR, ElectionType, VoterReg
+from .models import ElectionType
 from .models import PoliticalCandidate, PoliticalParty
 from .models import Ballot, Region
 
-from .forms import RegisterVoter, RegisterManager, Elections
+from .forms import Elections
 from .forms import PartyForm, CandidateForm
-from .forms import Confirm, VoterLogin
+from .forms import Confirm
 
 
 # Create your views here.
@@ -75,63 +75,38 @@ def adminPoliticalpartiesedit(request):
     return render(request, 'adminPoliticalpartiesedit.html')
 
 
-class adminDash(ListView):
-    template_name = 'adminDash.html'
-    model = ManagerUserR
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["partydisplays"] = PoliticalParty.objects.all()
-        context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
-        return context
-
-class adminManagerscreated(ListView):
-    template_name = 'adminManagerscreated.html'
-    model = ManagerUserR
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
-        context["count"] = ManagerUserR.objects.count()
-        context["countV"] = VoterReg.objects.count()
-        return context
-
-class adminManagersaddmanager(CreateView):
-    model = ManagerUserR
-    form_class = RegisterManager
-    template_name = 'adminManagersaddmanager.html'
-
-    def form_valid(self, form):
-        instance = form.save()
-        messages.success(self.request, 'Your Manager has been created!')
-        return redirect('adminManagerscreated')
-
-class adminManagersview(DetailView):
-    template_name = 'adminManagersview.html'
-    model = ManagerUserR
-    context_object_name = 'manager'
-
-class adminEditmanagers(UpdateView):
-    model = ManagerUserR
-    template_name = 'adminManagersedit.html'
-    fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'gender', 'address', 'pictures']
-
-    def get_success_url(self):
-        return reverse('adminManagersview', kwargs={
-            'pk': self.object.pk,
-        })
-
-class test(UpdateView):
-    model = VoterReg
-    template_name = 'adminManagersedit.html'
-    fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'statesoforigin',
-              'regionoforigin', 'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession',
-              'address', 'pictures']
-
-class adminManagersdelete(DeleteView):
-    model = ManagerUserR
-    template_name = 'adminManagersdelete.html'
-    success_url = '/adminManagerscreated'
+# class adminDash(ListView):
+#     template_name = 'adminDash.html'
+#     model = ManagerUserR
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["partydisplays"] = PoliticalParty.objects.all()
+#         context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
+#         return context
+#
+# class adminManagerscreated(ListView):
+#     template_name = 'adminManagerscreated.html'
+#     model = ManagerUserR
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["managers"] = ManagerUserR.objects.all().order_by('-dateadded')[:10]
+#         context["count"] = ManagerUserR.objects.count()
+#         context["countV"] = VoterReg.objects.count()
+#         return context
+#
+# class test(UpdateView):
+#     model = VoterReg
+#     template_name = 'adminManagersedit.html'
+#     fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'statesoforigin',
+#               'regionoforigin', 'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession',
+#               'address', 'pictures']
+#
+# class adminManagersdelete(DeleteView):
+#     model = ManagerUserR
+#     template_name = 'adminManagersdelete.html'
+#     success_url = '/adminManagerscreated'
 
 class adminElections(ListView):
     template_name = 'adminElections.html'
@@ -219,54 +194,54 @@ class adminPoliticalcandidatedelete(DeleteView):
     template_name = 'adminPoliticalcandidatedelete.html'
     success_url = '/adminPoliticalpartiesview'
 
-class managerDash(ListView):
-    template_name = 'managerDash.html'
-    model = VoterReg
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
-        context["count"] = ManagerUserR.objects.count()
-        context["countV"] = VoterReg.objects.count()
-        return context
-
-class managerVoter(ListView):
-    template_name = 'managerVoter.html'
-    model = VoterReg
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
-        return context
-
-class managerVoteradd(SuccessMessageMixin, CreateView):
-    form_class = RegisterVoter
-    template_name = 'managerVoteradd.html'
-    success_url = '/managerVoter'
-    success_message = "Voter registered successfully"
-
-class managerViewvoter(DetailView):
-    template_name = 'managerViewvoter.html'
-    model = VoterReg
-    context_object_name = 'voter'
-
-class managerVoteredit(UpdateView):
-    model = VoterReg
-    template_name = 'managersEditvoter.html'
-    fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'state', 'region',
-              'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession', 'address', 'pictures']
-    context_object_name = 'voter'
-
-    def form_valid(self, form):
-        instance = form.save()
-        messages.success(self.request, 'Your Manager has been updated!')
-        return redirect('/managerDash')
-
-class managerDeletevoter(DeleteView):
-    model = VoterReg
-    template_name = 'managerDeletevoter.html'
-    success_url = '/managerVoter'
-    context_object_name = 'voter'
+# class managerDash(ListView):
+#     template_name = 'managerDash.html'
+#     model = VoterReg
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
+#         context["count"] = ManagerUserR.objects.count()
+#         context["countV"] = VoterReg.objects.count()
+#         return context
+#
+# class managerVoter(ListView):
+#     template_name = 'managerVoter.html'
+#     model = VoterReg
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["voters"] = VoterReg.objects.all().order_by('-dateadded')[:10]
+#         return context
+#
+# class managerVoteradd(SuccessMessageMixin, CreateView):
+#     form_class = RegisterVoter
+#     template_name = 'managerVoteradd.html'
+#     success_url = '/managerVoter'
+#     success_message = "Voter registered successfully"
+#
+# class managerViewvoter(DetailView):
+#     template_name = 'managerViewvoter.html'
+#     model = VoterReg
+#     context_object_name = 'voter'
+#
+# class managerVoteredit(UpdateView):
+#     model = VoterReg
+#     template_name = 'managersEditvoter.html'
+#     fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'state', 'region',
+#               'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession', 'address', 'pictures']
+#     context_object_name = 'voter'
+#
+#     def form_valid(self, form):
+#         instance = form.save()
+#         messages.success(self.request, 'Your Manager has been updated!')
+#         return redirect('/managerDash')
+#
+# class managerDeletevoter(DeleteView):
+#     model = VoterReg
+#     template_name = 'managerDeletevoter.html'
+#     success_url = '/managerVoter'
+#     context_object_name = 'voter'
 
 class managerCandidates(ListView):
     template_name = 'managerCandidates.html'
@@ -294,22 +269,22 @@ def load_regions(request):
     regions = Region.objects.filter(state_id=state_id).order_by('name')
     return render(request, 'hr/region_dropdown_list_options.html', {'regions': regions})
 
-def adminSearchformanager(request):
-    if request.GET:
-        search_term = request.GET['search_term']
-        search_results = ManagerUserR.objects.filter(
-            Q(firstname__icontains=search_term) |
-            Q(email__icontains=search_term) |
-            Q(gender__icontains=search_term) |
-            Q(phonenumber__iexact=search_term)
-        )
-        context = {
-            'search_term': search_term,
-            'managers': search_results
-        }
-        return render(request, 'adminSearchformanager.html', context)
-    else:
-        return redirect('adminManagerscreated')
+# def adminSearchformanager(request):
+#     if request.GET:
+#         search_term = request.GET['search_term']
+#         search_results = ManagerUserR.objects.filter(
+#             Q(firstname__icontains=search_term) |
+#             Q(email__icontains=search_term) |
+#             Q(gender__icontains=search_term) |
+#             Q(phonenumber__iexact=search_term)
+#         )
+#         context = {
+#             'search_term': search_term,
+#             'managers': search_results
+#         }
+#         return render(request, 'adminSearchformanager.html', context)
+#     else:
+#         return redirect('adminManagerscreated')
 
 def adminSearchforelection(request):
     if request.GET:

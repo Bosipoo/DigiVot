@@ -1,9 +1,7 @@
 from django import template
 from django.template.defaulttags import register
-from ..models import ManagerUserR 
-from ..models import ElectionType 
-from ..models import VoterReg 
-from ..models import PoliticalParty,PoliticalCandidate
+from ..models import ElectionType
+from ..models import PoliticalParty, PoliticalCandidate
 
 
 register = template.Library()
