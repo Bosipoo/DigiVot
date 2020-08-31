@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 # Application definition
@@ -158,3 +157,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+BASE_URL = '127.0.0.1:8000'

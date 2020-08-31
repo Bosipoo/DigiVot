@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import get_user_model, authenticate, login
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from .models import Profile, AuthenticationTable
 from .forms import UserRegsiterForm
 from uuid import uuid4
@@ -60,16 +60,16 @@ def user_auth(request):
             key=uuid4().hex
         )
         auth_key.save()
-        url = settings.BA
-        return JsonResponse({'url': auth_key.key}, status=200)
+        url = settings.BASE_URL + f'/users/validate/?key={auth_key.key}'
+        return JsonResponse({'url': url}, status=200)
 
     return JsonResponse({'message': 'Invalid username/password'}, status=401)
 
 
+@require_GET
 def move_auth_browser(request):
     key = request.GET['key']
     auth = get_object_or_404(AuthenticationTable, key=key)
     user = auth.user
-    user.backend = 'django.contrib.auth.backends.ModelBackend'
     login(request, user)
     return HttpResponse(request, 'home_page.html', {})
