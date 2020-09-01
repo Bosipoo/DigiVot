@@ -8,6 +8,8 @@ from .forms import UserRegisterForm, ProfileForm
 from uuid import uuid4
 from django.conf import settings
 
+def test(request):
+    return render(request, 'managerRegister.html')
 
 def new_user_register(request, permission='admin'):
     if permission == 'admin' or request.user.is_authenticated:

@@ -19,7 +19,7 @@ from .forms import Confirm
 from users.models import CustomUser,Profile
 
 
-# Create your views here.
+#Create your views here.
 def home(request):
     # context = {
     #     'voters': VoterReg.objects.all()
@@ -84,7 +84,7 @@ class adminDash(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["partydisplays"] = PoliticalParty.objects.all()
-        context["managers"] = CustomUser.objects.filter(is_manager=True).order_by('-dateadded')[:10]
+        #context["managers"] = CustomUser.objects.filter(is_manager=True).order_by('-dateadded')[:10]
         return context
 
 
@@ -94,17 +94,10 @@ class adminManagerscreated(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["managers"] = CustomUser.objects.filter(is_manager=True).order_by('-dateadded')[:10]
+        context["managers"] = CustomUser.objects.filter(is_manager=True)[:10]
         context["count"] = CustomUser.objects.filter(is_manager=True).count()
         context["countV"] = CustomUser.objects.filter(is_voter=True).count()
         return context
-
-# class test(UpdateView):
-#     model = Profile
-#     template_name = 'adminManagersedit.html'
-#     fields = ['firstname', 'othername', 'lastname', 'phonenumber', 'email', 'DOB', 'status', 'title', 'statesoforigin',
-#               'regionoforigin', 'statesofresidence', 'regionofresidence', 'nationality', 'religion', 'profession',
-#               'address', 'pictures']
 
 class adminManagersdelete(DeleteView):
     model = CustomUser
@@ -176,7 +169,7 @@ class adminPoliticalpartiesedit_party(UpdateView):
 class adminPoliticalpartiesedit_candidate(UpdateView):
     model = PoliticalCandidate
     template_name = 'adminPoliticalpartiesedit_candidate.html'
-    fields = ['partyID', 'electionID', 'state', 'district', 'candidate_firstname', 'candidate_othername',
+    fields = ['partyID', 'electionID', 'state', 'candidate_firstname', 'candidate_othername',
               'candidate_surname',
               'candidate_age', 'candidate_nationality', 'candidate_educationalhistory', 'candidate_additionaldetails',
               'runningmate_firstname', 'runningmate_othername', 'runningmate_surname', 'runningmate_age',
@@ -206,7 +199,7 @@ class managerDash(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["voters"] = CustomUser.objects.filter(is_voter=True).order_by('-dateadded')[:10]
+        context["voters"] = CustomUser.objects.filter(is_voter=True)[:10]
         context["count"] = CustomUser.objects.filter(is_manager=True).count()
         context["countV"] = CustomUser.objects.filter(is_voter=True).count()
         return context
@@ -218,7 +211,7 @@ class managerVoter(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["voters"] = CustomUser.objects.filter(is_voter=True).order_by('-dateadded')[:10]
+        context["voters"] = CustomUser.objects.filter(is_voter=True)[:10]
         return context
 
 

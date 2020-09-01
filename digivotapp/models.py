@@ -34,12 +34,12 @@ class Region(models.Model):
         return self.name
 
 
-class District(models.Model):
-    region = models.ForeignKey(Region, on_delete=models.CASCADE)
-    district_name = models.CharField(max_length=30)
+# class District(models.Model):
+#     region = models.ForeignKey(Region, on_delete=models.CASCADE)
+#     district_name = models.CharField(max_length=30)
 
-    def __str__(self):
-        return self.district_name
+#     def __str__(self):
+#         return self.district_name
 
 
 class PoliticalParty(models.Model):
@@ -75,7 +75,7 @@ class PoliticalCandidate(models.Model):
     partyID = models.ForeignKey(PoliticalParty, on_delete=models.CASCADE)
     electionID = models.ForeignKey(ElectionType, on_delete=models.CASCADE)
     state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
-    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
+    #district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
     candidate_firstname = models.CharField(max_length=50)
     candidate_othername = models.CharField(max_length=50)
     candidate_surname = models.CharField(max_length=50)

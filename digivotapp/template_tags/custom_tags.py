@@ -1,4 +1,9 @@
 from django.template.defaulttags import register
+from django import template
+from digivotapp.models import PoliticalCandidate
+from digivotapp.forms import PartyForm
+
+register = template.Library()
 
 
 @register.filter

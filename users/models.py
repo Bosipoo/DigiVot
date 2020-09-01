@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
-from digivotapp.models import State, Region, District
+from digivotapp.models import State, Region
 from uuid import uuid4
+from django.utils import timezone
+from django.utils.timezone import now
+import datetime
 
 
 class CustomUser(AbstractUser):
@@ -38,7 +41,8 @@ class Profile(models.Model):
     profession = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='avatar/', blank=True)
     address = models.CharField(max_length=200)
-    admin_id = models.UUIDField(default=uuid4().hex, null=True)
+    admin_id = models.UUIDField(default=uuid4().hex)
+    dateadded = models.DateTimeField(default=now)
 
 
 class AuthenticationTable(models.Model):

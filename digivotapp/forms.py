@@ -31,7 +31,7 @@ class PartyForm(forms.ModelForm):
 class CandidateForm(forms.ModelForm):
     class Meta:
         model = PoliticalCandidate
-        fields = ['id','partyID','electionID','state','district','candidate_firstname','candidate_othername','candidate_surname',
+        fields = ['id','partyID','electionID','state','candidate_firstname','candidate_othername','candidate_surname',
         'candidate_age','candidate_nationality','candidate_educationalhistory','candidate_additionaldetails',
         'runningmate_firstname','runningmate_othername','runningmate_surname','runningmate_age','runningmate_nationality',
         'runningmate_educationalhistory','runningmate_additionaldetails']

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import State, Region, District
+from .models import State, Region
 from .models import ElectionType
 # from .models import Super_Registeradmin
 

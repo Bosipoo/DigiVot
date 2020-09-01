@@ -47,7 +47,7 @@
                 </div>
                 <!--Begin Main-->
                 <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;">
-                    {% load custom_tags %}
+                    {% comment %} {% load custom_tags %} {% endcomment %}
                     <form method="POST" action="#">
                     {% csrf_token %}
                         <div class="form-group">
@@ -73,26 +73,26 @@
                                 <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Political Party</label></div>
-                                        <div class="col-12">{{form.partyID|addcss:"form-control input-field"}}</div>
+                                        <div class="col-12">{{form.partyID}}</div>
                                     </div>
                                 </div>
                                 <div class="col-8"></div>
                                 <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">On Going Elections</label></div>
-                                        <div class="col-12">{{form.electionID|addcss:"form-control input-field"}}</div>
+                                        <div class="col-12">{{form.electionID}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">State</label></div>
-                                        <div class="col-12">{{form.state|addcss:"form-control input-field"}}</div>
+                                        <div class="col-12">{{form.state}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
                                     <div class="form-row pr-3">
                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">District</label></div>
-                                        <div class="col-12">{{form.district|addcss:"form-control input-field"}}</div>
+                                        <div class="col-12">{{form.district}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12" style="margin-top: 20px;">
@@ -102,43 +102,43 @@
                                                 <div class="col-4">
                                                     <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                                        <div class="col-12">{{form.candidate_firstname|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.candidate_firstname}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                                        <div class="col-12">{{form.candidate_surname|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.candidate_surname}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                                        <div class="col-12">{{form.candidate_othername|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.candidate_othername}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Age</label></div>
-                                                        <div class="col-12">{{form.candidate_age|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.candidate_age}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
-                                                        <div class="col-12">{{form.candidate_nationality|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.candidate_nationality}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Educational History</label></div>
-                                                        <div class="col-12">{{form.candidate_educationalhistory|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.candidate_educationalhistory}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">What should your voters know about you (Credentials)</label></div>
-                                                        <div class="col-9">{{form.candidate_additionaldetails|addcss:"form-control input-area"}}</div>
+                                                        <div class="col-9">{{form.candidate_additionaldetails}}</div>
                                                     </div>
                                                 </div>
                                                 <!--End Candidate Info-->
@@ -161,43 +161,43 @@
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                                                     <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                                        <div class="col-12">{{form.runningmate_firstname|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.runningmate_firstname}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                                                     <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                                        <div class="col-12">{{form.runningmate_surname|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.runningmate_surname}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                                                     <div class="form-row pr-3">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                                        <div class="col-12">{{form.runningmate_othername|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.runningmate_othername}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Age</label></div>
-                                                        <div class="col-12">{{form.runningmate_age|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.runningmate_age}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Nationality</label></div>
-                                                        <div class="col-12">{{form.runningmate_nationality|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.runningmate_nationality}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Educational History</label></div>
-                                                        <div class="col-12">{{form.runningmate_educationalhistory|addcss:"form-control input-field"}}</div>
+                                                        <div class="col-12">{{form.runningmate_educationalhistory}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-row pr-3" style="margin-top: 10px;">
                                                         <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">What should your voters know about you (Credentials)</label></div>
-                                                        <div class="col-9">{{form.runningmate_additionaldetails|addcss:"form-control input-area"}}</div>
+                                                        <div class="col-9">{{form.runningmate_additionaldetails}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
