@@ -143,12 +143,12 @@ class adminElectionsdelete(DeleteView):
 class adminPoliticalpartiesadd_party(SuccessMessageMixin, CreateView):
     form_class = PartyForm
     template_name = 'adminPoliticalpartiesadd_party.html'
-    success_url = '/adminPoliticalpartiesadd_candidate'
+    success_url = '/adminPoliticalpartiesadd_partycandidate.html'
     success_message = "Party was created successfully"
 
 class adminPoliticalpartiesadd_candidate(SuccessMessageMixin, CreateView):
     form_class = CandidateForm
-    template_name = 'adminPoliticalpartiesadd_candidate.html'
+    template_name = 'adminPoliticalpartiesadd_partycandidate.html'
     success_url = '/adminPoliticalpartiesview'
     success_message = "Candidate was created successfully"
 

@@ -48,7 +48,7 @@
                 <!--Begin Main-->
                 <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;">
                     {% load custom_tags %}
-                    <form method="POST" action="#">
+                    <form method="POST"  enctype="multipart/form-data">
                     {% csrf_token %}
                         <div class="form-group">
                             <div class="form-row">

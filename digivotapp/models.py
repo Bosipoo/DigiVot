@@ -45,8 +45,7 @@ class Region(models.Model):
 class PoliticalParty(models.Model):
     partyname = models.CharField(max_length=50)
     partyacronym = models.CharField(max_length=5)
-    partysymbol = ContentTypeRestrictedFileField(upload_to='Images/', content_types=['image/jpeg', 'image/png', ],
-                                                 max_upload_size=5242880, blank=True, null=True)
+    partysymbol = models.ImageField(upload_to='Images/', blank=True)
 
     def __str__(self):
         return self.partyname

@@ -35,7 +35,7 @@ class Profile(models.Model):
         ('mrs', 'Mrs')
     ))
     state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
-    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
+    region = models.CharField(max_length=50)
     nationality = models.CharField(max_length=50)
     religion = models.CharField(max_length=50)
     profession = models.CharField(max_length=50)

@@ -3,10 +3,13 @@ from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.contrib.auth import get_user_model, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_GET
-from .models import Profile, AuthenticationTable
+from .models import Profile, AuthenticationTable, CustomUser
 from .forms import UserRegisterForm, ProfileForm
 from uuid import uuid4
 from django.conf import settings
+import time
+import random
+
 
 def test(request):
     return render(request, 'managerRegister.html')
@@ -101,3 +104,27 @@ def profile_edit(request):
     else:
         form = ProfileForm()
         return render(request, 'managerVoteradd.html', {'form': form})
+
+
+def login(request, permission='voter'):
+    if request.method == 'POST':
+        time.sleep(random.choice([1, 2, 3, 4, 5]))
+        username = request.POST.get('username', None)
+        if username: 
+            user_object = get_object_or_404(CustomUser, username=username)
+            login(request, user_object)
+            if user_object.is_voter:
+                return HttpResponseRedirect('/votersLanding/')
+            elif user_object.is_manager:
+                return HttpResponseRedirect('/managerDash/')
+            elif user_object.is_staff:
+                return HttpResponseRedirect('/adminDash/')
+            else:
+               return HttpResponse(status=404)
+    elif request.method == 'GET':
+        if permission == 'voter':
+            return render(request, 'index.html', {})
+        elif permission == 'manager':
+            return render(request, 'managerLogin.html', {})
+        elif permission == 'admin':
+            return render(request, 'adminLogin.html', {})

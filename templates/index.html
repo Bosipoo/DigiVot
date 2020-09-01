@@ -8,8 +8,8 @@
             <div class="col-lg-5 d-flex d-lg-flex justify-content-sm-center justify-content-lg-center col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5" style="padding: 29px;width: 358px;">
               
                 <div class="card card-radius" style="padding: 29px;padding-left: 9px;padding-right: 9px;width: 390px;">
-                
-                <form action="" method="POST" enctype="multipart/form-data">
+            
+                <form action="{%url 'user_login' %" method="POST" enctype="multipart/form-data">
                 {% csrf_token %} 
                     <div class="card-body" style="padding-top: 26px;padding-right: 34px;padding-bottom: 34px;padding-left: 34px;">
                         <div class="form-group">
@@ -19,10 +19,9 @@
                                     class="col d-flex justify-content-center align-items-center col-sm-12"><label class="col-form-label d-flex d-lg-flex justify-content-lg-center align-items-lg-center" style="font-size: 13px;color: rgba(0,0,0,0.6);font-weight: normal;font-family: 'Open Sans', sans-serif;">Voter, Welcome to DigiVot</label></div>
                         </div>
                     
-                        <div class="form-group"><label class="d-lg-flex justify-content-lg-start align-items-lg-center" style="font-size: 14px;color: rgb(0,0,0);">PIN</label>
+                        <div class="form-group"><label class="d-lg-flex justify-content-lg-start align-items-lg-center" style="font-size: 14px;color: rgb(0,0,0);">Username</label>
                         <input class="shadow-none form-control input-field" type="text" style="margin-left: 0px;font-size: 15px;margin-top: -20px;"
-                            required="">
-                        {{ form.pin }}     
+                            required="" name="username">
                         </div>                
                         <div class="form-group d-lg-flex justify-content-lg-center" style="margin-top: 20px;">
 

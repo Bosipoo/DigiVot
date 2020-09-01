@@ -48,9 +48,9 @@
                 <!--Begin Main-->
                 <div class="col offset-3" id="main" style="background-color: #ecf6f1;padding: 60px;">
                     {% load custom_tags %}
-                    <form method="POST" enctype="multipart/form-data">
+                    <form method="POST"  enctype="multipart/form-data">
                     {% csrf_token %}
-                        <div class="form-group">
+                       <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-12 col-lg-12"><a class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Political Party&nbsp;</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
                                     <a
@@ -89,12 +89,7 @@
                                         <div class="col-12">{{form.state|addcss:"form-control input-field"}}</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="margin-top: 20px;">
-                                    <div class="form-row pr-3">
-                                        <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">District</label></div>
-                                        <div class="col-12">{{form.district|addcss:"form-control input-field"}}</div>
-                                    </div>
-                                </div>
+
                                 <div class="col-12" style="margin-top: 20px;">
                                     <div class="card card-radius2" style="padding: 10px;margin-top:24px;">
                                         <div class="card-body">
@@ -212,9 +207,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row d-xl-flex justify-content-xl-end align-items-xl-center" style="padding: 40px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" style="width: 290px;height: 60px;" type="submit">Update Political Party</button></div>
+                            <div class="form-row d-xl-flex justify-content-xl-end align-items-xl-center" style="padding: 40px;"><button class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center bottom-button" style="width: 290px;height: 60px;" type="submit">Add Candidate</button></div>
 
+                        </div>
                     </form>
                 </div>
                 <!--End Main-->
