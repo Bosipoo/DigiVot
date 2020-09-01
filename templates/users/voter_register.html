@@ -10,6 +10,7 @@
     <form class="login" method="POST" action="{% url 'user_register' %}">
       {% csrf_token %}
       {{ form.as_p }}
+      <input type="hidden" value="admin" name="permission">
       <button class="primaryAction" type="submit">Create User</button>
     </form>
 </body>

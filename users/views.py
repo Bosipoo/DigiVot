@@ -11,8 +11,9 @@ import time
 import random
 
 
-def test(request):
-    return render(request, 'managerRegister.html')
+def finger_auth(finger_data):
+    return random.choice([True, False])
+
 
 def new_user_register(request, permission='admin'):
     if permission == 'admin' or request.user.is_authenticated:
@@ -27,17 +28,16 @@ def new_user_register(request, permission='admin'):
                                                           password=user_form.cleaned_data['password'])
                     user.first_name = user_form.cleaned_data['first_name']
                     user.last_name = user_form.cleaned_data['last_name']
-                    if permission == 'voter':
-                        user.is_voter = True
-                    elif permission == 'manager':
-                        user.is_manager = True
-                    elif permission == 'admin':
-                        user.is_staff = True
-
-                    if permission == 'admin':
-                        user.created_by = None
+                    if request.user.is_authenticated:
+                        if request.user.is_manager == True:
+                            user.is_voter = True
+                            user.created_by = request.user
+                        elif request.user.is_admin == True:
+                            user.is_manager = True
+                            user.created_by = request.user
                     else:
-                        user.created_by = request.user
+                        user.is_staff = True
+                        user.created_by = None
 
                     user.save()
                     return render(request, 'users/register_successful.html', status=200)
@@ -106,11 +106,11 @@ def profile_edit(request):
         return render(request, 'managerVoteradd.html', {'form': form})
 
 
-def login(request, permission='voter'):
-    if request.method == 'POST':
-        time.sleep(random.choice([1, 2, 3, 4, 5]))
+def login_user(request):
+    username = request.GET.get('username')
+    if username:
         username = request.POST.get('username', None)
-        if username: 
+        if finger_auth(request.POST.get('finger_image', '')) and username:
             user_object = get_object_or_404(CustomUser, username=username)
             login(request, user_object)
             if user_object.is_voter:
@@ -120,11 +120,8 @@ def login(request, permission='voter'):
             elif user_object.is_staff:
                 return HttpResponseRedirect('/adminDash/')
             else:
-               return HttpResponse(status=404)
-    elif request.method == 'GET':
-        if permission == 'voter':
-            return render(request, 'index.html', {})
-        elif permission == 'manager':
-            return render(request, 'managerLogin.html', {})
-        elif permission == 'admin':
-            return render(request, 'adminLogin.html', {})
+                return HttpResponse(status=404)
+        else:
+            return render(request, 'adminLogin.html', {'message': 'Incorrect Fingerprint'})
+    else:
+        return render(request, 'adminLogin.html', {})
