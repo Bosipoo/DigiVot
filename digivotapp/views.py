@@ -13,56 +13,9 @@ from .models import ElectionType
 from .models import PoliticalCandidate, PoliticalParty
 from .models import Ballot, Region
 
-from .forms import Elections
-from .forms import PartyForm, CandidateForm
-from .forms import Confirm
-from users.models import CustomUser,Profile
-
-
-#Create your views here.
-def home(request):
-    # context = {
-    #     'voters': VoterReg.objects.all()
-    # }
-    if request.method == 'POST':
-        return redirect('votersLanding')
-
-    return render(request, 'index.html')
-
-
-def managerLogin(request):
-    return render(request, 'managerLogin.html')
-
-
-def managerVerifyPIN(request):
-    return render(request, 'managerVerifyPIN.html')
-
-
-def managerRegister(request):
-    return render(request, 'managerRegister.html')
-
-
-def adminLogin(request):
-    context = {
-        "name": "Sadsap",
-    }
-    template_name = 'adminLogin.html'
-    return render(request, template_name, context)
-
-
-def adminRegisterverifyPIN(request):
-    context = {
-        # 'adminUser': AdminUserR.objects.all()
-    }
-    return render(request, 'adminRegisterverifyPIN.html', context)
-
-
-def adminRegister1(request):
-    return render(request, 'adminRegister1.html')
-
-
-def adminRegister2(request):
-    return render(request, 'adminRegister2.html')
+from .forms import Elections, PartyForm, CandidateForm, Confirm, EditManagerForm
+from users.models import CustomUser, Profile
+from django.contrib.auth.decorators import login_required
 
 
 def adminPoliticalpartiesview(request):
@@ -77,18 +30,16 @@ def adminPoliticalpartiesedit(request):
     return render(request, 'adminPoliticalpartiesedit.html')
 
 
-class adminDash(ListView):
-    template_name = 'adminDash.html'
-    model = CustomUser
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["partydisplays"] = PoliticalParty.objects.all()
-        #context["managers"] = CustomUser.objects.filter(is_manager=True).order_by('-dateadded')[:10]
-        return context
+@login_required
+def admin_dashboard(request):
+    return render(request,
+                  'adminDash.html',
+                  {'partydisplays': PoliticalParty.objects.all(),
+                   'managers': CustomUser.objects.filter(is_manager=True).order_by('-date_joined')[:10]
+                   })
 
 
-class adminManagerscreated(ListView):
+class AdminViewManagers(ListView):
     template_name = 'adminManagerscreated.html'
     model = CustomUser
 
@@ -193,13 +144,14 @@ class adminPoliticalcandidatedelete(DeleteView):
     template_name = 'adminPoliticalcandidatedelete.html'
     success_url = '/adminPoliticalpartiesview'
 
-class managerDash(ListView):
+
+class ManagerDashboard(ListView):
     template_name = 'managerDash.html'
     model = CustomUser
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["voters"] = CustomUser.objects.filter(is_voter=True)[:10]
+        context["voters"] = CustomUser.objects.filter(is_voter=True, created_by=self.request.user)[:10]
         context["count"] = CustomUser.objects.filter(is_manager=True).count()
         context["countV"] = CustomUser.objects.filter(is_voter=True).count()
         return context
@@ -372,3 +324,74 @@ def display_result(request, election_id=None):
             votes[election.electionID] = Ballot.objects.filter(electionID=election).count()
         return render(request, 'results.html', {'elections': elections,
                                                 'votes_count': votes})
+
+
+@login_required
+def admin_view_manager(request, pk):
+    manager = get_object_or_404(CustomUser, id=pk)
+    try:
+        profile = Profile.objects.get(user=manager)
+    except Profile.DoesNotExist:
+        profile = {}
+
+    return render(request, 'adminManagersview.html', {'manager': manager, 'profile': profile})
+
+
+@login_required
+def adminManagersdelete(request, pk):
+    # success_url = '/adminManagerscreated'
+    return render(request, 'adminManagersdelete.html', {})
+
+
+class AdminAddManager(SuccessMessageMixin, CreateView):
+    model = CustomUser
+    template_name = 'adminManagersaddmanager.html'
+    fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
+    success_url = '/adminManagerscreated'
+    success_message = "%(email)s was created successfully"
+
+
+def admin_edit_manager(request, pk):
+    manager = get_object_or_404(CustomUser, id=pk)
+    try:
+        profile = Profile.objects.get(user=manager)
+    except Profile.DoesNotExist:
+        profile = {}
+    if request.method == 'GET':
+        return render(request, 'adminEditmanagers.html', {'manager': manager, 'profile': profile})
+    elif request.method == 'POST':
+        edit_form = EditManagerForm(request.POST, request.FILES)
+        if edit_form.is_valid():
+            manager.first_name = edit_form.cleaned_data.get('first_name')
+            manager.last_name = edit_form.cleaned_data.get('last_name')
+            manager.email = edit_form.cleaned_data.get('email')
+            manager.save()
+
+            if profile:
+                profile.phone_number = edit_form.cleaned_data.get('phone_number')
+                profile.address = edit_form.cleaned_data.get('address')
+                profile.date_of_birth = edit_form.cleaned_data.get('date_of_birth')
+                profile.avatar = edit_form.cleaned_data.get('avatar')
+                profile.save()
+            else:
+                new_profile = Profile(
+                    user=manager,
+                    phone_number=edit_form.cleaned_data.get('phone_number'),
+                    address=edit_form.cleaned_data.get('address'),
+                    date_of_birth=edit_form.cleaned_data.get('date_of_birth'),
+                    avatar=edit_form.cleaned_data.get('avatar')
+                )
+                new_profile.save()
+            return redirect('admin_view_a_manager', manager.id)
+
+    # template_name = 'adminEditmanagers.html'
+    # fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
+    # success_url = '/adminManagerscreated'
+    # def form_valid(self,form):
+    #     instance = form.save()
+    #     return redirect('adminManagerscreated')
+
+
+def form_valid(self, form):
+    instance = form.save()
+    return redirect('admin_view_a_manager', instance.pk)

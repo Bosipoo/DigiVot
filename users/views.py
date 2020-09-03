@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_GET
 from .models import Profile, AuthenticationTable, CustomUser
 from .forms import UserRegisterForm, ProfileForm
 from uuid import uuid4
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 def new_user_register(request, permission='admin'):
@@ -52,11 +54,11 @@ def login_to_browser(request, key):
         auth.delete()
         login(request, user)
         if user.is_voter:
-            return HttpResponseRedirect('/votersLanding/')
+            return HttpResponseRedirect('/application/votersLanding/')
         elif user.is_manager:
-            return HttpResponseRedirect('/managerDash/')
+            return HttpResponseRedirect('/application/managerDash/')
         elif user.is_staff:
-            return HttpResponseRedirect('/adminDash/')
+            return HttpResponseRedirect('/application/adminDash/')
         else:
             return HttpResponse(status=403)
     else:
@@ -89,9 +91,10 @@ def profile_edit(request):
         return render(request, 'managerVoteradd.html', {'form': form})
 
 
+@csrf_exempt
 @require_POST
 def authenticate_user(request):
-    username = request.POST.get('username')
+    username = json.loads(request.body).get('username')
     if username:
         user_object = get_object_or_404(CustomUser, username=username)
         key = uuid4().hex
@@ -105,3 +108,13 @@ def authenticate_user(request):
         return JsonResponse({'url': url})
     else:
         return JsonResponse({'message': 'Missing required parameter username'})
+
+
+@require_POST
+def account_logout(request):
+    logout(request)
+    return render(request, 'adminLogin.html', {})
+
+
+def account_login(request):
+    return render(request, 'adminLogin.html', {})

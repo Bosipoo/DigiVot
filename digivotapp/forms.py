@@ -41,3 +41,13 @@ class Confirm(forms.ModelForm):
     class Meta:
         model = Ballot
         fields = ['voteID','candidateID']
+
+
+class EditManagerForm(forms.Form):
+    first_name = forms.CharField(max_length=150)
+    last_name = forms.CharField(max_length=150)
+    phone_number = forms.CharField(max_length=14)
+    email = forms.EmailField()
+    date_of_birth = forms.DateField()
+    address = forms.CharField(max_length=200)
+    avatar = forms.ImageField()

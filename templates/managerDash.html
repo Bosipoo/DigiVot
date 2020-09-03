@@ -25,11 +25,6 @@
                                     <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'managerVoter'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Voters</label></a></div>
                                 </div>
                             </div>
-                            {% comment %} <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
-                                <div class="row d-md-flex position-relative" style="width: 100%;">
-                                    <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="material-icons icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);">comment</i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-md-flex d-xl-flex justify-content-md-center align-items-md-center align-items-xl-start stretched-link" href="{% url 'managerRequests'%}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Requests</label></a></div>
-                                </div>
                             </div> {% endcomment %}
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
                                 <div class="row position-relative" style="width: 100%;">
@@ -43,12 +38,6 @@
                                     <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #ff5c5c;font-family: 'Open Sans', sans-serif;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #FF5C5C;height: 100%;">Logout</label></a></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row d-xl-flex justify-content-xl-start align-items-xl-center" id="divider" style="font-family: 'Open Sans', sans-serif;margin-top: 61px;font-size: 12px;">
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 13px;">Admin Details</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">ID: 19089324</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Stata: Lagos</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Region: Surulere-west</label></div>
                         </div>
                     </div>
                 </div>
@@ -128,9 +117,12 @@
                                                 <td>{{voter.lastname}}</td>
                                                 <td>{{voter.phonenumber}}</td>
                                                 <td>{{voter.email}}</td>
-                                                <td class="d-xl-flex"><a href="{% url 'managerViewvoter' voter.voterID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
-                                                <td><a href="{% url 'managerVoteredit' voter.voterID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
-                                                <td><a href="{% url 'managerDeletevoter' voter.voterID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
+{#                                                <td class="d-xl-flex"><a href="{% url 'managerViewvoter' voter.voterID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>#}
+                                                <td class="d-xl-flex"><a href="#"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+{#                                                <td><a href="{% url 'managerVoteredit' voter.voterID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>#}
+                                                <td><a href="#"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+{#                                                <td><a href="{% url 'managerDeletevoter' voter.voterID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>#}
+                                                <td><a href="#"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>

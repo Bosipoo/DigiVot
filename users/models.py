@@ -13,6 +13,12 @@ class CustomUser(AbstractUser):
     is_voter = models.BooleanField(default=False)
     created_by = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL)
 
+    def get_admin_id(self):
+        try:
+            return Profile.objects.get(user=self).admin_id
+        except Profile.DoesNotExist:
+            return ''
+
 
 class Profile(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -20,7 +26,7 @@ class Profile(models.Model):
                                  message="Phone number must be entered in the format:"
                                          "'+234**********'. 14 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], max_length=14)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=50, choices=(
         ('male', 'Male'),
         ('female', 'Female')
@@ -33,16 +39,15 @@ class Profile(models.Model):
         ('mr', 'Mr'),
         ('ms', 'Ms'),
         ('mrs', 'Mrs')
-    ))
+    ),default='')
     state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True)
-    region = models.CharField(max_length=50)
-    nationality = models.CharField(max_length=50)
-    religion = models.CharField(max_length=50)
-    profession = models.CharField(max_length=50)
+    region = models.CharField(max_length=50, default='')
+    nationality = models.CharField(max_length=50, default='')
+    religion = models.CharField(max_length=50, default='')
+    profession = models.CharField(max_length=50, default='')
     avatar = models.ImageField(upload_to='avatar/', blank=True)
-    address = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, default='')
     admin_id = models.UUIDField(default=uuid4)
-    dateadded = models.DateTimeField(default=now)
 
 
 class AuthenticationTable(models.Model):
