@@ -47,7 +47,3 @@ urlpatterns = [
     path('displayResults/<int:election_id>/', views.display_result, name='displayResults'),
 
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
