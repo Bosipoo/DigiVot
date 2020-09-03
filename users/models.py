@@ -41,11 +41,11 @@ class Profile(models.Model):
     profession = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='avatar/', blank=True)
     address = models.CharField(max_length=200)
-    admin_id = models.UUIDField(default=uuid4().hex)
+    admin_id = models.UUIDField(default=uuid4)
     dateadded = models.DateTimeField(default=now)
 
 
 class AuthenticationTable(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_valid = models.BooleanField(default=True)
-    key = models.UUIDField()
+    key = models.CharField(max_length=50)

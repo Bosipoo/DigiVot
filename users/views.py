@@ -7,12 +7,6 @@ from .models import Profile, AuthenticationTable, CustomUser
 from .forms import UserRegisterForm, ProfileForm
 from uuid import uuid4
 from django.conf import settings
-import time
-import random
-
-
-def finger_auth(finger_data):
-    return random.choice([True, False])
 
 
 def new_user_register(request, permission='admin'):
@@ -50,36 +44,23 @@ def new_user_register(request, permission='admin'):
             return HttpResponse(status=405)
 
 
-@require_POST
-def user_auth(request):
-    try:
-        username = request.POST['username']
-    except KeyError:
-        return JsonResponse({'message': 'Missing required parameter username'}, status=400)
-
-    user = get_object_or_404(get_user_model(), username=username)
-    if user is not None:
-        auth_key = AuthenticationTable(
-            user=user,
-            is_valid=True,
-            key=uuid4().hex
-        )
-        auth_key.save()
-        url = settings.BASE_URL + f'/users/validate/?key={auth_key.key}'
-        return JsonResponse({'url': url}, status=200)
-
-    return JsonResponse({'message': 'Invalid username/password'}, status=401)
-
-
 @require_GET
-def move_auth_browser(request):
-    key = request.GET['key']
+def login_to_browser(request, key):
     auth = get_object_or_404(AuthenticationTable, key=key)
-    auth.delete()
-    user = auth.user
-    login(request, user)
-    # return HttpResponse(request, 'home_page.html', {})
-    return HttpResponseRedirect('users/profile')
+    if auth.is_valid:
+        user = auth.user
+        auth.delete()
+        login(request, user)
+        if user.is_voter:
+            return HttpResponseRedirect('/votersLanding/')
+        elif user.is_manager:
+            return HttpResponseRedirect('/managerDash/')
+        elif user.is_staff:
+            return HttpResponseRedirect('/adminDash/')
+        else:
+            return HttpResponse(status=403)
+    else:
+        return HttpResponse(status=403)
 
 
 @login_required(login_url='users/login/')
@@ -98,7 +79,9 @@ def profile_edit(request):
             profile.user = request.user
             profile.admin_id = uuid4().hex
             profile.save()
-            return render(request, 'managerVoteradd.html', {'form': ProfileForm(), 'message': 'Profile Updated Successfully'})
+            return render(request,
+                          'managerVoteradd.html',
+                          {'form': ProfileForm(), 'message': 'Profile Updated Successfully'})
         else:
             return render(request, 'managerVoteradd.html', {'form': profile_form})
     else:
@@ -106,22 +89,19 @@ def profile_edit(request):
         return render(request, 'managerVoteradd.html', {'form': form})
 
 
-def login_user(request):
-    username = request.GET.get('username')
+@require_POST
+def authenticate_user(request):
+    username = request.POST.get('username')
     if username:
-        username = request.POST.get('username', None)
-        if finger_auth(request.POST.get('finger_image', '')) and username:
-            user_object = get_object_or_404(CustomUser, username=username)
-            login(request, user_object)
-            if user_object.is_voter:
-                return HttpResponseRedirect('/votersLanding/')
-            elif user_object.is_manager:
-                return HttpResponseRedirect('/managerDash/')
-            elif user_object.is_staff:
-                return HttpResponseRedirect('/adminDash/')
-            else:
-                return HttpResponse(status=404)
-        else:
-            return render(request, 'adminLogin.html', {'message': 'Incorrect Fingerprint'})
+        user_object = get_object_or_404(CustomUser, username=username)
+        key = uuid4().hex
+        auth_object = AuthenticationTable(
+            user=user_object,
+            is_valid=True,
+            key=key
+        )
+        auth_object.save()
+        url = settings.BASE_URL + f'/validate/{auth_object.key}/'
+        return JsonResponse({'url': url})
     else:
-        return render(request, 'adminLogin.html', {})
+        return JsonResponse({'message': 'Missing required parameter username'})
