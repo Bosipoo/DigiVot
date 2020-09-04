@@ -6,12 +6,14 @@ from django.conf.urls import url, include
 from . import views
  
 urlpatterns = [
+    path('', views.reroute_, name='landing_page'),
     path('admin/dashboard/', views.admin_dashboard, name="admin_dashboard"),
-    path('admin/managers/add/', views.AdminAddManager.as_view(), name="admin_add_manager"),
+    path('admin/managers/add/', views.admin_add_manager, name="admin_add_manager"),
     path('admin/managers/view/', views.AdminViewManagers.as_view(), name="admin_view_managers"),
     path('admin/managers/view/<int:pk>/', views.admin_view_manager, name="admin_view_a_manager"),
     path('admin/managers/edit/<int:pk>/', views.admin_edit_manager, name="admin_edit_manager"),
-    path('admin/managers/delete/<int:pk>/', views.adminManagersdelete, name="admin_delete_manager"),
+    path('admin/managers/delete/<int:pk>/', views.admin_delete_manager, name="admin_delete_manager"),
+    path('admin/managers/search/', views.admin_manager_search, name="admin_manager_search"),
 
     path('adminPoliticalpartiesview/', views.adminPoliticalpartiesview.as_view(), name="adminPoliticalpartiesview"),
     path('adminPoliticalpartiesadd_party/', views.adminPoliticalpartiesadd_party.as_view(), name="adminPoliticalpartiesadd_party"),
@@ -37,7 +39,6 @@ urlpatterns = [
     # path('EditVoterDetails/<int:pk>/', views.managerVoteredit.as_view(), name="managerVoteredit"),
     path('resultDetails/', views.resultDetails, name="resultDetails"),
     path('votersLanding/', views.votersLanding.as_view(), name="votersLanding"),
-    path('searchManagers/', views.adminSearchformanager, name="adminSearchformanager"),
     path('searchElections/', views.adminSearchforelection, name="adminSearchforelection"),
     path('searchParties/', views.adminSearchforparty, name="adminSearchforparty"),
     path('searchCandidates/', views.adminSearchforcandidate, name="adminSearchforcandidate"),

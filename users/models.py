@@ -3,19 +3,36 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from digivotapp.models import State, Region
 from uuid import uuid4
-from django.utils import timezone
-from django.utils.timezone import now
-import datetime
 
 
 class CustomUser(AbstractUser):
     is_manager = models.BooleanField(default=False)
     is_voter = models.BooleanField(default=False)
     created_by = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL)
+    profile_completed = models.BooleanField(default=False)
 
+    # The stupid way - I should use one function
     def get_admin_id(self):
         try:
             return Profile.objects.get(user=self).admin_id
+        except Profile.DoesNotExist:
+            return ''
+
+    def get_phone(self):
+        try:
+            return Profile.objects.get(user=self).phone_number
+        except Profile.DoesNotExist:
+            return ''
+
+    def get_gender(self):
+        try:
+            return Profile.objects.get(user=self).gender
+        except Profile.DoesNotExist:
+            return ''
+
+    def get_date_of_birth(self):
+        try:
+            return Profile.objects.get(user=self).date_of_birth
         except Profile.DoesNotExist:
             return ''
 

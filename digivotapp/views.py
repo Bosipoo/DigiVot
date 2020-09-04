@@ -13,7 +13,7 @@ from .models import ElectionType
 from .models import PoliticalCandidate, PoliticalParty
 from .models import Ballot, Region
 
-from .forms import Elections, PartyForm, CandidateForm, Confirm, EditManagerForm
+from .forms import Elections, PartyForm, CandidateForm, Confirm, EditManagerForm, AddManagerForm
 from users.models import CustomUser, Profile
 from django.contrib.auth.decorators import login_required
 
@@ -34,26 +34,8 @@ def adminPoliticalpartiesedit(request):
 def admin_dashboard(request):
     return render(request,
                   'adminDash.html',
-                  {'partydisplays': PoliticalParty.objects.all(),
-                   'managers': CustomUser.objects.filter(is_manager=True).order_by('-date_joined')[:10]
+                  {'managers': CustomUser.objects.filter(is_manager=True).order_by('-date_joined')[:10]
                    })
-
-
-class AdminViewManagers(ListView):
-    template_name = 'adminManagerscreated.html'
-    model = CustomUser
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["managers"] = CustomUser.objects.filter(is_manager=True)[:10]
-        context["count"] = CustomUser.objects.filter(is_manager=True).count()
-        context["countV"] = CustomUser.objects.filter(is_voter=True).count()
-        return context
-
-class adminManagersdelete(DeleteView):
-    model = CustomUser
-    template_name = 'adminManagersdelete.html'
-    success_url = '/adminManagerscreated'
 
 
 class adminElections(ListView):
@@ -225,22 +207,6 @@ def load_regions(request):
     regions = Region.objects.filter(state_id=state_id).order_by('name')
     return render(request, 'hr/region_dropdown_list_options.html', {'regions': regions})
 
-def adminSearchformanager(request):
-    if request.GET:
-        search_term = request.GET['search_term']
-        search_results = CustomUser.objects.filter(
-            Q(firstname__icontains=search_term) |
-            Q(email__icontains=search_term) |
-            Q(gender__icontains=search_term) |
-            Q(phonenumber__iexact=search_term), is_manager=True
-        )
-        context = {
-            'search_term': search_term,
-            'managers': search_results
-        }
-        return render(request, 'adminSearchformanager.html', context)
-    else:
-        return redirect('adminManagerscreated')
 
 def adminSearchforelection(request):
     if request.GET:
@@ -327,6 +293,40 @@ def display_result(request, election_id=None):
 
 
 @login_required
+def admin_manager_search(request):
+    if request.GET:
+        try:
+            search_term = request.GET['search_term']
+            search_results = CustomUser.objects.filter(
+                Q(first_name__icontains=search_term) |
+                Q(last_name__icontains=search_term) |
+                Q(email__icontains=search_term), is_manager=True
+            )
+            context = {
+                'search_term': search_term,
+                'managers': search_results
+            }
+            return render(request, 'adminSearchformanager.html', context)
+        except KeyError:
+            return redirect('admin_view_managers')
+    else:
+        return redirect('admin_view_managers')
+
+
+class AdminViewManagers(ListView):
+    template_name = 'adminManagerscreated.html'
+    model = CustomUser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["managers"] = CustomUser.objects.filter(is_manager=True)[:10]
+        context["count_managers"] = CustomUser.objects.filter(is_manager=True).count()
+        context["count_voters"] = CustomUser.objects.filter(is_voter=True).count()
+        context["registered_managers"] = CustomUser.objects.filter(is_voter=True, profile_completed=True).count()
+        return context
+
+
+@login_required
 def admin_view_manager(request, pk):
     manager = get_object_or_404(CustomUser, id=pk)
     try:
@@ -338,19 +338,46 @@ def admin_view_manager(request, pk):
 
 
 @login_required
-def adminManagersdelete(request, pk):
-    # success_url = '/adminManagerscreated'
-    return render(request, 'adminManagersdelete.html', {})
+def admin_delete_manager(request, pk):
+    manager = get_object_or_404(CustomUser, id=pk)
+    if request.method == 'GET':
+        return render(request, 'adminManagersdelete.html', {'name': f'{manager.first_name} {manager.last_name}'})
+    elif request.method == 'POST':
+        manager.delete()
+        return redirect('admin_view_managers')
 
 
-class AdminAddManager(SuccessMessageMixin, CreateView):
-    model = CustomUser
-    template_name = 'adminManagersaddmanager.html'
-    fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
-    success_url = '/adminManagerscreated'
-    success_message = "%(email)s was created successfully"
+@login_required
+def admin_add_manager(request):
+    if request.method == 'GET':
+        form = AddManagerForm()
+        return render(request, 'adminManagersaddmanager.html', {'form': form})
+    elif request.method == 'POST':
+        form = AddManagerForm(request.POST, request.FILES)
+        if form.is_valid():
+            manager = CustomUser(
+                first_name=form.cleaned_data.get('first_name'),
+                last_name=form.cleaned_data.get('last_name'),
+                email=form.cleaned_data.get('email'),
+                is_manager=True,
+                created_by=request.user
+            )
+            manager.save()
+            profile = Profile(
+                user=manager,
+                date_of_birth=form.cleaned_data.get('date_of_birth'),
+                gender=form.cleaned_data.get('gender'),
+                address=form.cleaned_data.get('address'),
+                avatar=form.cleaned_data.get('avatar'),
+                phone_number=form.cleaned_data.get('phone_number')
+            )
+            profile.save()
+            return redirect('admin_view_a_manager', manager.id)
+        else:
+            return render(request, 'adminManagersaddmanager.html', {'form': form})
 
 
+@login_required
 def admin_edit_manager(request, pk):
     manager = get_object_or_404(CustomUser, id=pk)
     try:
@@ -383,15 +410,15 @@ def admin_edit_manager(request, pk):
                 )
                 new_profile.save()
             return redirect('admin_view_a_manager', manager.id)
-
-    # template_name = 'adminEditmanagers.html'
-    # fields = ['firstname','othername','lastname','phonenumber','email','DOB','gender','address','pictures']
-    # success_url = '/adminManagerscreated'
-    # def form_valid(self,form):
-    #     instance = form.save()
-    #     return redirect('adminManagerscreated')
+        else:
+            return render(request, 'adminEditmanagers.html', {'manager': manager, 'profile': profile})
 
 
-def form_valid(self, form):
-    instance = form.save()
-    return redirect('admin_view_a_manager', instance.pk)
+@login_required
+def reroute_(request):
+    if request.user.is_staff:
+        return redirect('admin_dashboard')
+    elif request.user.is_manager:
+        return redirect('managerDash')
+    else:
+        return redirect('votersLanding')

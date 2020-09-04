@@ -15,13 +15,13 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-th-large icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminDash' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'admin_dashboard' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;color: rgb(71,71,71);">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-user-friends icon-size" style="font-size: 20px;color: #152E21;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminManagerscreated' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Managers</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'admin_view_managers' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Managers</label></a></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
@@ -77,17 +77,17 @@
                                             <tbody>
                                                 {% for manager in managers %}
                                                 <tr style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
-                                                    <td>{{manager.managerID}}</td>
-                                                    <td>{{manager.firstname}}</td>
-                                                    <td>{{manager.lastname}}</td>
-                                                    <td>{{manager.phonenumber}}</td>
+                                                    <td>{{manager.id}}</td>
+                                                    <td>{{manager.first_name}}</td>
+                                                    <td>{{manager.last_name}}</td>
+                                                    <td>{{manager.get_phone}}</td>
                                                     <td>{{manager.email}}</td>
-                                                    <td>{{manager.gender}}</td>
-                                                    <td>{{manager.DOB}}</td>
+                                                    <td>{{manager.get_gender}}</td>
+                                                    <td>{{manager.get_date_of_birth}}</td>
 
-                                                    <td class="d-xl-flex"><a href="{% url 'adminManagersview' manager.managerID %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
-                                                    <td><a href="{% url 'adminEditmanagers' manager.managerID %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
-                                                    <td><a href="{% url 'adminManagersdelete' manager.managerID %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
+                                                    <td class="d-xl-flex"><a href="{% url 'admin_view_a_manager' manager.id %}"><i class="fas fa-eye" style="font-size: 19px;color: #4daf7c;"></i></a></td>
+                                                    <td><a href="{% url 'admin_edit_manager' manager.id %}"><i class="fas fa-pen" style="font-size: 19px;color: #7492cb;"></i></a></td>
+                                                    <td><a href="{% url 'admin_delete_manager' manager.id %}"><i class="far fa-trash-alt" style="font-size: 19px;color: #ff5c5c;"></i></a></td>
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
