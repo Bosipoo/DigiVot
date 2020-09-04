@@ -16,13 +16,13 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex justify-content-center align-items-center justify-content-sm-center">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-0 p-1"><i class="fa fa-th-large icon-size" style="font-size: 20px;color: rgba(132,129,129,0.73);"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminDash' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'admin_dashboard' %}" style="color: #474747;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: rgba(132,129,129,0.73);height: 100%;">Dashboard</label></a></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;width: 100%;">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-12"><i class="fas fa-user-friends icon-size" style="font-size: 20px;color: #152E21;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'adminManagerscreated' %}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Managers</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="{% url 'admin_view_managers' %}"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #152E21;height: 100%;">Managers</label></a></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-lg-flex justify-content-center justify-content-sm-center justify-content-lg-center" style="margin: 0px;margin-top: 25px;">
@@ -40,7 +40,17 @@
                             <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 90px;">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-0"><i class="fas fa-power-off icon-size" style="font-size: 20px;color: #FF5C5C;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #ff5c5c;font-family: 'Open Sans', sans-serif;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #FF5C5C;height: 100%;">Logout</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static">
+                                        <form method="post" action="{% url 'user_logout' %}">
+                                            {% csrf_token %}
+                                            {% if redirect_field_value %}
+                                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                            {% endif %}
+                                            <button style="font-size: 20px; font-family: 'Open Sans', sans-serif; font-weight: bold; color: #FF5C5C; height: 100%;
+                                                            padding-left: 0; border: none; background-color: #fff"
+                                                    type="submit">Logout</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,49 +61,17 @@
                     <div class="row">
                         <div class="col-md-12 col-lg-12">
                             <div class="row">
-                                <div class="col-7 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start"><a class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">My Manager&nbsp;</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
+                                <div class="col-7 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex d-sm-flex d-md-flex d-lg-flex justify-content-start align-items-center justify-content-sm-start align-items-sm-center justify-content-md-start align-items-md-center justify-content-lg-start"><a class="link" href="{% url 'admin_view_managers' %}" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">Created Managers&nbsp;</a><span style="font-size: 22px;color: #4daf7c;font-family: 'Open Sans', sans-serif;font-weight: bold;">&nbsp;&gt;&nbsp;</span>
                                     <a
-                                        class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">View</a>
+                                        class="link" href="#" style="font-size: 22px;font-family: 'Open Sans', sans-serif;color: #4daf7c;font-weight: bold;">{{ manager.first_name }}</a>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 40px;">
                                 <div class="col-12 col-sm-7 col-md-8 col-lg-8 col-xl-9"><label class="col-form-label" style="color: #152e21;font-size: 27px;font-family: 'Open Sans', sans-serif;font-weight: bold;">View Manager's Details</label></div>
                                 <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
                                     <div class="row">
-                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-end align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" role="button" style="width: 50px;height: 50px;background-color: #C2D4F5;" href=""><i class="fas fa-pen mx-auto" style="font-size: 23px;color: #7492cb;"></i></a></div>
-                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" role="button" style="width: 50px;height: 50px;background-color: #ffb9b9;" href="{% url 'adminManagersdelete' manager.managerID %}"><i class="far fa-trash-alt mx-auto" style="font-size: 23px;color: #ff5c5c;"></i></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row d-lg-flex d-xl-flex justify-content-lg-start justify-content-xl-start" style="margin-top: 40px;">
-                        <div class="col-lg-8 col-xl-7 d-lg-flex d-xl-flex justify-content-lg-start justify-content-xl-start">
-                            <div class="card card-radius1">
-                                <div class="card-body card-radius1">
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-7 col-xl-7">
-                                            <div class="row">
-                                                <div class="col-xl-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: bold;font-size: 25px;">{{ manager.pin }}</label></div>
-                                                <div class="col-xl-12"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;">Manager PIN</label></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-lg-2 col-xl-2 d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center">
-                                            <div class="row">
-                                                <a href="#" style="font-size: 11px;font-family: 'Open Sans', sans-serif;color: #4daf7c; text-decorations:none;">
-                                                <div class="col-12 col-xl-12 d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center"><i class="fas fa-copy" style="font-size: 21px;color: #4daf7c;"></i></div>
-                                                <div class="col d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center align-items-xl-center" style="width: 107.25px;margin-top: 0px;">Copy</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-lg-3 col-xl-3 d-md-flex d-xl-flex justify-content-md-center align-items-md-center justify-content-xl-center align-items-xl-center">
-                                            <div class="row">
-                                                <a href="#" style="font-size: 11px;font-family: 'Open Sans', sans-serif;color: #4daf7c;">
-                                                <div class="col-12 d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center align-items-xl-center"><i class="fas fa-paper-plane" style="font-size: 21px;color: #4daf7c;"></i></div>
-                                                <div class="col-12 d-md-flex d-xl-flex justify-content-md-center justify-content-xl-center align-items-xl-center">Send to Manager</div>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-end align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" role="button" style="width: 50px;height: 50px;background-color: #C2D4F5;" href="{% url 'admin_edit_manager' manager.id %}"><i class="fas fa-pen mx-auto" style="font-size: 23px;color: #7492cb;"></i></a></div>
+                                        <div class="col-6 col-sm-6 col-md-6 col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center"><a class="btn btn-primary d-xl-flex align-items-xl-center card-radius2" onclick="return confirm('Are you sure you want to delete this manager?')" style="width: 50px;height: 50px;background-color: #ffb9b9;" href="{% url 'admin_delete_manager' manager.id %}"><i class="far fa-trash-alt mx-auto" style="font-size: 23px;color: #ff5c5c;"></i></a></div>
                                     </div>
                                 </div>
                             </div>
@@ -103,25 +81,19 @@
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">First Name</label></div>
-                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.firstname }}" /></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.first_name }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Last Name</label></div>
-                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.lastname }}" /></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-4">
-                            <div class="row">
-                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Other Name</label></div>
-                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.othername }}" /></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.last_name }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Phone Number</label></div>
-                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.phonenumber }}" /></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ profile.phone_number }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4">
@@ -133,25 +105,20 @@
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Date of Birth</label></div>
-                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ manager.DOB }}" /></div>
+                                <div class="col-12"> <input type="text" class="form-control input-field" readonly="readonly" value= "{{ profile.date_of_birth }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Address</label></div>
-                                <div class="col-9"> <input type="textarea" class="form-control input-field" readonly="readonly" value= "{{ manager.address }}" /></div>
+                                <div class="col-9"> <input type="textarea" class="form-control input-field" readonly="readonly" value= "{{ profile.address }}" /></div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-6">
                             <div class="row">
                                 <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Picture</label></div>
-                                <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start"><img class="card-radius1" style="width: 220px;height: 223px;" src="{{ manager.picture }}"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-6">
-                            <div class="row">
-                                <div class="col-12 col-xl-12"><label class="col-form-label" style="font-size: 17px;font-family: 'Open Sans', sans-serif;color: rgba(0,0,0,0.65);">Biometric Information</label></div>
-                                <div class="col-12 d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-start"><img src="{% static './img/mdi_fingerprint.png'%}" style="width: 85px;"></div>
+                                <div class="col-12 d-lg-flex justify-content-lg-center justify-content-xl-start">
+                                    <img class="card-radius1" style="width: 220px;height: 223px;" src="{{ profile.avatar.url }}"></div>
                             </div>
                         </div>
             </div>

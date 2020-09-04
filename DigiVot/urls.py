@@ -16,3 +16,7 @@ urlpatterns = [
 admin.site.site_header = 'DigiVot'
 admin.site.index_title = 'Welcome Super Administrator'
 admin.site.site_title = 'Control Panel'
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

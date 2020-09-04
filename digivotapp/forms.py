@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.timezone import datetime
+from users.models import CustomUser
 from django.forms import ModelForm
 from .models import Region, ElectionType, PoliticalParty, PoliticalCandidate, Ballot
 from bootstrap_modal_forms.forms import BSModalModelForm
@@ -41,3 +42,24 @@ class Confirm(forms.ModelForm):
     class Meta:
         model = Ballot
         fields = ['voteID','candidateID']
+
+
+class EditManagerForm(forms.Form):
+    first_name = forms.CharField(max_length=150)
+    last_name = forms.CharField(max_length=150)
+    phone_number = forms.CharField(max_length=14)
+    email = forms.EmailField()
+    date_of_birth = forms.DateField()
+    address = forms.CharField(max_length=200)
+    avatar = forms.ImageField(allow_empty_file=True)
+
+
+class AddManagerForm(forms.Form):
+    first_name = forms.CharField(max_length=150)
+    last_name = forms.CharField(max_length=150)
+    phone_number = forms.CharField(max_length=14)
+    email = forms.EmailField()
+    date_of_birth = forms.DateField()
+    address = forms.CharField(max_length=200)
+    gender = forms.CharField(max_length=50)
+    avatar = forms.ImageField(allow_empty_file=True)

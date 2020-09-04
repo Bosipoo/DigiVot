@@ -153,8 +153,9 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # Setting media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = 'media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-BASE_URL = '127.0.0.1:8000'
+BASE_URL = 'http://127.0.0.1:8000'
