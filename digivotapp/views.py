@@ -30,6 +30,10 @@ def adminPoliticalpartiesedit(request):
     return render(request, 'adminPoliticalpartiesedit.html')
 
 
+def adminRegister(request):
+    return render(request, 'adminRegister1.html')
+
+
 @login_required
 def admin_dashboard(request):
     return render(request,

@@ -9,6 +9,7 @@ from uuid import uuid4
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
+import subprocess
 
 
 def new_user_register(request, permission='admin'):
@@ -36,6 +37,9 @@ def new_user_register(request, permission='admin'):
                         user.created_by = None
 
                     user.save()
+                    #Call fingerprint enroller
+                    program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
+                    subprocess.call([program,'functionToExecute','enroll','userID',str(user.id)])
                     return render(request, 'users/register_successful.html', status=200)
                 else:
                     return render(request, 'users/voter_register.html', {'form': user_form})

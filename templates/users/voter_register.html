@@ -1,17 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 {% load static %}
-<head>
-	<title>Digivot| Voter Register</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <form class="login" method="POST" action="{% url 'user_register' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="hidden" value="admin" name="permission">
-      <button class="primaryAction" type="submit">Create User</button>
-    </form>
+
+{% block content %}
+<body style="background-image: url(&quot;{% static './img/background.png' %}&quot;);">
+    <div class="row">
+        <div class="col-11 d-flex justify-content-end justify-content-xl-end"><img class="d-lg-flex align-items-lg-end" src="{% static './img/DigiVotLogo%201.png' %}" style="margin-top: 24px;width: 148px;height: 60px;"></div>
+    </div>
+    <div class="row" style="margin-bottom: 30px;">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card card-radius" style="margin-top: 19px;">
+                <div class="card-body" style="padding: 38px;">
+                    <div class="row">
+                        <div class="col col-xl-9 col-lg-9 col-md-9 col-sm-8 col-xs-2">
+                            <div class="row">
+                                <div class="col"><label class="col-form-label" style="font-size: 25px;font-family: 'Open Sans', sans-serif;font-weight: 800;">Register</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label" style="color: rgba(0, 0, 0, 0.6);font-family: 'Open Sans', sans-serif;font-size: 13px;">Admin, Welcome to DigiVot</label></div>
+                            </div>
+                        </div>
+                        <div class="col col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid" src="{% static './img/Group%2090.png' %}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {% load custom_tags %}
+                        <form class="login" method="POST" action="{% url 'user_register' %}">
+                        {% csrf_token %}
+                            <div class="form-row" style="margin-top: 17px;padding: 0;">
+                                <div class="col-12 col-xl-6">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Firstname</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="col-12 pr-5">{{ form.first_name|addcss:"form-control input-field" }}</div>
+                                    </div>                                    
+                                </div>
+                                <div class="col-12 col-xl-6">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-size: 14px;">Lastname</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="col-12 pr-5">{{ form.last_name|addcss:"form-control input-field" }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-12" style="font-family: 'Open Sans', sans-serif;width: 220px;font-size: 15px;">
+                                    <div class="form-row" style="margin-top: 5px;">
+                                        <div class="col-12">
+                                            <div class="form-row">
+                                                <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Email Address</label></div>
+                                            </div>
+                                            <div class="form-row">
+                                              <div class="col-12 pr-5">{{ form.email|addcss:"form-control input-field" }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-top: 17px;padding: 0;">
+                                <div class="col-12 col-xl-6">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-size: 14px;font-weight: normal;color: rgb(0,0,0);">Username</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="col-12 pr-5">{{ form.username|addcss:"form-control input-field" }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-xl-6">
+                                    <div class="form-row">
+                                        <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-family: 'Open Sans', sans-serif;font-size: 14px;">Password</label></div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="col-12 pr-5">{{ form.password|addcss:"form-control input-field" }}</div>
+                                    </div>
+                                    <input type="hidden" value="admin" name="permission">
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-top: 15px;">
+                                <div class="col-sm-12 col-sm-6 col-xs-0 col-md-7 col-lg-7 col-xl-7"></div>
+                                <div class="col-sm-12 d-sm-flex justify-content-sm-center col-xs-12 col-sm-6 col-md-5 col-lg-5 col-xl-5">
+                                    <button type="submit" style="width: 284px;height: 54px;margin-top: 13px;font-size: 16px;background-color: #4daf7c;color: rgb(255,255,255);">Enroll Fingerprint</button>
+                                </div>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-2"></div>
+    </div>
+    <script src="{% static './js/jquery.min.js' %}"></script>
+    <script src="{% static './bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static './js/collapse.js' %}"></script>
 </body>
-</html>
+{% endblock content %} 

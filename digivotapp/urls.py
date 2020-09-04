@@ -14,6 +14,7 @@ urlpatterns = [
     path('admin/managers/edit/<int:pk>/', views.admin_edit_manager, name="admin_edit_manager"),
     path('admin/managers/delete/<int:pk>/', views.admin_delete_manager, name="admin_delete_manager"),
     path('admin/managers/search/', views.admin_manager_search, name="admin_manager_search"),
+    path('adminR/', views.adminRegister, name="adminReg"),
 
     path('adminPoliticalpartiesview/', views.adminPoliticalpartiesview.as_view(), name="adminPoliticalpartiesview"),
     path('adminPoliticalpartiesadd_party/', views.adminPoliticalpartiesadd_party.as_view(), name="adminPoliticalpartiesadd_party"),
