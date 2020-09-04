@@ -74,4 +74,4 @@ class AuthenticationTable(models.Model):
 
 class Finger(models.Model):
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    fingerprint = models.models.BinaryField(b"")
+    fingerprint = models.BinaryField(default=b"", null=True)
