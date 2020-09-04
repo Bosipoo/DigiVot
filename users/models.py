@@ -71,3 +71,7 @@ class AuthenticationTable(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_valid = models.BooleanField(default=True)
     key = models.CharField(max_length=50)
+
+class Finger(models.Model):
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    fingerprint = models.models.BinaryField(b"")
