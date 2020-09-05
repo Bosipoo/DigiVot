@@ -16,6 +16,7 @@ from .models import Ballot, Region
 from .forms import Elections, PartyForm, CandidateForm, Confirm, EditManagerForm, AddManagerForm
 from users.models import CustomUser, Profile
 from django.contrib.auth.decorators import login_required
+import subprocess
 
 
 def adminPoliticalpartiesview(request):
@@ -54,7 +55,7 @@ class adminElections(ListView):
 class adminElectionsadd(SuccessMessageMixin, CreateView):
     form_class = Elections
     template_name = 'adminElectionsadd.html'
-    success_url = '/adminElections'
+    success_url = 'application/adminElections'
     success_message = "Election was created successfully"
 
 class adminElectionsedit(UpdateView):
@@ -75,18 +76,18 @@ class adminElectionsview(DetailView):
 class adminElectionsdelete(DeleteView):
     model = ElectionType
     template_name = 'adminElectionsdelete.html'
-    success_url = '/adminElections'
+    success_url = 'application/adminElections'
 
 class adminPoliticalpartiesadd_party(SuccessMessageMixin, CreateView):
     form_class = PartyForm
     template_name = 'adminPoliticalpartiesadd_party.html'
-    success_url = '/adminPoliticalpartiesadd_partycandidate.html'
+    success_url = 'application/adminPoliticalpartiesadd_partycandidate'
     success_message = "Party was created successfully"
 
 class adminPoliticalpartiesadd_candidate(SuccessMessageMixin, CreateView):
     form_class = CandidateForm
     template_name = 'adminPoliticalpartiesadd_partycandidate.html'
-    success_url = '/adminPoliticalpartiesview'
+    success_url = 'application/adminPoliticalpartiesview'
     success_message = "Candidate was created successfully"
 
 class adminPoliticalpartiesview(ListView):
@@ -122,13 +123,13 @@ class adminPoliticalpartiesedit_candidate(UpdateView):
 class adminPoliticalpartydelete(DeleteView):
     model = PoliticalParty
     template_name = 'adminPoliticalpartydelete.html'
-    success_url = '/adminPoliticalpartiesview'
+    success_url = 'application/adminPoliticalpartiesview'
 
 
 class adminPoliticalcandidatedelete(DeleteView):
     model = PoliticalCandidate
     template_name = 'adminPoliticalcandidatedelete.html'
-    success_url = '/adminPoliticalpartiesview'
+    success_url = 'application/adminPoliticalpartiesview'
 
 
 class ManagerDashboard(ListView):
@@ -266,9 +267,12 @@ def confirmVote(request, pk):
     if form.is_valid():
         form.save()
         messages.success(request, 'Vote successfully cast')
-        return redirect('home')
+        return redirect('user_login')
         
     context['form'] = form
+    #Call fingerprint enroller
+    program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
+    subprocess.call([program,'functionToExecute','verify','userID',str(11)])
     return render(request, "confirmVote.html", context)
 
 
@@ -363,6 +367,8 @@ def admin_add_manager(request):
                 first_name=form.cleaned_data.get('first_name'),
                 last_name=form.cleaned_data.get('last_name'),
                 email=form.cleaned_data.get('email'),
+                username=form.cleaned_data.get('first_name'),
+                password=form.cleaned_data.get('first_name'),
                 is_manager=True,
                 created_by=request.user
             )
@@ -376,6 +382,9 @@ def admin_add_manager(request):
                 phone_number=form.cleaned_data.get('phone_number')
             )
             profile.save()
+            #Call fingerprint enroller
+            program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
+            subprocess.call([program,'functionToExecute','enroll','userID',str(manager.id)])
             return redirect('admin_view_a_manager', manager.id)
         else:
             return render(request, 'adminManagersaddmanager.html', {'form': form})

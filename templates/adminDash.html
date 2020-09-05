@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end align-items-lg-center justify-content-xl-end">
                                     <label class="col-form-label small-screentext"
-                                           style="color: #474747;font-size: 20px;font-family: 'Open Sans', sans-serif;margin-top: 10px;">{% now "jS F Y H:i" %}</label>
+                                           style="color: #474747;font-size: 20px;font-family: 'Open Sans', sans-serif;margin-top: 10px;">{% now "jS F Y" %}</label>
                                 </div>
                             </div>
                             <div class="row d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center">
@@ -132,7 +132,7 @@
                                                 <table class="table">
                                                     <thead>
                                                     <tr style="font-family: 'Open Sans', sans-serif;font-size: 15px;">
-                                                        <th>ID</th>
+                                                        {% comment %} <th>ID</th> {% endcomment %}
                                                         <th>First Name</th>
                                                         <th>Last Name</th>
                                                         <th>Phone Number</th>
@@ -145,7 +145,7 @@
                                                     <tbody>
                                                     {% for manager in managers %}
                                                         <tr style="font-family: 'Open Sans', sans-serif;font-size: 13px;">
-                                                            <td>{{ manager.get_admin_id }}</td>
+                                                            {% comment %} <td>{{ manager.get_admin_id }}</td> {% endcomment %}
                                                             <td>{{ manager.first_name }}</td>
                                                             <td>{{ manager.last_name }}</td>
                                                             <td>{{ manager.get_phone }}</td>

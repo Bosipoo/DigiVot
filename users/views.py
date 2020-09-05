@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_GET
 from .models import Profile, AuthenticationTable, CustomUser
@@ -35,12 +35,11 @@ def new_user_register(request, permission='admin'):
                     else:
                         user.is_staff = True
                         user.created_by = None
-
                     user.save()
                     #Call fingerprint enroller
-                    program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
-                    subprocess.call([program,'functionToExecute','enroll','userID',str(user.id)])
-                    return render(request, 'users/register_successful.html', status=200)
+                    # program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
+                    # subprocess.call([program,'functionToExecute','enroll','userID',str(user.id)])
+                    return render(request, 'users/register_successful.html')
                 else:
                     return render(request, 'users/voter_register.html', {'form': user_form})
             elif request.method == 'GET':
@@ -50,23 +49,49 @@ def new_user_register(request, permission='admin'):
             return HttpResponse(status=405)
 
 
-@require_GET
-def login_to_browser(request, key):
-    auth = get_object_or_404(AuthenticationTable, key=key)
-    if auth.is_valid:
-        user = auth.user
-        auth.delete()
-        login(request, user)
-        if user.is_voter:
-            return HttpResponseRedirect('/application/votersLanding/')
-        elif user.is_manager:
-            return HttpResponseRedirect('/application/managerDash/')
-        elif user.is_staff:
-            return HttpResponseRedirect('/application/adminDash/')
+# @require_GET
+# def login_to_browser(request, key):
+#     auth = get_object_or_404(AuthenticationTable, key=key)
+#     if auth.is_valid:
+#         user = auth.user
+#         auth.delete()
+#         login(request, user)
+#         if user.is_voter:
+#             return HttpResponseRedirect('/application/votersLanding/')
+#         elif user.is_manager:
+#             return HttpResponseRedirect('/application/managerDash/')
+#         elif user.is_staff:
+#             return HttpResponseRedirect('/application/adminDash/')
+#         else:
+#             return HttpResponse(status=403)
+#     else:
+#         return HttpResponse(status=403)
+def login_user(request):
+    if request.method == 'GET':
+        context = ''
+        return render(request, 'index.html', {'context': context})
+
+    elif request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            #Call fingerprint enroller
+            # program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
+            # subprocess.call([program,'functionToExecute','verify','userID',str(user.id)])
+            login(request, user)
+            if user.is_voter:
+                return HttpResponseRedirect('/application/votersLanding/')
+            elif user.is_manager:
+                return HttpResponseRedirect('/application/manager/dashboard/')
+            elif user.is_staff:
+                return HttpResponseRedirect('/application/manager/dashboard/')
+            else:
+                return HttpResponse(status=403)
         else:
-            return HttpResponse(status=403)
-    else:
-        return HttpResponse(status=403)
+            context = {'error': 'Wrong credintials'}  # to display error?
+            return render(request, 'index.html', {'context': context})
 
 
 @login_required(login_url='users/login/')
@@ -95,30 +120,12 @@ def profile_edit(request):
         return render(request, 'managerVoteradd.html', {'form': form})
 
 
-@csrf_exempt
-@require_POST
-def authenticate_user(request):
-    username = json.loads(request.body).get('username')
-    if username:
-        user_object = get_object_or_404(CustomUser, username=username)
-        key = uuid4().hex
-        auth_object = AuthenticationTable(
-            user=user_object,
-            is_valid=True,
-            key=key
-        )
-        auth_object.save()
-        url = settings.BASE_URL + f'/validate/{auth_object.key}/'
-        return JsonResponse({'url': url})
-    else:
-        return JsonResponse({'message': 'Missing required parameter username'})
-
 
 @require_POST
 def account_logout(request):
     logout(request)
-    return render(request, 'adminLogin.html', {})
+    return render(request, 'index.html', {})
 
 
 def account_login(request):
-    return render(request, 'adminLogin.html', {})
+    return render(request, 'index.html', {})

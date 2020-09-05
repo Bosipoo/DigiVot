@@ -62,4 +62,7 @@ class AddManagerForm(forms.Form):
     date_of_birth = forms.DateField()
     address = forms.CharField(max_length=200)
     gender = forms.CharField(max_length=50)
-    avatar = forms.ImageField(allow_empty_file=True)
+    avatar = forms.ImageField(allow_empty_file=True) 
+    username =  forms.CharField(max_length=50)
+    #passsword =  forms.CharField(max_length=50)
+
