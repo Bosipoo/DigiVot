@@ -39,16 +39,20 @@
                             <div class="col d-flex d-xl-flex justify-content-center justify-content-xl-center align-items-xl-center" style="margin: 0px;margin-top: 20px;">
                                 <div class="row position-relative" style="width: 100%;">
                                     <div class="col-lg-3 col-xl-3 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-xl-center align-items-xl-center col-md-12 col-sm-0"><i class="fas fa-power-off icon-size" style="font-size: 20px;color: #FF5C5C;"></i></div>
-                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static"><a class="stretched-link d-xl-flex align-items-xl-start stretched-link" href="#" style="color: #ff5c5c;font-family: 'Open Sans', sans-serif;"><label class="d-xl-flex justify-content-xl-center align-items-xl-center text-size" style="font-size: 20px;font-family: 'Open Sans', sans-serif;font-weight: bold;color: #FF5C5C;height: 100%;">Logout</label></a></div>
+                                    <div class="col-lg-9 col-xl-9 d-flex d-sm-flex d-md-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start justify-content-xl-start col-md-12 col-sm-12 position-static">
+                                        <form method="post" action="{% url 'user_logout' %}">
+                                            {% csrf_token %}
+                                            {% if redirect_field_value %}
+                                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                            {% endif %}
+                                            <button style="font-size: 20px; font-family: 'Open Sans', sans-serif; font-weight: bold; color: #FF5C5C; height: 100%;
+                                                            padding-left: 0; border: none; background-color: #fff"
+                                                    type="submit">Logout</button>
+                                        </form>                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row d-xl-flex justify-content-xl-start align-items-xl-center" id="divider" style="font-family: 'Open Sans', sans-serif;margin-top: 61px;font-size: 12px;">
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 13px;">Admin Details</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">ID: 19089324</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Stata: Lagos</label></div>
-                            <div class="col-12 d-xl-flex justify-content-xl-start align-items-xl-center"><label class="col-form-label" style="font-size: 12px;">Region: Surulere-west</label></div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col offset-3" id="main" style="padding: 60px;padding-top: 40px;">
@@ -76,7 +80,7 @@
                                 <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center" style="margin-top: 4px;"><input type="number" class="numberinput card-radius2" style="height: 40px;width: 110px;background-color: rgba(255,255,255,0);font-family: 'Open Sans', sans-serif;" value="10"></div>
                                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 d-xl-flex justify-content-xl-center"
                                     style="margin-top: 5px;"><a class="btn btn-primary d-xl-flex justify-content-xl-center align-items-xl-center top-button" role="button" style="width: 150px;font-family: 'Open Sans', sans-serif;font-weight: 300;font-size: 16px;background-color: rgba(255,255,255,0);height: 50px;"
-                                        href="#">+ Add Voter</a></div>
+                                        href="{% url 'managerVoteradd' %}">+ Add Voter</a></div>
                             </div>
                         </div>
                         <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-12 d-lg-flex d-xl-flex justify-content-lg-center align-items-lg-center justify-content-xl-center" style="margin-top: 35px;">

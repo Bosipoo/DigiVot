@@ -7,25 +7,21 @@ from django.views.generic.edit import FormView, FormMixin
 from django.template.context_processors import csrf
 from django.db.models import Q
 from django.contrib import messages
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
+from django.contrib.auth import get_user_model, login, logout, authenticate
 
 # from .models import AdminUserR
 from .models import ElectionType
 from .models import PoliticalCandidate, PoliticalParty
 from .models import Ballot, Region
+from users.models import Profile, AuthenticationTable, CustomUser
 
-from .forms import Elections, PartyForm, CandidateForm, Confirm, EditManagerForm, AddManagerForm
+
+from users.forms import UserRegisterForm, ProfileForm
+from .forms import Elections, PartyForm, CandidateForm, Confirm, EditManagerForm, AddManagerForm, RegisterVoter
 from users.models import CustomUser, Profile
 from django.contrib.auth.decorators import login_required
 import subprocess
-
-
-def adminPoliticalpartiesview(request):
-    return render(request, 'adminPoliticalpartiesview.html')
-
-
-def adminPoliticalpartiesadd(request):
-    return render(request, 'adminPoliticalpartiesadd.html')
-
 
 def adminPoliticalpartiesedit(request):
     return render(request, 'adminPoliticalpartiesedit.html')
@@ -52,10 +48,10 @@ class adminElections(ListView):
         context["elections"] = ElectionType.objects.all().order_by('-dateadded')[:10]
         return context
 
-class adminElectionsadd(SuccessMessageMixin, CreateView):
+class adminElectionadd(SuccessMessageMixin, CreateView):
     form_class = Elections
     template_name = 'adminElectionsadd.html'
-    success_url = 'application/adminElections'
+    success_url = '/application/adminElections'
     success_message = "Election was created successfully"
 
 class adminElectionsedit(UpdateView):
@@ -73,7 +69,7 @@ class adminElectionsview(DetailView):
     model = ElectionType
     context_object_name = 'election'
 
-class adminElectionsdelete(DeleteView):
+class admindeleteElection(DeleteView):
     model = ElectionType
     template_name = 'adminElectionsdelete.html'
     success_url = 'application/adminElections'
@@ -81,13 +77,13 @@ class adminElectionsdelete(DeleteView):
 class adminPoliticalpartiesadd_party(SuccessMessageMixin, CreateView):
     form_class = PartyForm
     template_name = 'adminPoliticalpartiesadd_party.html'
-    success_url = 'application/adminPoliticalpartiesadd_partycandidate'
+    success_url = '/application/adminPoliticalpartiesadd_candidate'
     success_message = "Party was created successfully"
 
-class adminPoliticalpartiesadd_candidate(SuccessMessageMixin, CreateView):
+class adminPoliticalpartyadd_candidate(SuccessMessageMixin, CreateView):
     form_class = CandidateForm
     template_name = 'adminPoliticalpartiesadd_partycandidate.html'
-    success_url = 'application/adminPoliticalpartiesview'
+    success_url = '/application/adminPoliticalpartiesview'
     success_message = "Candidate was created successfully"
 
 class adminPoliticalpartiesview(ListView):
@@ -120,11 +116,10 @@ class adminPoliticalpartiesedit_candidate(UpdateView):
         return redirect('/adminPoliticalpartiesview')
 
 
-class adminPoliticalpartydelete(DeleteView):
+class adminPoliticalpartdelete(DeleteView):
     model = PoliticalParty
     template_name = 'adminPoliticalpartydelete.html'
     success_url = 'application/adminPoliticalpartiesview'
-
 
 class adminPoliticalcandidatedelete(DeleteView):
     model = PoliticalCandidate
@@ -154,11 +149,11 @@ class managerVoter(ListView):
         return context
 
 
-# class managerVoteradd(SuccessMessageMixin, CreateView):
-#     form_class = RegisterVoter
-#     template_name = 'managerVoteradd.html'
-#     success_url = '/managerVoter'
-#     success_message = "Voter registered successfully"
+class managerVoteradd(SuccessMessageMixin, CreateView):
+    form_class = RegisterVoter
+    template_name = 'managerVoteradd.html'
+    success_url = '/managerVoter'
+    success_message = "Voter registered successfully"
 
 
 class managerViewvoter(DetailView):
@@ -367,7 +362,7 @@ def admin_add_manager(request):
                 first_name=form.cleaned_data.get('first_name'),
                 last_name=form.cleaned_data.get('last_name'),
                 email=form.cleaned_data.get('email'),
-                username=form.cleaned_data.get('first_name'),
+                username=form.cleaned_data.get('username'),
                 password=form.cleaned_data.get('first_name'),
                 is_manager=True,
                 created_by=request.user
@@ -383,8 +378,8 @@ def admin_add_manager(request):
             )
             profile.save()
             #Call fingerprint enroller
-            program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
-            subprocess.call([program,'functionToExecute','enroll','userID',str(manager.id)])
+            # program = 'C:/Users/Bosipo/Documents/digivot-finger/digivot-finger/Fingerprint Authentication/bin/Release/Fingerprint Authentication.exe'
+            # subprocess.call([program,'functionToExecute','enroll','userID',str(manager.id)])
             return redirect('admin_view_a_manager', manager.id)
         else:
             return render(request, 'adminManagersaddmanager.html', {'form': form})

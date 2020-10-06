@@ -6,7 +6,16 @@
     <div class="container">
         <div class="row" style="margin-top: 5px;">
             <div class="col-6"><img class="img-fluid logo" src="{% static './img/DigiVotLogo%201.png'%}" style="width: 120px;"></div>
-            <div class="col-6 d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-md-end justify-content-lg-end justify-content-xl-end align-items-xl-center"><a class="btn btn-primary bottom-button" role="button" style="width: 130px;height: 40px;font-family: 'Open Sans', sans-serif;" href="index.html">Logout</a></div>
+            <div class="col-6 d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-end align-items-sm-center justify-content-md-end justify-content-lg-end justify-content-xl-end align-items-xl-center">           
+                <form method="post" action="{% url 'user_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button class="btn btn-primary bottom-button" style="width: 130px;height: 40px;font-family: 'Open Sans', sans-serif;"
+                        type="submit">Logout</button>
+                </form>
+            </div>
             <div class="col-12 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center"
                 style="margin-top: 70px;"><label class="col-form-label" style="font-family: 'Open Sans', sans-serif;color: rgb(0,0,0);font-size: 20px;font-weight: bold;">Click on the party to cast your vote</label></div>
         </div>

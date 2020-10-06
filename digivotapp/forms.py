@@ -66,3 +66,8 @@ class AddManagerForm(forms.Form):
     username =  forms.CharField(max_length=50)
     #passsword =  forms.CharField(max_length=50)
 
+class RegisterVoter(forms.Form):
+    first_name = forms.CharField(max_length=150)
+
+    
+

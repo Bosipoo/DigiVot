@@ -86,7 +86,7 @@ def login_user(request):
             elif user.is_manager:
                 return HttpResponseRedirect('/application/manager/dashboard/')
             elif user.is_staff:
-                return HttpResponseRedirect('/application/manager/dashboard/')
+                return HttpResponseRedirect('/application/admin/dashboard/')
             else:
                 return HttpResponse(status=403)
         else:
